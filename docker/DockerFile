@@ -1,0 +1,49 @@
+FROM php:8.1-apache-bullseye
+
+# basic OS conf
+ENV DEBIAN_FRONTEND noninteractive
+ENV TZ=America/Argentina/Ushuaia
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+RUN apt-get update && apt-get install -y sudo unzip git
+
+# PHP config
+ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
+RUN chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+      xdebug-stable \
+      pdo_pgsql \
+      exif \
+      zip \
+      gd \
+      imap \
+      pcntl \
+      bcmath \
+      imagick && \
+    docker-php-source delete
+COPY docker/php.ini /usr/local/etc/php/php.ini
+
+# Apache config
+COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
+RUN a2enmod rewrite && \
+    a2enmod headers
+
+# src
+WORKDIR /var/www/html
+COPY . . 
+
+# dependencies
+COPY --from=composer:2.3.9 /usr/bin/composer /usr/local/bin/composer
+RUN composer install
+
+# scheduler
+COPY docker/laravel_scheduler /usr/local/bin/laravel_scheduler
+RUN chmod a+x /usr/local/bin/laravel_scheduler
+
+# Apache permissions
+RUN usermod -u 1000 -s /bin/bash www-data
+RUN chown -R www-data:www-data /var/www/html
+
+EXPOSE 80
+
+CMD ["docker-php-entrypoint", "apache2-foreground"]
