@@ -6,7 +6,6 @@ services:
             dockerfile: ./docker/DockerFile
             context: .
 
-        # image: dposs/oficina-virtual
         ports:
             - "${APP_PORT:-80}:80"
         volumes:

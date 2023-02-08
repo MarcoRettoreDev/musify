@@ -1,6 +1,8 @@
 import { Link, Head } from "@inertiajs/react";
 
 export default function Welcome(props) {
+    const { appName } = props;
+    // console.log(appName);
     return (
         <>
             <Head title="Welcome" />
@@ -67,7 +69,7 @@ export default function Welcome(props) {
                                             href="https://laravel.com/docs"
                                             className="underline text-gray-900 dark:text-white"
                                         >
-                                            dsadadas
+                                            dsadadassadsadsadsa dsadsadsa
                                         </a>
                                     </div>
                                 </div>
