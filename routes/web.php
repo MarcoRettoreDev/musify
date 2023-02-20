@@ -1,10 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\GenerateUser;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -14,6 +14,10 @@ Route::get('/', function () {
         'phpVersion' => PHP_VERSION,
     ]);
 });
+
+Route::get('/user/generate-password', [GenerateUser::class, 'generate'])->name('user.generate');
+
+Route::get('logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@destroy')->name('logout');
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

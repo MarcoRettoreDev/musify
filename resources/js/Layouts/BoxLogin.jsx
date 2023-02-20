@@ -75,20 +75,23 @@ export const BoxLogin = ({ user }) => {
                 </label>
             </div> */}
 
-            <div className="flex items-center justify-end mt-4">
-                <PrimaryButton className="ml-4" processing={processing}>
-                    Log in
-                </PrimaryButton>
+            <div className="flex items-center justify-between mt-6">
                 <PrimaryButton
                     className="ml-4"
                     processing={processing}
                     onClick={() => {
-                        reset("password");
-                        reset("email");
+                        setData({
+                            name: "",
+                            email: "",
+                            password: "",
+                        });
                     }}
                     type="button"
                 >
                     Reset
+                </PrimaryButton>
+                <PrimaryButton className="ml-4" processing={processing}>
+                    Log in
                 </PrimaryButton>
             </div>
         </form>
