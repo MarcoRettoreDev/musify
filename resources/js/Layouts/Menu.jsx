@@ -22,8 +22,8 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
                 sideBarLinks.map((link) => (
                     <SidebarLink
                         key={link.label}
+                        routeLink={link.routeLink}
                         pathName={link.pathName}
-                        urlPath={link.urlPath}
                         label={link.label}
                         icon={link.icon}
                         handleClick={handleClick}
@@ -41,8 +41,8 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
         >
             {(handleClick, open) => (
                 <SidebarLink
-                    pathName={"pathName"}
-                    urlPath={"link.urlPath"}
+                    routeLink={"logout"}
+                    pathName={"logout"}
                     label={"Log out"}
                     icon="mdi:logout"
                     handleClick={handleClick}

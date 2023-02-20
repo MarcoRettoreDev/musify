@@ -1,15 +1,14 @@
-import React, { useState } from "react";
-import { Children } from "react";
+import React from "react";
 import { Link, usePage } from "@inertiajs/react";
-
 import { Icon } from "@iconify/react";
 
 export default function SidebarLink({
     handleClick,
     open,
     data,
+    routeLink,
+    parameters,
     pathName,
-    urlPath,
     label,
     icon,
 }) {
@@ -25,7 +24,7 @@ export default function SidebarLink({
                 onClick={(e) => {
                     e.preventDefault();
                     console.log("click", label);
-                    handleClick();
+                    // handleClick();
                 }}
             >
                 <div className="flex items-center justify-between w-full    ">
@@ -34,14 +33,19 @@ export default function SidebarLink({
                             icon={icon}
                             className={`w-6 h-6 text-green-700`}
                         />
-                        <span
-                            className={`ml-2 text-slate-200 font-semibold hover:!text-green-900 ${
-                                locationName.includes(`${pathName}`) &&
-                                "!text-green-700 font-bold "
-                            }`}
+                        <Link
+                            href={routeLink && route(routeLink, parameters)}
+                            className={`group block text-slate-500 transition duration-150 truncate`}
                         >
-                            {label}
-                        </span>
+                            <span
+                                className={`ml-2 text-slate-200 font-semibold hover:!text-green-900 ${
+                                    locationName.includes(`${pathName}`) &&
+                                    "!text-green-700 font-bold "
+                                }`}
+                            >
+                                {label}
+                            </span>
+                        </Link>
                     </div>
                     {/* <div className="flex shrink-0 ml-2">
                         <Icon
