@@ -1,4 +1,5 @@
 import Checkbox from "@/Components/Checkbox";
+import { EventualText } from "@/Components/EventualText";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
@@ -29,6 +30,14 @@ export const BoxLogin = ({ user }) => {
             onSubmit={handleSubmit}
             className="w-full bg-slate-100 px-6 py-6 rounded md:w-96 sm:w-full"
         >
+            <div>
+                {data.name && (
+                    <EventualText
+                        text="This account will be deleted after 24 hs"
+                        durationInMs={7000}
+                    />
+                )}
+            </div>
             <div>
                 <InputLabel forInput="email" value="Email" />
 
@@ -61,19 +70,6 @@ export const BoxLogin = ({ user }) => {
 
                 <InputError message={errors.password} className="mt-2" />
             </div>
-
-            {/* <div className="block mt-4">
-                <label className="flex items-center">
-                    <Checkbox
-                        name="remember"
-                        value={data.remember}
-                        handleChange={handleOnChange}
-                    />
-                    <span className="ml-2 text-sm text-gray-600">
-                        Remember me
-                    </span>
-                </label>
-            </div> */}
 
             <div className="flex items-center justify-between mt-6">
                 <PrimaryButton

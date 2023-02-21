@@ -88,10 +88,6 @@ export default function Header({
                     </div>
 
                     {renderSearchBar()}
-
-                    <h3 onClick={() => setsidebarCollapsed(!sidebarCollapsed)}>
-                        CLICKME
-                    </h3>
                 </Toolbar>
             </AppBar>
         </Box>
