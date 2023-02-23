@@ -18,7 +18,8 @@ class UserSeeder extends Seeder
             'name' => "Test User",
             'email' => "test@email.com",
             'password' => bcrypt('123456'),
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'expires_at' => now()->addYear(),
         ]);
     }
 }

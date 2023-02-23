@@ -29,7 +29,7 @@ export default function Header({
     };
 
     const renderSearchBar = () => (
-        <div className="flex justify-center items-center text-slate-900">
+        <div className="flex justify-center items-center text-slate-900 w-full md:w-auto">
             <TextField
                 variant="outlined"
                 type="text"
@@ -61,7 +61,7 @@ export default function Header({
                 position="static"
                 sx={{ backgroundColor: "#10172a", boxShadow: "none" }}
             >
-                <Toolbar className="flex justify-around text-slate-700">
+                <Toolbar className="flex justify-between md:justify-around text-slate-700">
                     <div className="lg:hidden">
                         <IconButton
                             ref={trigger}
@@ -81,10 +81,8 @@ export default function Header({
                         </IconButton>
                     </div>
 
-                    <div className="flex-grow text-slate-200">
-                        {sidebarCollapsed && screenWidth >= 1024 && (
-                            <h6>{appName}</h6>
-                        )}
+                    <div className="flex-grow text-slate-200 hidden md:block">
+                        <h1 className="font-bold ">Discover</h1>
                     </div>
 
                     {renderSearchBar()}

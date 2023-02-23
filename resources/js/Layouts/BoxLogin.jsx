@@ -46,7 +46,7 @@ export const BoxLogin = ({ user }) => {
                     type="email"
                     name="email"
                     value={data.email}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full text-slate-600"
                     autoComplete="username"
                     isFocused={true}
                     handleChange={handleOnChange}
@@ -63,7 +63,7 @@ export const BoxLogin = ({ user }) => {
                     type="password"
                     name="password"
                     value={data.password}
-                    className="mt-1 block w-full"
+                    className="mt-1 block w-full text-slate-600"
                     autoComplete="current-password"
                     handleChange={handleOnChange}
                 />

@@ -33,7 +33,7 @@ export const sideBarLinks = [
         label: "Settings",
         icon: "material-symbols:settings-rounded",
         pathName: null,
-        routeLink: "logout",
+        routeLink: "",
     },
     {
         label: "Profile",
