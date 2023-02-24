@@ -31,7 +31,7 @@ export default function SidebarLink({
                     <div className="flex items-center">
                         <Icon
                             icon={icon}
-                            className={`w-6 h-6 text-green-700`}
+                            className={`w-6 h-6 text-greenPrimary`}
                         />
                         <Link
                             href={routeLink && route(routeLink, parameters)}
@@ -40,7 +40,7 @@ export default function SidebarLink({
                             <span
                                 className={`ml-2 text-slate-200 font-semibold hover:!text-green-900 ${
                                     locationName.includes(`${pathName}`) &&
-                                    "!text-green-700 font-bold "
+                                    "!text-greenSecondary font-bold "
                                 }`}
                             >
                                 {label}

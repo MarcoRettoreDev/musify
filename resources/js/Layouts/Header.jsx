@@ -50,7 +50,7 @@ export default function Header({
                 icon="mingcute:settings-2-line"
                 width="2rem"
                 height="2rem"
-                className="text-green-700 cursor-pointer ml-3"
+                className="text-greenPrimary hover:text-greenSecondary cursor-pointer ml-3"
             />
         </div>
     );

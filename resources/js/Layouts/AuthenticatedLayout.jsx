@@ -13,8 +13,6 @@ export default function Authenticated({ appName, auth, children }) {
         screenWidth >= 1024 ? true : false
     );
 
-    console.log(appName);
-
     return (
         <div className="flex h-screen overflow-hidden bg-body">
             <Sidebar
