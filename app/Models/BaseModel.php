@@ -8,6 +8,7 @@ class BaseModel extends Model
 {
     public const MEDIA_COLLECTION_AUDIO = 'audio';
     public const MEDIA_COLLECTION_IMAGE = 'image';
+    public const MEDIA_COLLECTION_AVATAR = 'avatar';
 
     /**
      * Add an audio to the model.
@@ -24,7 +25,7 @@ class BaseModel extends Model
     }
 
     /**
-     * Add an image to the model.
+     * Add an image as avatar to the model.
      *
      * @param \App\Models\BaseModel $model
      */
