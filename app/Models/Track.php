@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Models\BaseModel;
 use App\Models\Artist;
 use App\Models\Album;
+use App\Models\Playlist;
+use App\Models\Genre;
 
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -64,5 +66,15 @@ class Track extends BaseModel implements HasMedia
     public function album()
     {
         return $this->belongsTo(Album::class);
+    }
+
+    public function playlists()
+    {
+        return $this->belongsToMany(Playlist::class);
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
     }
 }
