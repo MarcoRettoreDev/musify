@@ -4,3 +4,24 @@
 
 @components {
 }
+
+@layer base {
+    :root {
+        --green-primary: #15803d;
+        --green-secondary: #166534;
+    }
+}
+input {
+    --tw-ring-shadow: 0 0 #000 !important;
+    --tw-ring-color: #000 !important;
+    border-color: #000 !important;
+}
+textarea {
+    --tw-ring-shadow: 0 0 #000 !important;
+}
+
+fieldset {
+    --tw-ring-shadow: 0 0 #000 !important;
+    --tw-ring-color: #000 !important;
+    border-color: var(--green-primary) !important;
+}
