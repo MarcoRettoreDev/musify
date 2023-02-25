@@ -45,7 +45,7 @@ function Sidebar({ sidebarCollapsed, setsidebarCollapsed, appName, trigger }) {
         <div>
             {/* Sidebar backdrop (mobile only) */}
             <div
-                className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+                className={`fixed inset-0 bg-blackSecondary bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
                     sidebarCollapsed
                         ? "opacity-100"
                         : "opacity-0 pointer-events-none"
@@ -57,7 +57,7 @@ function Sidebar({ sidebarCollapsed, setsidebarCollapsed, appName, trigger }) {
             <div
                 id="sidebar"
                 ref={sidebar}
-                className={`bg-slate-900 text-body bg-sidebar flex flex-col absolute z-40 h-screen w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto translate-x-0 lg:translate-x-0 overflow-y-scroll lg:overflow-y-auto no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
+                className={`bg-blackSecondary text-body bg-sidebar flex flex-col absolute z-40 h-screen w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto translate-x-0 lg:translate-x-0 overflow-y-scroll lg:overflow-y-auto no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
                     sidebarCollapsed
                         ? "translate-x-0"
                         : "sidebar-expanded -translate-x-64 lg:w-[16rem]"
@@ -83,7 +83,7 @@ function Sidebar({ sidebarCollapsed, setsidebarCollapsed, appName, trigger }) {
                         </svg>
                     </button>
                     {!sidebarCollapsed ? (
-                        <h1 className="font-sans font-bold text-lg my-auto text-slate-200">
+                        <h1 className="font-sans font-bold text-xl my-auto text-whitePrimary">
                             {appName}
                         </h1>
                     ) : (

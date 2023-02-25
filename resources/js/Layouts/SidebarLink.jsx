@@ -18,13 +18,11 @@ export default function SidebarLink({
 
     return (
         <React.Fragment>
-            <a
+            <div
                 href="#0"
                 className={`group block truncate transition duration-150 mb-8 `}
                 onClick={(e) => {
                     e.preventDefault();
-                    console.log("click", label);
-                    // handleClick();
                 }}
             >
                 <div className="flex items-center justify-between w-full    ">
@@ -56,7 +54,7 @@ export default function SidebarLink({
                         />
                     </div> */}
                 </div>
-            </a>
+            </div>
             {/* <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
                 <ul className={`pl-9 mt-1 ${!open && "hidden"}`}>
                     {childrens.map((child, i) => {

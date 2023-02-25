@@ -13,7 +13,7 @@ export default function Welcome(props) {
     return (
         <React.Fragment>
             <Head title="Welcome" />
-            <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-slate-900 sm:items-center sm:pt-0">
+            <div className="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-blackSecondary sm:items-center sm:pt-0">
                 <div className="text-slate-200">
                     <div className="flex justify-between items-center mb-5">
                         <h1>Generate your own access</h1>

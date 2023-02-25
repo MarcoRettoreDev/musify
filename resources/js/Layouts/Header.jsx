@@ -35,8 +35,8 @@ export default function Header({
                 type="text"
                 placeholder="Search by title"
                 size="small"
-                className="bg-slate-200 text-slate-700 rounded focus:border-none w-full"
-                // onChange={handleSearch}
+                className="bg-whitePrimary text-blackSecondary rounded focus:border-none w-full"
+                // onChange={(e) => console.log(e.target.value)}
                 fullWidth={true}
                 InputProps={{
                     startAdornment: (
@@ -59,10 +59,10 @@ export default function Header({
         <Box>
             <AppBar
                 position="static"
-                sx={{ backgroundColor: "#10172a", boxShadow: "none" }}
+                sx={{ backgroundColor: "#15191d", boxShadow: "none" }}
             >
                 <Toolbar className="flex justify-between md:justify-around text-slate-700">
-                    <div className="lg:hidden">
+                    <div className="lg:hidden ">
                         <IconButton
                             ref={trigger}
                             classes="lg:hidden"
@@ -82,9 +82,8 @@ export default function Header({
                     </div>
 
                     <div className="flex-grow text-slate-200 hidden md:block">
-                        <h1 className="font-bold ">Discover</h1>
+                        <h1 className="font-bold text-3xl ">Discover</h1>
                     </div>
-
                     {renderSearchBar()}
                 </Toolbar>
             </AppBar>
