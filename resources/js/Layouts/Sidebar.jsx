@@ -60,7 +60,7 @@ function Sidebar({ sidebarCollapsed, setsidebarCollapsed, appName, trigger }) {
                 className={`bg-slate-900 text-body bg-sidebar flex flex-col absolute z-40 h-screen w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto translate-x-0 lg:translate-x-0 overflow-y-scroll lg:overflow-y-auto no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
                     sidebarCollapsed
                         ? "translate-x-0"
-                        : "sidebar-expanded -translate-x-64 lg:w-[14rem]"
+                        : "sidebar-expanded -translate-x-64 lg:w-[16rem]"
                 }`}
             >
                 {/* Sidebar header */}
