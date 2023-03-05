@@ -2,8 +2,13 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\BaseModel;
+use App\Models\Playlist;
 use Illuminate\Database\Seeder;
+
+/*
+ * Here we will storage all users playlists
+*/
 
 class PlaylistSeeder extends Seeder
 {
@@ -14,6 +19,12 @@ class PlaylistSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Playlist::create([
+            'name' => 'My favorite',
+            'description' => 'My favorite tracks',
+            'slug' => 'my-favorite',
+            'user_id' => 1,
+        ])->addMedia(public_path('temp/image/hearh-white-avatar.jpg'))
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 }
