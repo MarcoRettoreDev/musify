@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('playlist_tracks', function (Blueprint $table) {
+        Schema::create('track_user', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
 
-            $table->foreignId('playlist_id')
-                ->constrained('playlists')
+            $table->foreignId('user_id')
+                ->constrained('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
@@ -36,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('playlist__tracks');
+        Schema::dropIfExists('favorite_tracks');
     }
 };
