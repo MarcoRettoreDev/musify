@@ -8,7 +8,8 @@ class BaseModel extends Model
 {
     public const MEDIA_COLLECTION_AUDIO = 'audio';
     public const MEDIA_COLLECTION_IMAGE = 'image';
-    public const MEDIA_COLLECTION_AVATAR = 'avatar';
+    public const MEDIA_CONVERSION_THUMBNAIL = 'thumbnail';
+    public const MEDIA_CONVERSION_AVATAR = 'avatar';
 
     /**
      * Add an audio to the model.

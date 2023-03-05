@@ -7,7 +7,7 @@ use App\Models\Artist;
 use App\Models\Album;
 use App\Models\Playlist;
 use App\Models\Genre;
-
+use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
@@ -46,20 +46,20 @@ class Track extends BaseModel implements HasMedia
         return gmdate('Y-m-d', $value);
     }
 
-    // public function registerMediaConversions(Media $media = null): void
-    // {
-    //     $this
-    //         ->addMediaConversion('thumb')
-    //         ->width(100)
-    //         ->height(100)
-    //         ->sharpen(10);
-    // }
-
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO)->singleFile();
         $this->addMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE)->singleFile();
     }
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion(BaseModel::MEDIA_CONVERSION_AVATAR)
+            ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE)
+            ->fit(Manipulations::FIT_FILL, 500, 500)
+            ->background('151513');
+    }
+
 
     // Relations
     public function artist()
