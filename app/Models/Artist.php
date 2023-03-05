@@ -10,9 +10,9 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Artist extends BaseModel implements InteractsWithMedia
+class Artist extends BaseModel implements HasMedia
 {
-    use HasMedia;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',
@@ -39,7 +39,7 @@ class Artist extends BaseModel implements InteractsWithMedia
     // Relations
     public function albums()
     {
-        return $this->hasMany(Album::class);
+        return $this->belongsToMany(Album::class);
     }
 
     public function tracks()

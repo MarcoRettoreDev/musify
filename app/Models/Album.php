@@ -9,9 +9,9 @@ use App\Models\Genre;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Album extends BaseModel implements InteractsWithMedia
+class Album extends BaseModel implements HasMedia
 {
-    use HasMedia;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'artist_id',
@@ -32,7 +32,7 @@ class Album extends BaseModel implements InteractsWithMedia
     // Relations
     public function artist()
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsToMany(Artist::class);
     }
 
     public function tracks()

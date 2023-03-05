@@ -9,9 +9,9 @@ use App\Models\Track;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Playlist extends BaseModel implements InteractsWithMedia
+class Playlist extends BaseModel implements HasMediaWithMedia
 {
-    use HasMedia;
+    use InteractsWithMedia;
 
     protected $fillable = [
         'name',

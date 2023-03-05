@@ -22,6 +22,8 @@ class Track extends BaseModel implements HasMedia
         'duration',
         'release',
         'expires_at',
+        'artist_id',
+        'album_id',
     ];
 
     protected $casts = [
@@ -30,6 +32,8 @@ class Track extends BaseModel implements HasMedia
         'duration' => 'datetime',
         'release' => 'datetime',
         'expires_at' => 'datetime',
+        'artist_id' => 'integer',
+        'album_id' => 'integer',
     ];
 
     public function getDurationAttribute($value)
