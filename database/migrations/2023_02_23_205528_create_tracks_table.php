@@ -20,12 +20,10 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug')->unique();
-            $table->string('artist');
             $table->timestamp('duration');
             $table->timestamp('release');
             $table->timestamp('expires_at')
                 ->default(DB::raw("now() + INTERVAL '1 year'"));
-            //todo: refactor if doesn't work
 
             $table->foreignId('artist_id')
                 ->constrained('artists')

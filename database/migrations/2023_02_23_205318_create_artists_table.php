@@ -19,6 +19,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->string('name');
+            $table->text('bio')->nullable();
             $table->string('slug')->unique();
             $table->timestamp('birthdate');
             $table->string('country');
