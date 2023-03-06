@@ -18,7 +18,7 @@ export const sideBarLinks = [
         routeLink: "",
     },
     {
-        label: "Favorites",
+        label: "Playlists",
         icon: "mdi:cards-heart",
         pathName: null,
         routeLink: "",

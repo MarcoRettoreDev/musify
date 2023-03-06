@@ -51,8 +51,8 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
         </SidebarLinkGroup>
     );
     return (
-        <div className="space-y-8 bg-blackSecondary">
-            <div className="h-full flex flex-col justify-between ">
+        <div className="space-y-8 bg-blackSecondary h-full">
+            <div className="h-full flex flex-col justify-between h-full">
                 <ul className="mb-3">{renderLinks()}</ul>
                 {renderLogOut()}
             </div>
