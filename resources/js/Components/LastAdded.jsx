@@ -1,16 +1,25 @@
-import { Icon } from "@iconify/react";
 import React from "react";
+import { Icon } from "@iconify/react";
+import { Link } from "@inertiajs/react";
 import { useState } from "react";
 import { MoreFromArtistCard } from "./MoreFromArtistCard";
 
-export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
+export const LastAdded = ({ allTracks, itemsToRender }) => {
     const [currentArtist, setCurrentArtist] = useState(
         itemsToRender[0].artist_id
     );
 
+    let renderArtist = allTracks.filter((track) => {
+        return track.artist_id === currentArtist;
+    });
+
+    let artistName = itemsToRender.find(
+        (track) => track.artist_id === currentArtist
+    ).artist;
+
     return (
         <React.Fragment>
-            <div className="carousel carousel-center rounded-3xl w-full mx-auto max-h-[60vh] mb-12">
+            <div className="carousel carousel-center rounded-2xl w-full mx-auto max-h-[50vh] mb-12">
                 {itemsToRender.map((item, i) => (
                     <React.Fragment key={item.id}>
                         <div
@@ -21,28 +30,43 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                                 backgroundSize: "cover",
                                 backgroundPosition: "top center",
                                 backgroundRepeat: "no-repeat",
-                                height: "60vh",
+                                height: "50vh",
                                 width: "100%",
                             }}
                         >
-                            <div className="flex justify-between text-whitePrimary absolute top-[68%] px-16 w-full">
+                            <div className="flex justify-between text-whitePrimary absolute top-[65%] px-16 w-full">
                                 <div className="px-8 py-6 rounded-lg">
-                                    <h1 className="font-bold text-6xl mb-3">
+                                    <h1 className="font-bold text-5xl mb-3">
                                         {item.title}
                                     </h1>
-                                    <p className="font-semibold text-4xl">
-                                        {item.artist}
+                                    <p className="font-semibold text-3xl">
+                                        {
+                                            <Link
+                                                href={route(
+                                                    "artist.show",
+                                                    currentArtist
+                                                )}
+                                                className="hover:underline"
+                                            >
+                                                {item.artist}
+                                            </Link>
+                                        }
                                     </p>
                                     <p className="text-xl">
                                         Drop on {item.release.split("T")[0]}
                                     </p>
                                 </div>
-                                <Icon
-                                    className="text-whitePrimary bg-blackSecondary opacity-70 my-auto rounded-full"
-                                    width="5rem"
-                                    height="5rem"
-                                    icon="ic:round-play-arrow"
-                                />
+                                <Link
+                                    href={route("play", item.id)}
+                                    className="my-auto"
+                                >
+                                    <Icon
+                                        className="text-whitePrimary bg-blackSecondary hover:text-greenPrimary hover:cursor-pointer opacity-70 rounded-full"
+                                        width="5rem"
+                                        height="5rem"
+                                        icon="ic:round-play-arrow"
+                                    />
+                                </Link>
                             </div>
                             <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
                                 <a
@@ -63,7 +87,7 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                                             ? i - 1
                                             : itemsToRender.length - 1
                                     }`}
-                                    className="btn bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-blackSecondary text-whitePrimary ml-3"
+                                    className="btn px-0 bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-blackSecondary text-whitePrimary ml-3"
                                 >
                                     <Icon
                                         width={"2rem"}
@@ -89,7 +113,7 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                                             ? i + 1
                                             : 0
                                     }`}
-                                    className="btn  bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-blackSecondary text-whitePrimary mr-3"
+                                    className="btn px-0 bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-blackSecondary text-whitePrimary mr-3"
                                 >
                                     <Icon
                                         width={"2rem"}
@@ -103,18 +127,35 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                 ))}
             </div>
 
-            <h2 className="text-slate-200 text-4xl font-bold mb-6">
-                More from this artist
-            </h2>
+            <div className="flex justify-between items-center mb-6">
+                <h2 className="text-slate-200 text-xl font-bold">
+                    Tracks from
+                    {
+                        <Link
+                            href={route("artist.show", currentArtist)}
+                            className="hover:underline"
+                        >
+                            {artistName}
+                        </Link>
+                    }
+                </h2>
+                <Link href={route("artist.show", currentArtist)}>
+                    <h4 className="px-4 py-2 text-lg font-bold border border-greenPrimary border-opacity-60 hover:bg-greenPrimary hover:text-whitePrimary text-greenPrimary rounded-3xl">
+                        See more
+                    </h4>
+                </Link>
+            </div>
 
-            <div className="flex gap-6 w-full">
-                {allTracks.map((track, i) => {
-                    if (track.artist_id === currentArtist) {
+            {/* <div className="flex gap-6 w-full"> */}
+            <div className="carousel carousel-center rounded-3xl flex w-full mx-auto mb-12">
+                {renderArtist.map((track, i) => {
+                    if (i <= 4) {
                         return (
                             <MoreFromArtistCard
                                 key={track.id}
                                 title={track.title}
                                 imgURL={track.image}
+                                trackID={track.id}
                             />
                         );
                     }

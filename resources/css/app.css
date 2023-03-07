@@ -10,6 +10,10 @@
         --green-primary: #15803d;
         --green-secondary: #166534;
     }
+
+    body {
+        scroll-behavior: smooth;
+    }
 }
 input {
     --tw-ring-shadow: 0 0 #000 !important;

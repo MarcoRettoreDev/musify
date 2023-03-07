@@ -61,7 +61,7 @@ export default function Header({
                 position="static"
                 sx={{ backgroundColor: "#15191d", boxShadow: "none" }}
             >
-                <Toolbar className="flex justify-between md:justify-around text-slate-700">
+                <Toolbar className="!px-16 flex justify-between md:justify-around text-slate-700">
                     <div className="lg:hidden ">
                         <IconButton
                             ref={trigger}
@@ -82,7 +82,7 @@ export default function Header({
                     </div>
 
                     <div className="flex-grow text-slate-200 hidden md:block">
-                        <h1 className="font-bold text-3xl ">Discover</h1>
+                        <h1 className="font-bold text-xl">{userName}</h1>
                     </div>
                     {renderSearchBar()}
                 </Toolbar>

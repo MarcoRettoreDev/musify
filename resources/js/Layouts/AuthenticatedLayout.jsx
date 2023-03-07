@@ -33,7 +33,7 @@ export default function Authenticated({ appName, auth, children }) {
                 />
 
                 <main className="bg-blackPrimary">
-                    <div className="px-16 sm:px-6 lg:px-16 lg:py-16 w-full max-w-9xl mx-auto">
+                    <div className="px-16 sm:px-6 lg:px-16 lg:py-8 w-full max-w-9xl mx-auto">
                         {children}
                     </div>
                 </main>

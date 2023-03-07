@@ -2,13 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Artist;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
-class DashboardController extends Controller
+class PlayerController extends Controller
 {
+    /**
+     * Play an specific track
+     *
+     */
+    public function play($id)
+    {
+        $track = Track::find($id);
+        $track->image = $track->getImages();
+        $track->artist = $track->artist()->first()->name;
+
+        dd($track);
+        return Inertia::render('Player', [
+            'track' => $track,
+        ]);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,23 +31,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $lastFiveTracksFromDifferentArtist = Track::latest()->take(25)->get()->unique('artist_id');
-
-        $tracks = [];
-        foreach ($lastFiveTracksFromDifferentArtist as $track) {
-            $track->image = $track->getImages();
-            $track->artist = $track->artist()->first()->name;
-            $tracks[] = $track;
-        }
-
-        $allTracks = Track::all();
-
-        return Inertia::render('Dashboard', [
-            'tracks' => $tracks,
-            'allTracks' => $allTracks,
-        ]);
+        //
     }
-
 
     /**
      * Show the form for creating a new resource.

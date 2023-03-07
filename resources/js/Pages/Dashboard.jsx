@@ -1,5 +1,5 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { RecentlyPlayed } from "@/Components/RecentlyPlayed";
+import { LastAdded } from "@/Components/LastAdded";
 import { Head } from "@inertiajs/react";
 
 export default function Dashboard({
@@ -13,8 +13,10 @@ export default function Dashboard({
         <AuthenticatedLayout auth={auth} errors={errors} appName={appName}>
             <Head title="Dashboard" />
 
-            <h1 className="text-whitePrimary text-5xl mb-12">Recently added</h1>
-            <RecentlyPlayed allTracks={allTracks} itemsToRender={tracks} />
+            <h1 className="text-whitePrimary font-bold text-4xl mb-8">
+                Recently added
+            </h1>
+            <LastAdded allTracks={allTracks} itemsToRender={tracks} />
         </AuthenticatedLayout>
     );
 }
