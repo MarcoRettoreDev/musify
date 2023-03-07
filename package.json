@@ -24,7 +24,6 @@
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@mui/material": "^5.11.7",
-        "daisyui": "^2.51.3",
-        "zustand": "^4.3.6"
+        "daisyui": "^2.51.3"
     }
 }
