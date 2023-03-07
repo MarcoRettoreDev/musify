@@ -25,7 +25,7 @@ export default function SidebarLink({
                     e.preventDefault();
                 }}
             >
-                <div className="flex items-center justify-between w-full    ">
+                <div className="flex items-center justify-between w-full">
                     <div className="flex items-center">
                         <Icon
                             icon={icon}

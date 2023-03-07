@@ -32,8 +32,8 @@ export default function Authenticated({ appName, auth, children }) {
                     auth={auth}
                 />
 
-                <main className="bg-blackPrimary h-full">
-                    <div className="px-16 sm:px-6 lg:px-16 lg:py-16 w-full max-w-9xl mx-auto h-full">
+                <main className="bg-blackPrimary">
+                    <div className="px-16 sm:px-6 lg:px-16 lg:py-16 w-full max-w-9xl mx-auto">
                         {children}
                     </div>
                 </main>
