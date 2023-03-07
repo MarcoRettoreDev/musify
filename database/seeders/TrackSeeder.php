@@ -200,7 +200,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(12)->addMedia(public_path('temp/image/hypnotize-portrait.jpg'))
+        Track::find(13)->addMedia(public_path('temp/image/hypnotize-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Somebodys-Story.mp3');
@@ -214,7 +214,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(13)->addMedia(public_path('temp/image/somebodys-story-portrait.jpeg'))
+        Track::find(14)->addMedia(public_path('temp/image/somebodys-story-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Around-Solomun.mp3');
@@ -228,7 +228,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(14)->addMedia(public_path('temp/image/around-portrait.jpg'))
+        Track::find(15)->addMedia(public_path('temp/image/around-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/After-Rain-Comes-Sun.mp3');
@@ -242,7 +242,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(15)->addMedia(public_path('temp/image/after-rain-comes-sun-portrait.jpg'))
+        Track::find(16)->addMedia(public_path('temp/image/after-rain-comes-sun-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Return-To-Oz.mp3');
@@ -256,7 +256,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(16)->addMedia(public_path('temp/image/return-to-oz-portrait.jpg'))
+        Track::find(17)->addMedia(public_path('temp/image/return-to-oz-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/White-Walls.mp3');
@@ -270,7 +270,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(17)->addMedia(public_path('temp/image/white-walls-portrait.jpg'))
+        Track::find(18)->addMedia(public_path('temp/image/white-walls-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Under-Dark.mp3');
@@ -284,7 +284,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(18)->addMedia(public_path('temp/image/under-dark-portrait.jpeg'))
+        Track::find(19)->addMedia(public_path('temp/image/under-dark-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Father-Ocean-Ben-Böhmer-Remix.mp3');
@@ -298,7 +298,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(19)->addMedia(public_path('temp/image/father-ocean-portrait.jpg'))
+        Track::find(20)->addMedia(public_path('temp/image/father-ocean-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Running.mp3');
@@ -312,7 +312,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(20)->addMedia(public_path('temp/image/running-portrait.jpeg'))
+        Track::find(21)->addMedia(public_path('temp/image/running-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Swallow.mp3');
@@ -326,7 +326,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(21)->addMedia(public_path('temp/image/Swallow-portrait.jpeg'))
+        Track::find(22)->addMedia(public_path('temp/image/Swallow-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Sky-and-Sand.mp3');
@@ -340,7 +340,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(22)->addMedia(public_path('temp/image/sky-and-sand-portrait.jpeg'))
+        Track::find(23)->addMedia(public_path('temp/image/sky-and-sand-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Dockyard.mp3');
@@ -354,7 +354,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(23)->addMedia(public_path('temp/image/Dockyard-portrait.jpg'))
+        Track::find(24)->addMedia(public_path('temp/image/Dockyard-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Invisible-Paul-Kalkbrenner-Remix.mp3');
@@ -368,7 +368,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(24)->addMedia(public_path('temp/image/invisible-portrait.jpeg'))
+        Track::find(25)->addMedia(public_path('temp/image/invisible-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -383,7 +383,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(25)->addMedia(public_path('temp/image/aaron-portrait.jpg'))
+        Track::find(26)->addMedia(public_path('temp/image/aaron-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Altes-Kamuffel.mp3');
@@ -397,7 +397,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(26)->addMedia(public_path('temp/image/Altes-kamuffel-portrait.jpeg'))
+        Track::find(27)->addMedia(public_path('temp/image/Altes-kamuffel-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Losing-it-Radio-edit.mp3');
@@ -411,7 +411,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(27)->addMedia(public_path('temp/image/losing-it-portrait.jpg'))
+        Track::find(28)->addMedia(public_path('temp/image/losing-it-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Stop-It.mp3');
@@ -425,7 +425,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(28)->addMedia(public_path('temp/image/stop-it-portrait.jpeg'))
+        Track::find(29)->addMedia(public_path('temp/image/stop-it-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -440,7 +440,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(29)->addMedia(public_path('temp/image/Freaks-portrait.jpeg'))
+        Track::find(30)->addMedia(public_path('temp/image/Freaks-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -455,7 +455,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(30)->addMedia(public_path('temp/image/Ya-kidding-portrait.jpg'))
+        Track::find(31)->addMedia(public_path('temp/image/Ya-kidding-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Its-a-killa.mp3');
@@ -469,7 +469,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(31)->addMedia(public_path('temp/image/its-a-killa-portrait.jpeg'))
+        Track::find(32)->addMedia(public_path('temp/image/its-a-killa-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Wanna-Go-Dancin.mp3');
@@ -483,7 +483,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(32)->addMedia(public_path('temp/image/wanna-go-dancing-portrait.png'))
+        Track::find(33)->addMedia(public_path('temp/image/wanna-go-dancing-portrait.png'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Aiguilhe.mp3');
@@ -497,7 +497,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(33)->addMedia(public_path('temp/image/aiguilhe-portrait.jpg'))
+        Track::find(34)->addMedia(public_path('temp/image/aiguilhe-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Swaying.mp3');
@@ -511,7 +511,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(34)->addMedia(public_path('temp/image/Swaying-portrait.jpg'))
+        Track::find(35)->addMedia(public_path('temp/image/Swaying-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Routine.mp3');
@@ -525,7 +525,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(35)->addMedia(public_path('temp/image/Routine-portrait.jpg'))
+        Track::find(36)->addMedia(public_path('temp/image/Routine-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Unexpected.mp3');
@@ -539,7 +539,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(36)->addMedia(public_path('temp/image/Unexpected-portrait.jpg'))
+        Track::find(37)->addMedia(public_path('temp/image/Unexpected-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Take-your-time.mp3');
@@ -553,7 +553,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(37)->addMedia(public_path('temp/image/Take-your-time-portrait.jpg'))
+        Track::find(38)->addMedia(public_path('temp/image/Take-your-time-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Strobe.mp3');
@@ -567,7 +567,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(38)->addMedia(public_path('temp/image/strobe-portrait.jpg'))
+        Track::find(39)->addMedia(public_path('temp/image/strobe-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/I-Remember.mp3');
@@ -581,7 +581,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(39)->addMedia(public_path('temp/image/i-remember-portrait.jpg'))
+        Track::find(40)->addMedia(public_path('temp/image/i-remember-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Alive.mp3');
@@ -595,7 +595,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(40)->addMedia(public_path('temp/image/Alive-portrait.jpeg'))
+        Track::find(41)->addMedia(public_path('temp/image/Alive-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Escape.mp3');
@@ -609,7 +609,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(41)->addMedia(public_path('temp/image/escape-portrait.jpeg'))
+        Track::find(42)->addMedia(public_path('temp/image/escape-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Monophobia.mp3');
@@ -623,7 +623,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(42)->addMedia(public_path('temp/image/monophobia-portrait.jpg'))
+        Track::find(43)->addMedia(public_path('temp/image/monophobia-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/My-Heart-Has-Teeth.mp3');
@@ -637,7 +637,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(43)->addMedia(public_path('temp/image/my-heart-has-teeth-portrait.jpg'))
+        Track::find(44)->addMedia(public_path('temp/image/my-heart-has-teeth-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Not-Exactly.mp3');
@@ -651,7 +651,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(44)->addMedia(public_path('temp/image/not-exactly-portrait.jpg'))
+        Track::find(45)->addMedia(public_path('temp/image/not-exactly-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -666,7 +666,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(45)->addMedia(public_path('temp/image/horizon-portrait.jpeg'))
+        Track::find(46)->addMedia(public_path('temp/image/horizon-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Flame.mp3');
@@ -680,7 +680,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(46)->addMedia(public_path('temp/image/flame-portrait.jpeg'))
+        Track::find(47)->addMedia(public_path('temp/image/flame-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -695,7 +695,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(47)->addMedia(public_path('temp/image/closer-portrait.jpg'))
+        Track::find(48)->addMedia(public_path('temp/image/closer-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Our-Space.mp3');
@@ -709,7 +709,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(48)->addMedia(public_path('temp/image/Our-space-portrait.jpg'))
+        Track::find(49)->addMedia(public_path('temp/image/Our-space-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Papillon.mp3');
@@ -723,7 +723,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(49)->addMedia(public_path('temp/image/Papillon-portrait.jpg'))
+        Track::find(50)->addMedia(public_path('temp/image/Papillon-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -738,7 +738,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(50)->addMedia(public_path('temp/image/tibet-portrait.jpg'))
+        Track::find(51)->addMedia(public_path('temp/image/tibet-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Its-Ours.mp3');
@@ -752,7 +752,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(51)->addMedia(public_path('temp/image/its-ours-portrait.jpg'))
+        Track::find(52)->addMedia(public_path('temp/image/its-ours-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Dreamcatcher.mp3');
@@ -766,7 +766,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(52)->addMedia(public_path('temp/image/dreamcatcher-portrait.jpg'))
+        Track::find(53)->addMedia(public_path('temp/image/dreamcatcher-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Atlas.mp3');
@@ -780,7 +780,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(53)->addMedia(public_path('temp/image/atlas-portrait.jpg'))
+        Track::find(54)->addMedia(public_path('temp/image/atlas-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Nova-Two.mp3');
@@ -794,7 +794,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(54)->addMedia(public_path('temp/image/nova-two-portrait.jpg'))
+        Track::find(55)->addMedia(public_path('temp/image/nova-two-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Dark-Song.mp3');
@@ -808,7 +808,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(55)->addMedia(public_path('temp/image/dark-song-portrait.png'))
+        Track::find(56)->addMedia(public_path('temp/image/dark-song-portrait.png'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         $audioPath = public_path('temp/audio/Time.mp3');
@@ -822,7 +822,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(56)->addMedia(public_path('temp/image/time-portrait.jpeg'))
+        Track::find(57)->addMedia(public_path('temp/image/time-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -837,7 +837,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(57)->addMedia(public_path('temp/image/hold-me-to-the-light-portrait.jpg'))
+        Track::find(58)->addMedia(public_path('temp/image/hold-me-to-the-light-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -852,7 +852,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(58)->addMedia(public_path('temp/image/Innerbloom-portrait.jpeg'))
+        Track::find(59)->addMedia(public_path('temp/image/Innerbloom-portrait.jpeg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -867,7 +867,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-        Track::find(59)->addMedia(public_path('temp/image/underwater-portrait.jpg'))
+        Track::find(60)->addMedia(public_path('temp/image/underwater-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
@@ -882,8 +882,7 @@ class TrackSeeder extends Seeder
             'album_id' => 1,
         ])->addMedia($audioPath)
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
-
-        Track::find(60)->addMedia(public_path('temp/image/treat-you-better-portrait.jpg'))
+        Track::find(61)->addMedia(public_path('temp/image/treat-you-better-portrait.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 }
