@@ -7,10 +7,6 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
     const [currentArtist, setCurrentArtist] = useState(
         itemsToRender[0].artist_id
     );
-    console.log(
-        "🚀 ~ file: RecentlyPlayed.jsx:19 ~ RecentlyPlayed ~ currentArtist:",
-        currentArtist
-    );
 
     return (
         <React.Fragment>
@@ -51,7 +47,16 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                             <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
                                 <a
                                     onClick={() =>
-                                        setCurrentArtist(item.artist_id)
+                                        setCurrentArtist(
+                                            itemsToRender[
+                                                i === 1 ||
+                                                i === 2 ||
+                                                i === 3 ||
+                                                i === 4
+                                                    ? i - 1
+                                                    : itemsToRender.length - 1
+                                            ].artist_id
+                                        )
                                     }
                                     href={`#${
                                         i === 1 || i === 2 || i === 3 || i === 4
@@ -68,7 +73,16 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                                 </a>
                                 <a
                                     onClick={() =>
-                                        setCurrentArtist(item.artist_id)
+                                        setCurrentArtist(
+                                            itemsToRender[
+                                                i === 0 ||
+                                                i === 1 ||
+                                                i === 2 ||
+                                                i === 3
+                                                    ? i + 1
+                                                    : 0
+                                            ].artist_id
+                                        )
                                     }
                                     href={`#${
                                         i === 0 || i === 1 || i === 2 || i === 3
@@ -89,11 +103,11 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                 ))}
             </div>
 
-            <h2 className="text-slate-200 text-4xl font-bold">
+            <h2 className="text-slate-200 text-4xl font-bold mb-6">
                 More from this artist
             </h2>
 
-            <React.Fragment>
+            <div className="flex gap-6 w-full">
                 {allTracks.map((track, i) => {
                     if (track.artist_id === currentArtist) {
                         return (
@@ -105,7 +119,7 @@ export const RecentlyPlayed = ({ allTracks, itemsToRender }) => {
                         );
                     }
                 })}
-            </React.Fragment>
+            </div>
         </React.Fragment>
     );
 };
