@@ -1,19 +1,20 @@
-import { MainCard } from "@/Components/MainCard";
-import { RecentlyPlayed } from "@/Components/RecentlyPlayed";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { RecentlyPlayed } from "@/Components/RecentlyPlayed";
 import { Head } from "@inertiajs/react";
 
-export default function Dashboard(props) {
+export default function Dashboard({
+    allTracks,
+    tracks,
+    auth,
+    errors,
+    appName,
+}) {
     return (
-        <AuthenticatedLayout
-            auth={props.auth}
-            errors={props.errors}
-            appName={props.appName}
-        >
+        <AuthenticatedLayout auth={auth} errors={errors} appName={appName}>
             <Head title="Dashboard" />
 
-            <MainCard title="Dashboard" release="This is the dashboard page" />
-            <RecentlyPlayed itemsToRender={null} />
+            <h1 className="text-whitePrimary text-5xl mb-12">Recently added</h1>
+            <RecentlyPlayed allTracks={allTracks} itemsToRender={tracks} />
         </AuthenticatedLayout>
     );
 }

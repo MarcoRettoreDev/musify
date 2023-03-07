@@ -36,15 +36,11 @@ class Track extends BaseModel implements HasMedia
         'album_id' => 'integer',
     ];
 
-    public function getDurationAttribute($value)
-    {
-        return gmdate('H:i:s', $value);
-    }
-
-    public function getReleaseAttribute($value)
-    {
-        return gmdate('Y-m-d', $value);
-    }
+    // appends
+    protected $appends = [
+        'avatar',
+        'image'
+    ];
 
     public function registerMediaCollections(): void
     {
@@ -80,5 +76,30 @@ class Track extends BaseModel implements HasMedia
     public function genre()
     {
         return $this->belongsTo(Genre::class);
+    }
+
+    public function getAvatar()
+    {
+        return $this->getMedia(BaseModel::MEDIA_COLLECTION_IMAGE)->first()->getUrl(BaseModel::MEDIA_CONVERSION_AVATAR);
+    }
+
+    public function getImages()
+    {
+        return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
+    }
+
+    public function getAudio()
+    {
+        return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_AUDIO);
+    }
+
+    public function getAvatarAttribute()
+    {
+        return $this->getAvatar();
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getImages();
     }
 }
