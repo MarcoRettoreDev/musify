@@ -1,11 +1,19 @@
 import { Link } from "@inertiajs/react";
 import React from "react";
 
-export const MoreFromArtistCard = ({ trackID, title, imgURL }) => {
+export const MoreFromArtistCard = ({
+    trackID,
+    title,
+    imgURL,
+    setState,
+    state,
+}) => {
     return (
-        <Link
-            href={route("play", trackID)}
+        <div
             className="flex-1 carousel-item relative"
+            onClick={() =>
+                setState({ ...state, currentTrack: trackID, playing: true })
+            }
         >
             <div
                 className="w-80 h-64 rounded-3xl flex flex-1 items-end mr-8"
@@ -20,6 +28,6 @@ export const MoreFromArtistCard = ({ trackID, title, imgURL }) => {
                     {title}
                 </span>
             </div>
-        </Link>
+        </div>
     );
 };

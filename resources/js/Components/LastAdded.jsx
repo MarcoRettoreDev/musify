@@ -3,8 +3,10 @@ import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
 import { MoreFromArtistCard } from "./MoreFromArtistCard";
+import { Player } from "./Player";
 
-export const LastAdded = ({ allTracks, itemsToRender }) => {
+export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
+    console.log("🚀 ~ file: LastAdded.jsx:8 ~ LastAdded ~ state:", state);
     const [currentArtist, setCurrentArtist] = useState(
         itemsToRender[0].artist_id
     );
@@ -56,9 +58,15 @@ export const LastAdded = ({ allTracks, itemsToRender }) => {
                                         Drop on {item.release.split("T")[0]}
                                     </p>
                                 </div>
-                                <Link
-                                    href={route("play", item.id)}
+                                <div
                                     className="my-auto"
+                                    onClick={() => {
+                                        setState({
+                                            ...state,
+                                            currentTrack: item.id,
+                                            playing: true,
+                                        });
+                                    }}
                                 >
                                     <Icon
                                         className="text-whitePrimary bg-blackSecondary hover:text-greenPrimary hover:cursor-pointer opacity-70 rounded-full"
@@ -66,7 +74,7 @@ export const LastAdded = ({ allTracks, itemsToRender }) => {
                                         height="5rem"
                                         icon="ic:round-play-arrow"
                                     />
-                                </Link>
+                                </div>
                             </div>
                             <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
                                 <a
@@ -129,7 +137,7 @@ export const LastAdded = ({ allTracks, itemsToRender }) => {
 
             <div className="flex justify-between items-center mb-6">
                 <h2 className="text-slate-200 text-xl font-bold">
-                    Tracks from
+                    Tracks from&nbsp;
                     {
                         <Link
                             href={route("artist.show", currentArtist)}
@@ -156,11 +164,15 @@ export const LastAdded = ({ allTracks, itemsToRender }) => {
                                 title={track.title}
                                 imgURL={track.image}
                                 trackID={track.id}
+                                setState={setState}
+                                state={state}
                             />
                         );
                     }
                 })}
             </div>
+
+            {state.playing && <Player state={state} setState={setState} />}
         </React.Fragment>
     );
 };

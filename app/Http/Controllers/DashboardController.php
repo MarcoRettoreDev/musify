@@ -27,6 +27,12 @@ class DashboardController extends Controller
 
         $allTracks = Track::all();
 
+        foreach ($allTracks as $track) {
+            $track->image = $track->getImages();
+            $track->artist = $track->artist()->first()->name;
+            $track->audio = $track->getAudio();
+        }
+
         return Inertia::render('Dashboard', [
             'tracks' => $tracks,
             'allTracks' => $allTracks,

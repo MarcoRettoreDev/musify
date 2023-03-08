@@ -36,10 +36,9 @@ class Track extends BaseModel implements HasMedia
         'album_id' => 'integer',
     ];
 
-    // appends
     protected $appends = [
         'avatar',
-        'image'
+        'image',
     ];
 
     public function registerMediaCollections(): void

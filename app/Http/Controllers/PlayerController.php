@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Track;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class PlayerController extends Controller
@@ -18,10 +19,9 @@ class PlayerController extends Controller
         $track->image = $track->getImages();
         $track->artist = $track->artist()->first()->name;
 
-        dd($track);
-        return Inertia::render('Player', [
-            'track' => $track,
-        ]);
+        // return Redirect::route('', [
+        //     'track' => $track,
+        // ]);
     }
 
     /**
