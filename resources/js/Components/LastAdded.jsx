@@ -172,7 +172,8 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                 })}
             </div>
 
-            {state.playing && <Player state={state} setState={setState} />}
+            {/* {state.playing && } */}
+            <Player state={state} setState={setState} />
         </React.Fragment>
     );
 };
