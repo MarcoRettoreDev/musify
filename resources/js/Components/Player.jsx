@@ -217,6 +217,7 @@ export const Player = ({ state, setState }) => {
                         width={smallIconStyle}
                         height={smallIconStyle}
                         icon="bi:volume-mute-fill"
+                        className="cursor-pointer  hover:text-greySecondary"
                     />
                 );
             } else if (
@@ -230,6 +231,7 @@ export const Player = ({ state, setState }) => {
                         width={smallIconStyle}
                         height={smallIconStyle}
                         icon="bi:volume-down-fill"
+                        className="cursor-pointer hover:text-greySecondary"
                     />
                 );
             } else {
@@ -239,6 +241,7 @@ export const Player = ({ state, setState }) => {
                         width={smallIconStyle}
                         height={smallIconStyle}
                         icon="bi:volume-up-fill"
+                        className="cursor-pointer hover:text-greySecondary"
                     />
                 );
             }
@@ -298,7 +301,7 @@ export const Player = ({ state, setState }) => {
                             className={
                                 state.shuffle
                                     ? "text-greenPrimary cursor-pointer"
-                                    : "cursor-pointer"
+                                    : "cursor-pointer hover:text-greySecondary"
                             }
                         />
                         <Icon
@@ -306,12 +309,12 @@ export const Player = ({ state, setState }) => {
                             height={smallIconStyle}
                             icon="tabler:player-skip-back-filled"
                             onClick={previousTrack}
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:text-greySecondary"
                         />
 
                         {state.playing ? (
                             <Icon
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:text-greySecondary"
                                 width={bigIconStyle}
                                 height={bigIconStyle}
                                 icon="material-symbols:pause-circle-rounded"
@@ -327,7 +330,7 @@ export const Player = ({ state, setState }) => {
                             />
                         ) : (
                             <Icon
-                                className="cursor-pointer"
+                                className="cursor-pointer hover:text-greySecondary"
                                 width={bigIconStyle}
                                 height={bigIconStyle}
                                 ref={playIconRef}
@@ -349,7 +352,7 @@ export const Player = ({ state, setState }) => {
                             height={smallIconStyle}
                             icon="tabler:player-skip-forward-filled"
                             onClick={nextTrack}
-                            className="cursor-pointer"
+                            className="cursor-pointer hover:text-greySecondary"
                         />
                         <Icon
                             width={smallIconStyle}
@@ -361,7 +364,7 @@ export const Player = ({ state, setState }) => {
                             className={
                                 state.repeat
                                     ? "text-greenPrimary cursor-pointer"
-                                    : "cursor-pointer"
+                                    : "cursor-pointer hover:text-greySecondary"
                             }
                         />
                     </div>
@@ -407,7 +410,7 @@ export const Player = ({ state, setState }) => {
                         max="100"
                     />
                 </div>
-                <button
+                {/* <button
                     onClick={() =>
                         setState({
                             ...state,
@@ -417,7 +420,7 @@ export const Player = ({ state, setState }) => {
                     }
                 >
                     Reset playing
-                </button>
+                </button> */}
             </div>
         </div>
     );
