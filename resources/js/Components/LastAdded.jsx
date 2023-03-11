@@ -3,7 +3,6 @@ import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
 import { MoreFromArtistCard } from "./MoreFromArtistCard";
-import { Player } from "./Player";
 
 export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
     console.log("🚀 ~ file: LastAdded.jsx:8 ~ LastAdded ~ state:", state);
@@ -21,12 +20,12 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
 
     return (
         <React.Fragment>
-            <div className="carousel carousel-center rounded-2xl w-full mx-auto max-h-[50vh] mb-12">
+            <div className="carousel carousel-center rounded-2xl w-full mx-auto max-h-[50vh] mb-12 overflow-y-hidden">
                 {itemsToRender.map((item, i) => (
                     <React.Fragment key={item.id}>
                         <div
                             id={`${i}`}
-                            className="carousel-item relative"
+                            className="carousel-item relative rounded-2xl"
                             style={{
                                 backgroundImage: `url(${item.image})`,
                                 backgroundSize: "cover",
@@ -36,8 +35,8 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                                 width: "100%",
                             }}
                         >
-                            <div className="flex justify-between text-whitePrimary absolute top-[65%] px-16 w-full">
-                                <div className="px-8 py-6 rounded-lg">
+                            <div className="flex justify-between text-whitePrimary absolute 2xl:top-[65%] lg:top-[55%] px-8 w-full">
+                                <div className="pl-8 pr-12 py-6 rounded-lg">
                                     <h1 className="font-bold text-5xl mb-3">
                                         {item.title}
                                     </h1>
@@ -65,6 +64,7 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                                             ...state,
                                             currentTrack: item.id,
                                             playing: true,
+                                            firstTimePlaying: true,
                                         });
                                     }}
                                 >
@@ -171,9 +171,6 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                     }
                 })}
             </div>
-
-            {/* {state.playing && } */}
-            <Player state={state} setState={setState} />
         </React.Fragment>
     );
 };

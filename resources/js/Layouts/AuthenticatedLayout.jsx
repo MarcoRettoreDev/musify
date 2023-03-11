@@ -1,9 +1,17 @@
+import { Player } from "@/Components/Player";
+import { useRemember } from "@inertiajs/react";
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { RightMenu } from "./RightMenu";
 import Sidebar from "./Sidebar";
 
-export default function Authenticated({ appName, auth, children }) {
+export default function Authenticated({
+    appName,
+    auth,
+    children,
+    state,
+    setState,
+}) {
     const trigger = useRef(null);
 
     let screenWidth = screen.width; // Screen width
@@ -13,7 +21,7 @@ export default function Authenticated({ appName, auth, children }) {
     );
 
     return (
-        <div className="flex h-screen overflow-hidden bg-body">
+        <div className="flex h-screen overflow-hidden bg-body ">
             <Sidebar
                 sidebarCollapsed={sidebarCollapsed}
                 setsidebarCollapsed={setsidebarCollapsed}
@@ -32,11 +40,16 @@ export default function Authenticated({ appName, auth, children }) {
                 />
 
                 <main className="bg-blackPrimary">
-                    <div className="px-16 sm:px-6 lg:px-16 lg:py-8 w-full max-w-9xl mx-auto">
+                    <div className="px-16 sm:px-6 lg:px-16 lg:pb-28 lg:pt-8 w-full max-w-9xl mx-auto ">
                         {children}
                     </div>
                 </main>
             </div>
+
+            {state.firstTimePlaying && (
+                <Player state={state} setState={setState} />
+            )}
+
             <RightMenu />
         </div>
     );

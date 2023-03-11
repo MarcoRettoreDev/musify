@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import React from "react";
 import { useRef, useEffect } from "react";
 
@@ -10,13 +11,18 @@ export const Player = ({ state, setState }) => {
     const durationRef = useRef(null);
     const seekSliderRef = useRef(null);
     const volumeSliderRef = useRef(null);
-    const muteIconRef = useRef(null);
+
+    const [volumeIconControl, setVolumeIconControl] = React.useState(null);
+
     var raf = null;
     var seeking = false;
-    const [volumeValue, setVolumeValue] = React.useState(60);
+
+    let bigIconStyle = "3rem";
+    let smallIconStyle = "1.5rem";
+
     let currentTrackPlaying = state.allTracks.find(
         (track) => track.id === state.currentTrack
-    )?.audio;
+    );
 
     useEffect(() => {
         if (currentTrackPlaying && playerRef.current) {
@@ -35,17 +41,25 @@ export const Player = ({ state, setState }) => {
             });
         }
         if (state.ended) {
-            let nextTrack = state.allTracks.find(
-                (track) => track.id === state.currentTrack + 1
-            );
-
-            // Donde va el 1, podríamos poner un math random con máximo el número de tracks que hay en la base de datos
-            setState({
-                ...state,
-                currentTrack: nextTrack != undefined || null ? nextTrack.id : 1,
-                playing: true,
-                ended: false,
-            });
+            if (state.currentTrack < state.allTracks.length) {
+                setState({
+                    ...state,
+                    currentTrack: state.shuffle
+                        ? getRandomInt(1, state.allTracks.length + 1)
+                        : state.currentTrack + 1,
+                    playing: true,
+                    ended: false,
+                    shuffle: state.shuffle ? true : false,
+                });
+            } else {
+                setState({
+                    ...state,
+                    currentTrack: 1,
+                    playing: true,
+                    ended: false,
+                    shuffle: state.shuffle ? true : false,
+                });
+            }
         }
     }, [state.ended, state.playing]);
 
@@ -70,16 +84,6 @@ export const Player = ({ state, setState }) => {
                     currentTimeRef.current.textContent = formatTime(
                         playerRef.current.currentTime
                     );
-                }
-            });
-
-            muteIconRef.current.addEventListener("click", () => {
-                if (playerRef.current.muted) {
-                    playerRef.current.muted = false;
-                    changeVolume(volumeValue);
-                } else {
-                    playerRef.current.muted = true;
-                    changeVolume(0);
                 }
             });
 
@@ -110,6 +114,13 @@ export const Player = ({ state, setState }) => {
             );
         }
     }, [playerRef.current]);
+
+    useEffect(() => {
+        renderVolumeIcon();
+        if (volumeIconControl === null) {
+            setVolumeIconControl(50);
+        }
+    }, [volumeIconControl]);
 
     const whilePlaying = () => {
         seekSliderRef.current.value = Math.floor(seekSliderRef.current.value);
@@ -161,77 +172,253 @@ export const Player = ({ state, setState }) => {
         seekSliderRef.current.max = Math.floor(playerRef.current.duration);
     };
 
+    const nextTrack = () => {
+        if (state.currentTrack < state.allTracks.length) {
+            setState({
+                ...state,
+                currentTrack: state.shuffle
+                    ? getRandomInt(1, state.allTracks.length + 1)
+                    : state.currentTrack + 1,
+                playing: true,
+            });
+        } else {
+            setState({
+                ...state,
+                currentTrack: 1,
+                playing: true,
+            });
+        }
+    };
+
+    const previousTrack = () => {
+        if (state.currentTrack > 1) {
+            setState({
+                ...state,
+                currentTrack: state.shuffle
+                    ? getRandomInt(1, state.allTracks.length + 1)
+                    : state.currentTrack - 1,
+                playing: true,
+            });
+        } else {
+            setState({
+                ...state,
+                currentTrack: state.allTracks.length,
+                playing: true,
+            });
+        }
+    };
+
+    const renderVolumeIcon = () => {
+        if (playerRef.current) {
+            if (volumeIconControl === 0) {
+                return (
+                    <Icon
+                        onClick={() => mutePlayer()}
+                        width={smallIconStyle}
+                        height={smallIconStyle}
+                        icon="bi:volume-mute-fill"
+                    />
+                );
+            } else if (
+                playerRef.current.volume > 0 &&
+                playerRef.current.volume <= 0.5 &&
+                !playerRef.current.muted
+            ) {
+                return (
+                    <Icon
+                        onClick={() => mutePlayer()}
+                        width={smallIconStyle}
+                        height={smallIconStyle}
+                        icon="bi:volume-down-fill"
+                    />
+                );
+            } else {
+                return (
+                    <Icon
+                        onClick={() => mutePlayer()}
+                        width={smallIconStyle}
+                        height={smallIconStyle}
+                        icon="bi:volume-up-fill"
+                    />
+                );
+            }
+        }
+    };
+
+    const mutePlayer = () => {
+        if (playerRef.current.muted) {
+            playerRef.current.muted = false;
+            setVolumeIconControl(playerRef.current.volume * 100);
+        } else {
+            playerRef.current.muted = true;
+            setVolumeIconControl(0);
+        }
+    };
+
+    function getRandomInt(min = 1, max) {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
     return (
-        <div ref={playerContainerRef} id="playerContainer">
-            <audio
-                ref={playerRef}
-                preload="metadata"
-                src={currentTrackPlaying}
-            />
-            <p>Audio player</p>
-            <span ref={currentTimeRef} className="time">
-                0:00
-            </span>
+        <div
+            ref={playerContainerRef}
+            id="playerContainer"
+            className="bg-blackSecondary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
+        >
+            <div className="flex cursor-default">
+                <img
+                    src={currentTrackPlaying?.avatar}
+                    alt=""
+                    className="h-20"
+                />
+                <div className="flex flex-col justify-center ml-4">
+                    <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
+                    <h6>{currentTrackPlaying?.artist}</h6>
+                </div>
+            </div>
 
-            <input
-                id="seek-slider"
-                type="range"
-                ref={seekSliderRef}
-                onChange={(e) => {
-                    seekSliderRef.current.value = e.target.value;
+            <div
+                id="innerPlayerContainer"
+                className="flex w-8/12 justify-between"
+            >
+                <div id="playerControls" className="flex flex-col ">
+                    <div
+                        id="iconsSection"
+                        className="flex justify-around items-center max-w-[70%] w-full mb-2 mx-auto"
+                    >
+                        <Icon
+                            width={smallIconStyle}
+                            height={smallIconStyle}
+                            icon="ph:shuffle-fill"
+                            onClick={() =>
+                                setState({ ...state, shuffle: !state.shuffle })
+                            }
+                            className={
+                                state.shuffle
+                                    ? "text-greenPrimary cursor-pointer"
+                                    : "cursor-pointer"
+                            }
+                        />
+                        <Icon
+                            width={smallIconStyle}
+                            height={smallIconStyle}
+                            icon="tabler:player-skip-back-filled"
+                            onClick={previousTrack}
+                            className="cursor-pointer"
+                        />
 
-                    // if (state.playing) {
-                    //     requestAnimationFrame(whilePlaying);
-                    // }
-                }}
-            />
+                        {state.playing ? (
+                            <Icon
+                                className="cursor-pointer"
+                                width={bigIconStyle}
+                                height={bigIconStyle}
+                                icon="material-symbols:pause-circle-rounded"
+                                ref={pauseIconRef}
+                                onClick={() => {
+                                    setState({
+                                        ...state,
+                                        playing: !state.playing,
+                                    });
+                                    playerRef.current.pause();
+                                    cancelAnimationFrame(raf);
+                                }}
+                            />
+                        ) : (
+                            <Icon
+                                className="cursor-pointer"
+                                width={bigIconStyle}
+                                height={bigIconStyle}
+                                ref={playIconRef}
+                                onClick={() => {
+                                    setState({
+                                        ...state,
+                                        playing: !state.playing,
+                                        firstTimePlaying: true,
+                                    });
+                                    playerRef.current.play();
+                                    requestAnimationFrame(whilePlaying);
+                                }}
+                                icon="material-symbols:play-circle-rounded"
+                            />
+                        )}
 
-            <span ref={durationRef} className="time">
-                0:00
-            </span>
-            <input
-                type="range"
-                ref={volumeSliderRef}
-                onInput={(e) => {
-                    changeVolume(e.target.value);
-                    setVolumeValue(e.target.value);
-                }}
-                max="100"
-                value={volumeValue}
-            />
-            <button ref={muteIconRef}>Mute</button>
-            {state.playing ? (
+                        <Icon
+                            width={smallIconStyle}
+                            height={smallIconStyle}
+                            icon="tabler:player-skip-forward-filled"
+                            onClick={nextTrack}
+                            className="cursor-pointer"
+                        />
+                        <Icon
+                            width={smallIconStyle}
+                            height={smallIconStyle}
+                            icon="ph:repeat"
+                            onClick={() =>
+                                setState({ ...state, repeat: !state.repeat })
+                            }
+                            className={
+                                state.repeat
+                                    ? "text-greenPrimary cursor-pointer"
+                                    : "cursor-pointer"
+                            }
+                        />
+                    </div>
+                    <div id="seekSection" className="flex">
+                        <audio
+                            ref={playerRef}
+                            preload="metadata"
+                            src={currentTrackPlaying?.audio}
+                            loop={state.repeat ? true : false}
+                        />
+
+                        <span ref={currentTimeRef} className="mr-2">
+                            0:00
+                        </span>
+
+                        <input
+                            id="seek-slider"
+                            type="range"
+                            ref={seekSliderRef}
+                            onChange={(e) =>
+                                (seekSliderRef.current.value = e.target.value)
+                            }
+                            className="w-96"
+                        />
+
+                        <span ref={durationRef} className="ml-2">
+                            0:00
+                        </span>
+                    </div>
+                </div>
+
+                <div className="flex items-center">
+                    {renderVolumeIcon()}
+
+                    <input
+                        type="range"
+                        ref={volumeSliderRef}
+                        onInput={(e) => {
+                            changeVolume(e.target.value);
+                            volumeSliderRef.current.value = e.target.value;
+                            setVolumeIconControl(e.target.value);
+                        }}
+                        max="100"
+                    />
+                </div>
                 <button
-                    ref={pauseIconRef}
-                    onClick={() => {
-                        setState({ ...state, playing: !state.playing });
-                        playerRef.current.pause();
-                        cancelAnimationFrame(raf);
-                    }}
+                    onClick={() =>
+                        setState({
+                            ...state,
+                            playing: !state.playing,
+                            firstTimePlaying: false,
+                        })
+                    }
                 >
-                    Pause
+                    Reset playing
                 </button>
-            ) : (
-                <button
-                    ref={playIconRef}
-                    onClick={() => {
-                        setState({ ...state, playing: !state.playing });
-                        playerRef.current.play();
-                        requestAnimationFrame(whilePlaying);
-                    }}
-                >
-                    Play
-                </button>
-            )}
+            </div>
         </div>
     );
 };
-
-{
-    /* //  <div className="w-full absolute" style={{ zIndex: 9999 }}>
-//             <audio ref={playerRef} controls>
-//                 <source src={currentTrackPlaying} type="audio/mp3" />
-//                 Your browser does not support the audio element.
-//             </audio>
-//         </div> */
-}

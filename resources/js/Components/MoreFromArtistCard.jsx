@@ -12,7 +12,12 @@ export const MoreFromArtistCard = ({
         <div
             className="flex-1 carousel-item relative"
             onClick={() =>
-                setState({ ...state, currentTrack: trackID, playing: true })
+                setState({
+                    ...state,
+                    currentTrack: trackID,
+                    playing: true,
+                    firstTimePlaying: true,
+                })
             }
         >
             <div
