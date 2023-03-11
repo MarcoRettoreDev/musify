@@ -400,12 +400,20 @@ export const Player = ({ state, setState }) => {
                     {renderVolumeIcon()}
 
                     <input
+                        id="volume-slider"
                         type="range"
                         ref={volumeSliderRef}
                         onInput={(e) => {
                             changeVolume(e.target.value);
                             volumeSliderRef.current.value = e.target.value;
                             setVolumeIconControl(e.target.value);
+                            playerContainerRef.current.style.setProperty(
+                                "--volume-before-width",
+                                (volumeSliderRef.current.value /
+                                    volumeSliderRef.current.max) *
+                                    100 +
+                                    "%"
+                            );
                         }}
                         max="100"
                     />
