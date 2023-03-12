@@ -4,16 +4,10 @@ import React from "react";
 export const ShowArtist = ({ artist, state, setState }) => {
     return (
         <>
-            <div className="grid grid-cols-2 mb-28">
-                {/* <div
+            <div className="grid grid-cols-2 mb-24">
+                <div
                     style={{ backgroundImage: `url(${artist.image})` }}
-                    className="w-[500px] absolute top-0 bottom-0 left-0 right-0 bg-no-repeat bg-cover bg-center rounded-lg"
-                /> */}
-                <div></div>
-                <img
-                    className="absolute left-44 max-w-[500px] rounded-lg w-full"
-                    src={artist.image}
-                    alt=""
+                    className="w-full  bg-no-repeat bg-cover bg-center rounded-lg"
                 />
 
                 <div className="px-6 lg:px-8">
@@ -41,10 +35,9 @@ export const ShowArtist = ({ artist, state, setState }) => {
             </div>
 
             <h2 className="text-3xl text-whitePrimary mb-4">Tracks</h2>
-            <div className="flex gap-4">
+            <div className="grid grid-cols-3 gap-8 mb-4">
                 {artist.tracks.map((track) => (
                     <div
-                        className="flex-1 cursor-pointer"
                         key={track.id}
                         onClick={() =>
                             setState({

@@ -47,7 +47,7 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                                             <Link
                                                 href={route(
                                                     "artist.show",
-                                                    currentArtist
+                                                    item.artist_id
                                                 )}
                                                 className="hover:underline"
                                             >
