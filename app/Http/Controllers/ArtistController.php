@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
 use App\Models\Artist;
+use Inertia\Inertia;
 
 class ArtistController extends Controller
 {
@@ -47,7 +48,13 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        //
+        $artist->load('tracks');
+
+        $artist['image'] = $artist->getImages();
+
+        return Inertia::render('Dashboard', [
+            'artist' => $artist,
+        ]);
     }
 
     /**

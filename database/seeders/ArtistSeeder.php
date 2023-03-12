@@ -24,7 +24,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1981, 10, 26)->toDateTimeString(),
             'slug' => 'boris-brejcha',
         ])->addMedia(public_path('temp/image/Boris-Brejcha-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 2
             'name' => 'Klangkarussell',
@@ -33,7 +33,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(2011, 01, 01)->toDateTimeString(),
             'slug' => 'klangkarussell',
         ])->addMedia(public_path('temp/image/Klangkarussell-avatar.jpeg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 3
             'name' => 'Solomun',
@@ -42,7 +42,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1975, 12, 27)->toDateTimeString(),
             'slug' => 'solomun',
         ])->addMedia(public_path('temp/image/Solomun-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 4
             'name' => 'Monolink',
@@ -51,7 +51,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1989, 06, 06)->toDateTimeString(),
             'slug' => 'monolink',
         ])->addMedia(public_path('temp/image/Monolink-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 5
             'name' => 'Paul Kalkbrenner',
@@ -60,7 +60,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1977, 06, 11)->toDateTimeString(),
             'slug' => 'paul-kalkbrenner',
         ])->addMedia(public_path('temp/image/Paul-Kalkbrenner-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 6
             'name' => 'Fisher',
@@ -69,7 +69,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1986, 11, 05)->toDateTimeString(),
             'slug' => 'fisher',
         ])->addMedia(public_path('temp/image/Fisher-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 7
             'name' => 'Joris Delacroix',
@@ -78,7 +78,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1987, 04, 22)->toDateTimeString(),
             'slug' => 'joris-delacroix',
         ])->addMedia(public_path('temp/image/Joris-Delacroix-avatar.jpeg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
         Artist::create([ // 8
@@ -88,7 +88,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(1981, 01, 05)->toDateTimeString(),
             'slug' => 'deadmau5',
         ])->addMedia(public_path('temp/image/Deadmau5-avatar.jpg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 9
             'name' => 'Artbat',
@@ -97,7 +97,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(2014, 01, 01)->toDateTimeString(),
             'slug' => 'artbat',
         ])->addMedia(public_path('temp/image/Artbat-avatar.jpeg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
 
         Artist::create([ // 10
@@ -107,7 +107,7 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(2009, 01, 01)->toDateTimeString(),
             'slug' => 'tale-of-us',
         ])->addMedia(public_path('temp/image/tale-of-us-avatar.jpeg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
 
         Artist::create([ // 11
             'name' => 'Rufus du sol',
@@ -116,6 +116,6 @@ class ArtistSeeder extends Seeder
             'birthdate' => Carbon::createFromDate(2010, 01, 01)->toDateTimeString(),
             'slug' => 'rufus-du-sol',
         ])->addMedia(public_path('temp/image/Rufus-du-sol-avatar.jpeg'))
-            ->toMediaCollection(BaseModel::MEDIA_CONVERSION_AVATAR);
+            ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 }
