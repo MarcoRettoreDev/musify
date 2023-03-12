@@ -1,48 +1,45 @@
+// import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+import { LastAdded } from "@/Pages/LastAdded";
+import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
-import { LastAdded } from "@/Components/LastAdded";
-import { Head, useRemember } from "@inertiajs/react";
-import { Player } from "@/Components/Player";
+import { ShowArtist } from "./Artist/ShowArtist";
 
-export default function Dashboard({
-    allTracks,
-    tracks,
-    auth,
-    errors,
-    appName,
-}) {
-    const [state, setState] = useRemember(
-        {
-            allTracks: allTracks,
-            currentTrack: null,
-            duration: null,
-            playing: false,
-            ended: false,
-            firstTimePlaying: false,
-            shuffle: false,
-            repeat: false,
-        },
-        "userState"
-    );
+function Dashboard(propsFromLayout) {
+    const { props, state, setState } = propsFromLayout;
+
+    console.log(props);
 
     return (
-        <AuthenticatedLayout
-            auth={auth}
-            errors={errors}
-            appName={appName}
-            state={state}
-            setState={setState}
-        >
+        <>
             <Head title="Dashboard" />
 
-            <h1 className="text-whitePrimary font-bold text-4xl mb-8">
-                Recently added
-            </h1>
-            <LastAdded
-                allTracks={allTracks}
-                itemsToRender={tracks}
-                state={state}
-                setState={setState}
-            />
-        </AuthenticatedLayout>
+            {props.artist && (
+                <ShowArtist
+                    state={state}
+                    setState={setState}
+                    artist={props.artist}
+                />
+            )}
+
+            {props.tracks && (
+                <LastAdded
+                    allTracks={props.allTracks}
+                    itemsToRender={props.tracks}
+                    state={state}
+                    setState={setState}
+                />
+            )}
+        </>
     );
 }
+
+Dashboard.layout = (page) => (
+    <AuthenticatedLayout
+        children={page}
+        auth={page.props.auth}
+        errors={page.props.errors}
+        appName={page.props.appName}
+    />
+);
+
+export default Dashboard;

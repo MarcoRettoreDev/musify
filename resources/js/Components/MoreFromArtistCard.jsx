@@ -10,7 +10,7 @@ export const MoreFromArtistCard = ({
 }) => {
     return (
         <div
-            className="flex-1 carousel-item relative"
+            className="flex-1 carousel-item relative cursor-pointer"
             onClick={() =>
                 setState({
                     ...state,

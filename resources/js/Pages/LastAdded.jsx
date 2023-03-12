@@ -2,10 +2,9 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
-import { MoreFromArtistCard } from "./MoreFromArtistCard";
+import { MoreFromArtistCard } from "../Components/MoreFromArtistCard";
 
 export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
-    console.log("🚀 ~ file: LastAdded.jsx:8 ~ LastAdded ~ state:", state);
     const [currentArtist, setCurrentArtist] = useState(
         itemsToRender[0].artist_id
     );
@@ -20,6 +19,9 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
 
     return (
         <React.Fragment>
+            <h1 className="text-whitePrimary font-bold text-4xl mb-8">
+                Recently added
+            </h1>
             <div className="carousel carousel-center rounded-2xl w-full mx-auto max-h-[50vh] mb-12 overflow-y-hidden">
                 {itemsToRender.map((item, i) => (
                     <React.Fragment key={item.id}>
@@ -157,7 +159,7 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
             {/* <div className="flex gap-6 w-full"> */}
             <div className="carousel carousel-center rounded-3xl flex w-full mx-auto mb-12">
                 {renderArtist.map((track, i) => {
-                    if (i <= 4) {
+                    if (i <= 8) {
                         return (
                             <MoreFromArtistCard
                                 key={track.id}
