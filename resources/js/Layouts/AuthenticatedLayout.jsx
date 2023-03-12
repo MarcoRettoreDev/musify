@@ -49,6 +49,9 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                     setsidebarCollapsed={setsidebarCollapsed}
                     appName={appName}
                     auth={auth}
+                    allTracks={children.props.allTracks}
+                    state={state}
+                    setState={setState}
                 />
 
                 <main className="bg-blackPrimary">

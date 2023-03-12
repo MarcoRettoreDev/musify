@@ -32,7 +32,7 @@ textarea {
 fieldset {
     --tw-ring-shadow: 0 0 #000 !important;
     --tw-ring-color: #000 !important;
-    border-color: var(--greenPrimary) !important;
+    border-color: #15803d !important;
 }
 
 /* PLAYER STYLES */

@@ -8,14 +8,18 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { Link, usePage } from "@inertiajs/react";
 import { InputAdornment, TextField } from "@mui/material";
+import AutocompleteCustom from "@/Components/AutocompleteCustom";
+import { set } from "lodash";
+import { useRef } from "react";
 
 export default function Header({
-    appName,
-    screenWidth,
     sidebarCollapsed,
     setsidebarCollapsed,
     auth,
     trigger,
+    allTracks,
+    state,
+    setState,
 }) {
     const userName = auth.user.name;
     const [anchorEl, setAnchorEl] = useState(null);
@@ -28,24 +32,37 @@ export default function Header({
         setAnchorEl(null);
     };
 
+    const handleAutoCompleteChange = (value) => {
+        console.log(value);
+        if (value) {
+            setState({
+                ...state,
+                currentTrack: value.id,
+                playing: true,
+                firstTimePlaying: true,
+            });
+        }
+
+        // autoCompleteRef.current.value = "";
+    };
+
     const renderSearchBar = () => (
         <div className="flex justify-center items-center text-slate-900 w-full md:w-auto">
-            <TextField
-                variant="outlined"
-                type="text"
-                placeholder="Search by title"
-                size="small"
-                className="bg-whitePrimary text-blackSecondary rounded focus:border-none w-full"
-                // onChange={(e) => console.log(e.target.value)}
+            <AutocompleteCustom
+                name="track_id"
                 fullWidth={true}
-                InputProps={{
-                    startAdornment: (
-                        <InputAdornment position="start">
-                            <Icon icon="ant-design:search-outlined" />
-                        </InputAdornment>
-                    ),
-                }}
+                variant="outlined"
+                wrapperclass="bg-whitePrimary text-blackSecondary rounded focus:border-none w-full lg:w-96"
+                handleChange={handleAutoCompleteChange}
+                options={allTracks?.map((item) => ({
+                    id: item.id,
+                    value: item.id,
+                    label: item.title,
+                }))}
+                value=""
+                size="small"
             />
+
             <Icon
                 icon="mingcute:settings-2-line"
                 width="2rem"

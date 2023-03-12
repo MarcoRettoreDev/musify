@@ -7,8 +7,6 @@ import { ShowArtist } from "./Artist/ShowArtist";
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
 
-    console.log(props);
-
     return (
         <>
             <Head title="Dashboard" />
