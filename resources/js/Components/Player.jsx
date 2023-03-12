@@ -28,6 +28,8 @@ export const Player = ({ state, setState }) => {
         if (currentTrackPlaying && playerRef.current) {
             playerRef.current.load();
             playerRef.current.play();
+            requestAnimationFrame(whilePlaying);
+            displayVolumeBeforeWidth();
         }
     }, [currentTrackPlaying]);
 
@@ -67,13 +69,11 @@ export const Player = ({ state, setState }) => {
         if (playerRef.current.readyState > 0) {
             displayDuration();
             setSliderMax();
-            displayBufferedAmount();
         } else {
             // When the audio element loads the metadata, set the duration time
             playerRef.current.addEventListener("loadedmetadata", () => {
                 displayDuration();
                 setSliderMax();
-                displayBufferedAmount();
             });
 
             playerRef.current.addEventListener("timeupdate", () => {
@@ -107,11 +107,6 @@ export const Player = ({ state, setState }) => {
                 }
                 seeking = false;
             });
-
-            playerRef.current.addEventListener(
-                "progress",
-                displayBufferedAmount
-            );
         }
     }, [playerRef.current]);
 
@@ -145,15 +140,12 @@ export const Player = ({ state, setState }) => {
         return `${minutes}:${formattedSeconds}`;
     };
 
-    const displayBufferedAmount = () => {
-        const bufferedAmount = Math.floor(
-            playerRef.current.buffered.end(
-                playerRef.current.buffered.length - 1
-            )
-        );
+    const displayVolumeBeforeWidth = () => {
         playerContainerRef.current.style.setProperty(
-            "--buffered-width",
-            `${(bufferedAmount / seekSliderRef.current.max) * 100}%`
+            "--volume-before-width",
+            (volumeSliderRef.current.value / volumeSliderRef.current.max) *
+                100 +
+                "%"
         );
     };
 
@@ -191,7 +183,9 @@ export const Player = ({ state, setState }) => {
     };
 
     const previousTrack = () => {
-        if (state.currentTrack > 1) {
+        if (playerRef.current.currentTime > 5) {
+            playerRef.current.currentTime = 0;
+        } else if (state.currentTrack > 1) {
             setState({
                 ...state,
                 currentTrack: state.shuffle
@@ -407,13 +401,7 @@ export const Player = ({ state, setState }) => {
                             changeVolume(e.target.value);
                             volumeSliderRef.current.value = e.target.value;
                             setVolumeIconControl(e.target.value);
-                            playerContainerRef.current.style.setProperty(
-                                "--volume-before-width",
-                                (volumeSliderRef.current.value /
-                                    volumeSliderRef.current.max) *
-                                    100 +
-                                    "%"
-                            );
+                            displayVolumeBeforeWidth();
                         }}
                         max="100"
                     />
