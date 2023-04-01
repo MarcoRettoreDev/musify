@@ -23,9 +23,14 @@ module.exports = {
                 whiteLight: "#818792",
                 greyPrimary: "#3D3B3C",
                 greySecondary: "#7F7979",
+                greyLight: "#d1d5da",
             },
         },
     },
 
-    plugins: [require("@tailwindcss/forms"), require("daisyui")],
+    plugins: [
+        require("@tailwindcss/forms"),
+        require("daisyui"),
+        require("@tailwindcss/forms"),
+    ],
 };

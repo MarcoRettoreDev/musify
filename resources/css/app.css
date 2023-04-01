@@ -2,7 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-@components {
+@layer components {
+    .subtitle {
+        @apply text-whitePrimary text-2xl;
+    }
+    .labelClass {
+        @apply block text-sm font-medium leading-6 text-whitePrimary;
+    }
+    .altText {
+        @apply mt-1 text-sm text-greySecondary;
+    }
+    .inputClass {
+        @apply mt-2 block w-full rounded-md border !border-greyLight py-1.5 text-blackPrimary shadow-md ring-1 ring-inset  focus:shadow-xl;
+    }
+
+    .buttonBasic {
+        @apply mt-4 px-2 py-1 border border-whiteLight rounded-md cursor-pointer inline-block;
+    }
 }
 
 @layer base {
@@ -20,6 +36,7 @@
         scroll-behavior: smooth;
     }
 }
+
 input {
     --tw-ring-shadow: 0 0 #000 !important;
     --tw-ring-color: #000 !important;
@@ -48,7 +65,7 @@ input[type="range"]::-webkit-slider-runnable-track {
     cursor: pointer;
     background: rgb(80, 80, 80) !important;
     border-radius: 15px;
-    height: 12px;
+    height: 10px;
 }
 
 /* track progress */
@@ -76,8 +93,8 @@ input[type="range"]::-webkit-slider-thumb {
     display: none;
     box-sizing: border-box;
     border: 1px solid white !important;
-    height: 13px;
-    width: 13px;
+    height: 12px;
+    width: 12px;
     border-radius: 50%;
     background-color: #e2e8f0 !important;
     cursor: pointer;
