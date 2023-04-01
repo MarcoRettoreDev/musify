@@ -14,6 +14,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
     const [state, setState] = useRemember(
         {
             allTracks: children.props.allTracks,
+            allArtist: children.props.allArtist,
             currentTrack: null,
             duration: null,
             playing: false,
@@ -24,6 +25,24 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
         "userState"
     );
     const trigger = useRef(null);
+
+    const optionsElements = state.allArtist.map((artist) => {
+        return {
+            id: artist.id,
+            value: artist.id,
+            label: artist.name,
+            type: "artist",
+        };
+    });
+
+    state.allTracks.forEach((track) => {
+        optionsElements.push({
+            id: track.id,
+            value: track.id,
+            label: track.title,
+            type: "track",
+        });
+    });
 
     let screenWidth = screen.width; // Screen width
 
@@ -43,12 +62,11 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                 <Header
                     trigger={trigger}
-                    screenWidth={screenWidth}
                     sidebarCollapsed={sidebarCollapsed}
                     setsidebarCollapsed={setsidebarCollapsed}
                     appName={appName}
                     auth={auth}
-                    allTracks={state.allTracks}
+                    optionsElements={optionsElements}
                     state={state}
                     setState={setState}
                 />

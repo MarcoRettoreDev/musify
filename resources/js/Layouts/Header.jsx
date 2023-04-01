@@ -11,13 +11,14 @@ import { InputAdornment, TextField } from "@mui/material";
 import AutocompleteCustom from "@/Components/AutocompleteCustom";
 import { set } from "lodash";
 import { useRef } from "react";
+import { router } from "@inertiajs/react";
 
 export default function Header({
     sidebarCollapsed,
     setsidebarCollapsed,
     auth,
     trigger,
-    allTracks,
+    optionsElements,
     state,
     setState,
 }) {
@@ -34,12 +35,17 @@ export default function Header({
 
     const handleAutoCompleteChange = (value) => {
         if (value) {
-            setState({
-                ...state,
-                currentTrack: value.id,
-                playing: true,
-                firstTimePlaying: true,
-            });
+            if (value.type === "artist") {
+                trigger.current.click();
+                router.visit(route("artist.show", value.value));
+            } else {
+                setState({
+                    ...state,
+                    currentTrack: value.id,
+                    playing: true,
+                    firstTimePlaying: true,
+                });
+            }
         }
     };
 
@@ -51,11 +57,7 @@ export default function Header({
                 variant="outlined"
                 wrapperclass="bg-whitePrimary text-blackSecondary rounded focus:border-none w-full lg:w-96"
                 handleChange={handleAutoCompleteChange}
-                options={allTracks?.map((item) => ({
-                    id: item.id,
-                    value: item.id,
-                    label: item.title,
-                }))}
+                options={optionsElements}
                 value=""
                 size="small"
             />

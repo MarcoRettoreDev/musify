@@ -31,6 +31,7 @@ class DashboardController extends Controller
         }
 
         $allTracks = Track::all();
+        $allArtist = Artist::all();
 
         foreach ($allTracks as $track) {
             $track->image = $track->getImages();
@@ -41,6 +42,7 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'tracks' => $tracks,
             'allTracks' => $allTracks,
+            'allArtist' => $allArtist,
         ]);
     }
 
