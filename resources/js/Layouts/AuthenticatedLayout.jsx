@@ -7,10 +7,10 @@ import { RightMenu } from "./RightMenu";
 import Sidebar from "./Sidebar";
 
 export default function AuthenticatedLayout({ appName, auth, children }) {
-    console.log(
-        "🚀 ~ file: AuthenticatedLayout.jsx:10 ~ AuthenticatedLayout ~ children:",
-        children.props
-    );
+    // console.log(
+    //     "🚀 ~ file: AuthenticatedLayout.jsx:10 ~ AuthenticatedLayout ~ children:",
+    //     children.props
+    // );
     const [state, setState] = useRemember(
         {
             allTracks: children.props.allTracks,
@@ -49,7 +49,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                     setsidebarCollapsed={setsidebarCollapsed}
                     appName={appName}
                     auth={auth}
-                    allTracks={children.props.allTracks}
+                    allTracks={state.allTracks}
                     state={state}
                     setState={setState}
                 />

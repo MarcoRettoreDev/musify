@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import { Link } from "@inertiajs/react";
 import React from "react";
 import { useRef, useEffect } from "react";
 
@@ -272,7 +273,16 @@ export const Player = ({ state, setState }) => {
                 />
                 <div className="flex flex-col justify-center ml-4">
                     <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
-                    <h6>{currentTrackPlaying?.artist}</h6>
+
+                    <Link
+                        className="hover:underline"
+                        href={route(
+                            "artist.show",
+                            currentTrackPlaying?.artist_id
+                        )}
+                    >
+                        <h6>{currentTrackPlaying?.artist}</h6>
+                    </Link>
                 </div>
             </div>
 

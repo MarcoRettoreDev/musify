@@ -6,10 +6,10 @@ export const sideBarLinks = [
         routeLink: "dashboard",
     },
     {
-        label: "Explore",
-        icon: "material-symbols:explore",
-        pathName: null,
-        routeLink: "",
+        label: "My content",
+        icon: "ic:outline-file-upload",
+        pathName: "dashboard/mycontent",
+        routeLink: "mycontent",
     },
     {
         label: "Notifications",

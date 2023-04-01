@@ -33,7 +33,6 @@ export default function Header({
     };
 
     const handleAutoCompleteChange = (value) => {
-        console.log(value);
         if (value) {
             setState({
                 ...state,
@@ -42,8 +41,6 @@ export default function Header({
                 firstTimePlaying: true,
             });
         }
-
-        // autoCompleteRef.current.value = "";
     };
 
     const renderSearchBar = () => (
@@ -78,7 +75,7 @@ export default function Header({
                 position="static"
                 sx={{ backgroundColor: "#15191d", boxShadow: "none" }}
             >
-                <Toolbar className="!px-16 flex justify-between md:justify-around text-slate-700">
+                <Toolbar className="lg:!px-2 flex justify-between md:justify-around text-slate-700">
                     <div className="lg:hidden ">
                         <IconButton
                             ref={trigger}

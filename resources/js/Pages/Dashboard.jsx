@@ -3,6 +3,7 @@ import { LastAdded } from "@/Pages/LastAdded";
 import { Head } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { ShowArtist } from "./Artist/ShowArtist";
+import { MyContentCreate } from "./MyContent/MyContentCreate";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
@@ -10,6 +11,13 @@ function Dashboard(propsFromLayout) {
     return (
         <>
             <Head title="Dashboard" />
+            {props.created && (
+                <MyContentCreate
+                    allAlbums={props.allAlbums}
+                    allArtists={props.allArtist}
+                    allTracks={props.allTracks}
+                />
+            )}
 
             {props.artist && (
                 <ShowArtist
