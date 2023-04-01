@@ -1,7 +1,7 @@
 import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 import React from "react";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 export const Player = ({ state, setState }) => {
     const playerRef = useRef(null);
@@ -13,7 +13,8 @@ export const Player = ({ state, setState }) => {
     const seekSliderRef = useRef(null);
     const volumeSliderRef = useRef(null);
 
-    const [volumeIconControl, setVolumeIconControl] = React.useState(null);
+    const [volumeIconControl, setVolumeIconControl] = useState(null);
+    const [playerShuffle, setPlayerShuffle] = useState(false);
 
     var raf = null;
     var seeking = false;
@@ -47,7 +48,7 @@ export const Player = ({ state, setState }) => {
             if (state.currentTrack < state.allTracks.length) {
                 setState({
                     ...state,
-                    currentTrack: state.shuffle
+                    currentTrack: playerShuffle
                         ? getRandomInt(1, state.allTracks.length + 1)
                         : state.currentTrack + 1,
                     playing: true,
@@ -170,7 +171,7 @@ export const Player = ({ state, setState }) => {
         if (state.currentTrack < state.allTracks.length) {
             setState({
                 ...state,
-                currentTrack: state.shuffle
+                currentTrack: playerShuffle
                     ? getRandomInt(1, state.allTracks.length + 1)
                     : state.currentTrack + 1,
                 playing: true,
@@ -190,7 +191,7 @@ export const Player = ({ state, setState }) => {
         } else if (state.currentTrack > 1) {
             setState({
                 ...state,
-                currentTrack: state.shuffle
+                currentTrack: playerShuffle
                     ? getRandomInt(1, state.allTracks.length + 1)
                     : state.currentTrack - 1,
                 playing: true,
@@ -312,11 +313,9 @@ export const Player = ({ state, setState }) => {
                             width={smallIconStyle}
                             height={smallIconStyle}
                             icon="ph:shuffle-fill"
-                            onClick={() =>
-                                setState({ ...state, shuffle: !state.shuffle })
-                            }
+                            onClick={() => setPlayerShuffle(!playerShuffle)}
                             className={
-                                state.shuffle
+                                playerShuffle
                                     ? "text-greenPrimary cursor-pointer"
                                     : "cursor-pointer hover:text-greySecondary"
                             }

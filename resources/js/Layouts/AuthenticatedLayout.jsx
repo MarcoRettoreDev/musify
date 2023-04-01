@@ -19,7 +19,6 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
             playing: false,
             ended: false,
             firstTimePlaying: false,
-            shuffle: false,
             repeat: false,
         },
         "userState"
