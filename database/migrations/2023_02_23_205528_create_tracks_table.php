@@ -20,7 +20,7 @@ return new class extends Migration
 
             $table->string('title');
             $table->string('slug')->unique();
-            $table->timestamp('duration');
+            $table->timestamp('duration')->nullable();
             $table->timestamp('release');
             $table->timestamp('expires_at')
                 ->default(DB::raw("now() + INTERVAL '1 year'"));

@@ -16,17 +16,15 @@ class Album extends BaseModel implements HasMedia
     protected $fillable = [
         'artist_id',
         'name',
-        'year',
+        'release',
         'description',
-        'cover',
     ];
 
     protected $casts = [
         'artist_id' => 'integer',
         'name' => 'string',
-        'year' => 'integer',
+        'release' => 'integer',
         'description' => 'string',
-        'cover' => 'string',
     ];
 
     // Relations

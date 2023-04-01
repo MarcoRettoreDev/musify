@@ -11,6 +11,7 @@ use Spatie\Image\Manipulations;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use wapmorgan\Mp3Info\Mp3Info;
 
 class Track extends BaseModel implements HasMedia
 {
@@ -18,9 +19,9 @@ class Track extends BaseModel implements HasMedia
 
     protected $fillable = [
         'title',
-        'artist',
         'duration',
         'release',
+        'slug',
         'expires_at',
         'artist_id',
         'album_id',
@@ -28,9 +29,9 @@ class Track extends BaseModel implements HasMedia
 
     protected $casts = [
         'title' => 'string',
-        'artist' => 'string',
         'duration' => 'datetime',
         'release' => 'datetime',
+        'slug' => 'string',
         'expires_at' => 'datetime',
         'artist_id' => 'integer',
         'album_id' => 'integer',
@@ -100,5 +101,26 @@ class Track extends BaseModel implements HasMedia
     public function getImageAttribute()
     {
         return $this->getImages();
+    }
+
+    public function getDurationTime()
+    {
+        // dd($this->getFirstMediaPath(BaseModel::MEDIA_COLLECTION_AUDIO));
+        $audioPath = $this->getFirstMediaPath(BaseModel::MEDIA_COLLECTION_AUDIO);
+        $audio = new Mp3Info($audioPath);
+
+        return '00:' . floor($audio->duration / 60) . ':' . floor($audio->duration % 60);
+    }
+
+
+    /**
+     * Add an audio to the model.
+     *
+     * @param \App\Models\BaseModel $model
+     */
+    public function addAudio($track)
+    {
+        $this->clearMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
+        $this->addMedia($track->getRealPath())->toMediaCollection(BaseModel::MEDIA_COLLECTION_AUDIO);
     }
 }

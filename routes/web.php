@@ -25,6 +25,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/artist/{artist}', [ArtistController::class, 'show'])->name('artist.show');
+    Route::get('/dashboard/mycontent', [DashboardController::class, 'create'])->name('mycontent');
+    Route::post('/dashboard/mycontent', [DashboardController::class, 'store'])->name('mycontent.store');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
