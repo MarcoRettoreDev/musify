@@ -52,7 +52,6 @@ export const Player = ({ state, setState }) => {
                         : state.currentTrack + 1,
                     playing: true,
                     ended: false,
-                    shuffle: state.shuffle ? true : false,
                 });
             } else {
                 setState({
@@ -60,7 +59,6 @@ export const Player = ({ state, setState }) => {
                     currentTrack: 1,
                     playing: true,
                     ended: false,
-                    shuffle: state.shuffle ? true : false,
                 });
             }
         }
@@ -159,6 +157,9 @@ export const Player = ({ state, setState }) => {
     const changeVolume = (volume) => {
         playerRef.current.volume = volume / 100;
         volumeSliderRef.current.value = volume;
+        if (playerRef.current.muted) {
+            playerRef.current.muted = false;
+        }
     };
 
     const setSliderMax = () => {
@@ -247,9 +248,21 @@ export const Player = ({ state, setState }) => {
         if (playerRef.current.muted) {
             playerRef.current.muted = false;
             setVolumeIconControl(playerRef.current.volume * 100);
+            playerContainerRef.current.style.setProperty(
+                "--volume-before-width",
+                (volumeSliderRef.current.value / volumeSliderRef.current.max) *
+                    100 +
+                    "%"
+            );
         } else {
             playerRef.current.muted = true;
             setVolumeIconControl(0);
+            playerContainerRef.current.style.setProperty(
+                "--volume-before-width",
+                (volumeSliderRef.current.value / volumeSliderRef.current.max) *
+                    0 +
+                    "%"
+            );
         }
     };
 
