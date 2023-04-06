@@ -18,7 +18,6 @@ class Playlist extends BaseModel implements HasMedia
     protected $fillable = [
         'name',
         'description',
-        'slug',
         'expires_at',
         'user_id'
     ];
@@ -26,7 +25,6 @@ class Playlist extends BaseModel implements HasMedia
     protected $casts = [
         'name' => 'string',
         'description' => 'string',
-        'slug' => 'string',
         'expires_at' => 'datetime',
         'user_id' => 'integer'
     ];
@@ -49,6 +47,12 @@ class Playlist extends BaseModel implements HasMedia
             ->background('151513')
             ->optimize()
             ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE);
+    }
+
+
+    public function getImages()
+    {
+        return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 
     // Relations

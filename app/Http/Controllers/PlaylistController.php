@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
 use App\Models\Playlist;
+use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
+use Illuminate\Support\Str;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PlaylistController extends Controller
 {
@@ -25,7 +29,6 @@ class PlaylistController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -36,7 +39,25 @@ class PlaylistController extends Controller
      */
     public function store(StorePlaylistRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $playlist = Playlist::create([
+            'name' => $data['name'],
+            'user_id' => auth()->user()->id,
+            'expires_at' => now()->addDays(2),
+        ]);
+
+        if (isset($data['description'])) {
+            $playlist->update(['description' => $data['description']]);
+        }
+
+        if (isset($data['image'])) {
+            $playlist->addImage($playlist, $data['image']);
+        }
+
+        return Redirect::route(
+            'dashboard',
+        )->with('message', 'Playlist created successfully');
     }
 
     /**

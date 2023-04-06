@@ -6,6 +6,7 @@ use App\Http\Requests\StoreMyContentRequest;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Genre;
+use App\Models\Playlist;
 use App\Models\Track;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -19,8 +20,9 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        // dd($request->all());
         $lastFiveTracksFromDifferentArtist = Track::latest()->take(25)->get()->unique('artist_id');
 
         $tracks = [];
@@ -32,6 +34,7 @@ class DashboardController extends Controller
 
         $allTracks = Track::all();
         $allArtist = Artist::all();
+        $allPlaylist = Playlist::all();
 
         foreach ($allTracks as $track) {
             $track->image = $track->getImages();
@@ -39,10 +42,16 @@ class DashboardController extends Controller
             $track->audio = $track->getAudio();
         }
 
+        foreach ($allPlaylist as $playlist) {
+            $playlist->image = $playlist->getImages();
+        }
+
         return Inertia::render('Dashboard', [
             'tracks' => $tracks,
             'allTracks' => $allTracks,
             'allArtist' => $allArtist,
+            'allPlaylist' => $allPlaylist,
+            'playlist' => $request->playlist ? $request->playlist : null,
         ]);
     }
 
