@@ -22,6 +22,7 @@ class PlaylistSeeder extends Seeder
         Playlist::create([
             'name' => 'My favorite',
             'description' => 'My favorite tracks',
+            'duration' => 0,
             'user_id' => 1,
         ])->addMedia(public_path('temp/image/hearh-white-avatar.jpg'))
             ->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);

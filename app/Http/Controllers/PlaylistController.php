@@ -68,7 +68,13 @@ class PlaylistController extends Controller
      */
     public function show(Playlist $playlist)
     {
-        //
+        $playlist->load('tracks');
+
+        $playlist->image = $playlist->getImages();
+
+        return Inertia::render('Dashboard', [
+            'playlist' => $playlist,
+        ]);
     }
 
     /**

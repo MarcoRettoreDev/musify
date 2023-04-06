@@ -35,6 +35,7 @@ class DashboardController extends Controller
         $allTracks = Track::all();
         $allArtist = Artist::all();
         $allPlaylist = Playlist::all();
+        $allAlbums = Album::all();
 
         foreach ($allTracks as $track) {
             $track->image = $track->getImages();
@@ -50,8 +51,10 @@ class DashboardController extends Controller
             'tracks' => $tracks,
             'allTracks' => $allTracks,
             'allArtist' => $allArtist,
+            'allAlbums' => $allAlbums,
             'allPlaylist' => $allPlaylist,
             'playlist' => $request->playlist ? $request->playlist : null,
+            'created' => $request->created ? $request->created : null,
         ]);
     }
 
@@ -63,16 +66,13 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        $allAlbums = Album::all();
-        $allArtist = Artist::all();
-        $allGenres = Genre::all();
-
-        return Inertia::render('Dashboard', [
-            'allAlbums' => $allAlbums,
-            'allArtist' => $allArtist,
-            'allGenres' => $allGenres,
+        return Redirect::route('dashboard', [
             'created' => true,
         ]);
+
+        // return Inertia::render('Dashboard', [
+        //     'created' => true,
+        // ]);
     }
 
     /**

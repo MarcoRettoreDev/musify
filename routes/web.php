@@ -25,7 +25,7 @@ Route::get('logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/artist/{artist}', [ArtistController::class, 'show'])->name('artist.show');
-    Route::get('/dashboard/mycontent', [DashboardController::class, 'create'])->name('mycontent');
+    Route::get('/dashboard/mycontent', [DashboardController::class, 'create'])->name('mycontent.create');
     Route::post('/dashboard/mycontent', [DashboardController::class, 'store'])->name('mycontent.store');
     Route::get('/dashboard/playlist', [PlaylistController::class, 'create'])->name('playlist.create');
     Route::post('/dashboard/playlist', [PlaylistController::class, 'store'])->name('playlist.store');

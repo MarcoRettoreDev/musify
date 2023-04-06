@@ -11,6 +11,10 @@ import { useEffect } from "react";
 import { usePage } from "@inertiajs/react";
 
 export default function AuthenticatedLayout({ appName, auth, children }) {
+    console.log(
+        "🚀 ~ file: AuthenticatedLayout.jsx:14 ~ AuthenticatedLayout ~ children:",
+        children
+    );
     const [state, setState] = useRemember(
         {
             allTracks: children.props.allTracks,

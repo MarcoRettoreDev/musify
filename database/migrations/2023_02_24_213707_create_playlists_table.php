@@ -20,6 +20,8 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('description')->nullable();
+            $table->integer('duration')->default(0);
+
             $table->timestamp('expires_at')
                 ->default(DB::raw("now() + INTERVAL '1 year'"));
 

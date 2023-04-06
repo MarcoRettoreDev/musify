@@ -8,8 +8,8 @@ export const sideBarLinks = [
     {
         label: "My content",
         icon: "ic:outline-file-upload",
-        pathName: "mycontent",
-        routeLink: "mycontent",
+        pathName: "mycontent.create",
+        routeLink: "mycontent.create",
     },
     {
         label: "Notifications",

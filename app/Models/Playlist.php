@@ -49,7 +49,6 @@ class Playlist extends BaseModel implements HasMedia
             ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 
-
     public function getImages()
     {
         return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);

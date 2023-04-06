@@ -1,12 +1,19 @@
 // import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { LastAdded } from "@/Pages/LastAdded";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { ShowArtist } from "./Artist/ShowArtist";
 import { MyContentCreate } from "./MyContent/MyContentCreate";
+import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
+
+    const { ziggy } = usePage().props;
+
+    const location = window.location.href;
+
+    const pathname = route().current();
 
     return (
         <>
@@ -19,7 +26,7 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {props.artist && (
+            {pathname.includes("artist.show") && (
                 <ShowArtist
                     state={state}
                     setState={setState}
@@ -27,13 +34,17 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {props.tracks && (
+            {pathname.includes("dashboard") && !props.created && (
                 <LastAdded
                     allTracks={props.allTracks}
                     itemsToRender={props.tracks}
                     state={state}
                     setState={setState}
                 />
+            )}
+
+            {pathname.includes("playlist.show") && (
+                <ShowPlaylist playlist={props.playlist} />
             )}
         </>
     );
