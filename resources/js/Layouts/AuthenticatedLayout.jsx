@@ -5,16 +5,17 @@ import { useRef, useState } from "react";
 import Header from "./Header";
 import { RightMenu } from "./RightMenu";
 import Sidebar from "./Sidebar";
+import PlaylistModal from "@/Components/PlaylistModal";
+import { ToastMessages } from "@/Components/ToastMessages";
+import { useEffect } from "react";
+import { usePage } from "@inertiajs/react";
 
 export default function AuthenticatedLayout({ appName, auth, children }) {
-    // console.log(
-    //     "🚀 ~ file: AuthenticatedLayout.jsx:10 ~ AuthenticatedLayout ~ children:",
-    //     children.props
-    // );
     const [state, setState] = useRemember(
         {
             allTracks: children.props.allTracks,
             allArtist: children.props.allArtist,
+            allPlaylist: children.props.allPlaylist,
             currentTrack: null,
             duration: null,
             playing: false,
@@ -23,6 +24,16 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
             repeat: false,
         },
         "userState"
+    );
+
+    const { flash } = usePage().props; // Flash messages from controler using handleInertiaResquest
+
+    let screenWidth = screen.width; // Screen width
+
+    const [playlistModal, setPlaylistModal] = useState(false);
+
+    const [sidebarCollapsed, setsidebarCollapsed] = useState(
+        screenWidth >= 1024 ? true : false
     );
     const trigger = useRef(null);
 
@@ -44,11 +55,27 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
         });
     });
 
-    let screenWidth = screen.width; // Screen width
-
-    const [sidebarCollapsed, setsidebarCollapsed] = useState(
-        screenWidth >= 1024 ? true : false
+    const renderModal = () => (
+        <PlaylistModal
+            allArtist={state.allArtist}
+            playlist={children.props?.playlist}
+            playlistModal={playlistModal}
+            setPlaylistModal={setPlaylistModal}
+        />
     );
+
+    useEffect(() => {
+        if (flash.message?.includes("successfully")) {
+            setPlaylistModal(false);
+            console.log("desactivo el modal");
+        }
+    }, [flash.message]);
+
+    useEffect(() => {
+        if (playlistModal) {
+            renderModal();
+        }
+    }, [playlistModal]);
 
     return (
         <div className="flex h-screen overflow-hidden bg-body ">
@@ -57,6 +84,8 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                 setsidebarCollapsed={setsidebarCollapsed}
                 appName={appName}
                 trigger={trigger}
+                playlistModal={playlistModal}
+                setPlaylistModal={setPlaylistModal}
             />
 
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
@@ -74,6 +103,8 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                 <main className="bg-blackPrimary">
                     <div className="px-16 sm:px-6 lg:px-16 lg:pb-28 lg:pt-8 w-full max-w-9xl mx-auto ">
                         {/* {children} */}
+                        {playlistModal && renderModal()}
+
                         <Dashboard
                             props={children.props}
                             state={state}
@@ -87,7 +118,14 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                 <Player state={state} setState={setState} />
             )}
 
-            <RightMenu />
+            <RightMenu allPlaylist={state.allPlaylist} />
+
+            {children.props.flash?.message && (
+                <ToastMessages
+                    icon="material-symbols:check-circle-outline"
+                    message={flash?.message}
+                />
+            )}
         </div>
     );
 }

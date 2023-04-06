@@ -8,7 +8,7 @@ export const sideBarLinks = [
     {
         label: "My content",
         icon: "ic:outline-file-upload",
-        pathName: "dashboard/mycontent",
+        pathName: "mycontent",
         routeLink: "mycontent",
     },
     {
@@ -18,10 +18,11 @@ export const sideBarLinks = [
         routeLink: "",
     },
     {
-        label: "Playlists",
+        label: "Create playlist",
         icon: "mdi:cards-heart",
         pathName: null,
         routeLink: "",
+        event: "openModalPlaylist",
     },
     {
         label: "Downloads",

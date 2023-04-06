@@ -3,6 +3,7 @@ import { Icon } from "@iconify/react";
 import { Link } from "@inertiajs/react";
 import { useState } from "react";
 import { MoreFromArtistCard } from "../Components/MoreFromArtistCard";
+import CreatePlaylistModal from "@/Components/PlaylistModal";
 
 export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
     const [currentArtist, setCurrentArtist] = useState(

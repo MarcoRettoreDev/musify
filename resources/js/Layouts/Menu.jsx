@@ -5,7 +5,12 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import SidebarLink from "./SidebarLink";
 import { sideBarLinks } from "./menuData";
 
-export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
+export default function Menu({
+    sidebarCollapsed,
+    setsidebarCollapsed,
+    playlistModal,
+    setPlaylistModal,
+}) {
     const { auth } = usePage().props;
     const { ziggy } = usePage().props;
 
@@ -17,6 +22,8 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
             activecondition={false}
             sidebarCollapsed={sidebarCollapsed}
             setsidebarCollapsed={setsidebarCollapsed}
+            playlistModal={playlistModal}
+            setPlaylistModal={setPlaylistModal}
         >
             {(handleClick, open) =>
                 sideBarLinks.map((link) => (
@@ -26,6 +33,7 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
                         pathName={link.pathName}
                         label={link.label}
                         icon={link.icon}
+                        event={link.event}
                         handleClick={handleClick}
                     />
                 ))
@@ -54,7 +62,7 @@ export default function Menu({ sidebarCollapsed, setsidebarCollapsed }) {
         <div className="h-full space-y-8 bg-blackSecondary ">
             <div className="h-full flex flex-col justify-between">
                 <ul className="mb-3">{renderLinks()}</ul>
-                <ul>{renderLogOut()}</ul>
+                {/* <ul>{renderLogOut()}</ul> */}
             </div>
         </div>
     );

@@ -5,12 +5,16 @@ function SidebarLinkGroup({
     activecondition,
     sidebarCollapsed,
     setsidebarCollapsed,
+    playlistModal,
+    setPlaylistModal,
 }) {
     const [open, setOpen] = useState(activecondition);
 
-    const handleClick = () => {
-        // setOpen(!open);
-        setsidebarCollapsed(!sidebarCollapsed);
+    const handleClick = (event) => {
+        if (event === "openModalPlaylist") {
+            setPlaylistModal(!playlistModal);
+        }
+        // setsidebarCollapsed(!sidebarCollapsed);
     };
 
     return (

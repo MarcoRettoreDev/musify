@@ -8,11 +8,6 @@ export const AudioUpload = ({
     audioData,
 }) => {
     const handlePreviewUrl = (audioData) => {
-        console.log(
-            "🚀 ~ file: AudioUpload.jsx:11 ~ handlePreviewUrl ~ audioData:",
-            audioData
-        );
-
         if (audioData?.type == "audio/mpeg") {
             const blob = URL.createObjectURL(audioData);
             return blob;

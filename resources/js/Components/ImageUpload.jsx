@@ -29,10 +29,10 @@ export const ImageUpload = ({
                 >
                     Cover photo
                 </label>
-                <ErrorText text={errors[name]} />
+                <ErrorText text={errors?.[name]} />
                 <div
                     className={`mt-2 flex justify-center rounded-md border-2 border-dashed ${
-                        errors[name] ? "border-red-700" : "border-gray-300"
+                        errors?.[name] ? "border-red-700" : "border-gray-300"
                     } px-6 pt-5 pb-6`}
                 >
                     <div className="space-y-1 text-center">

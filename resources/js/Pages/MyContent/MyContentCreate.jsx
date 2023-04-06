@@ -21,14 +21,9 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
         albumName: undefined,
         albumRelease: undefined,
         albumImage: [],
-        albumId: 1,
+        albumId: null,
     });
 
-    console.log(data);
-
-    useEffect(() => {
-        setData({ ...data, albumId: 1 });
-    }, []);
     const handleChange = (e) => {
         setData({ ...data, [e.target.name]: e.target.value });
     };
@@ -140,7 +135,7 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
     }, [data.artistId, data.albumId]);
 
     return (
-        <form>
+        <form className="mb-5">
             <h1 className="text-whitePrimary text-3xl">Upload new content</h1>
             <div className="mt-10">
                 <TrackForm

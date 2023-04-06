@@ -4,9 +4,8 @@ import { Icon } from "@iconify/react";
 
 export default function SidebarLink({
     handleClick,
-    open,
-    data,
     routeLink,
+    event,
     parameters,
     pathName,
     label,
@@ -23,6 +22,7 @@ export default function SidebarLink({
                 className={`group block truncate transition duration-150 mb-8 `}
                 onClick={(e) => {
                     e.preventDefault();
+                    handleClick(event);
                 }}
             >
                 <div className="flex items-center justify-between w-full">
@@ -37,7 +37,7 @@ export default function SidebarLink({
                         >
                             <span
                                 className={`ml-2 text-slate-200 font-semibold hover:!text-green-900 ${
-                                    locationName.includes(`${pathName}`) &&
+                                    pathname.includes(`${pathName}`) &&
                                     "!text-greenSecondary font-bold "
                                 }`}
                             >
