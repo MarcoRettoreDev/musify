@@ -12,6 +12,10 @@ export const ToastMessages = ({ icon, message }) => {
         }, 3000);
     }, [present]);
 
+    useEffect(() => {
+        setPresent(message && true);
+    }, [message]);
+
     return (
         <AnimatePresence initial={false}>
             {present && (
