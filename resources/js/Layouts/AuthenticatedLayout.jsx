@@ -11,10 +11,6 @@ import { useEffect } from "react";
 import { usePage } from "@inertiajs/react";
 
 export default function AuthenticatedLayout(props) {
-    console.log(
-        "🚀 ~ file: AuthenticatedLayout.jsx:14 ~ AuthenticatedLayout ~ props:",
-        props
-    );
     const { appName, auth, children } = props;
 
     const [state, setState] = useRemember(
@@ -24,6 +20,7 @@ export default function AuthenticatedLayout(props) {
             allPlaylist: children.props.data.allPlaylist,
             currentTrack: null,
             queued: [],
+            history: [],
             playing: false,
             ended: false,
             firstTimePlaying: false,

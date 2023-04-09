@@ -45,6 +45,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 setState({
                     ...state,
                     ended: true,
+                    history: [...state.history, state.currentTrack],
                 });
             });
         }
@@ -172,40 +173,64 @@ export const Player = ({ allPlaylist, state, setState }) => {
     };
 
     const nextTrack = () => {
-        if (state.currentTrack < state.allTracks.length) {
+        if (state.queued.length > 0) {
             setState({
                 ...state,
-                currentTrack: playerShuffle
-                    ? getRandomInt(1, state.allTracks.length + 1)
-                    : state.currentTrack + 1,
+                queued: state.queued.slice(1),
+                currentTrack: state.queued[0].id,
                 playing: true,
             });
         } else {
-            setState({
-                ...state,
-                currentTrack: 1,
-                playing: true,
-            });
+            if (state.currentTrack < state.allTracks.length) {
+                let random = getRandomInt(1, state.allTracks.length + 1);
+                setState({
+                    ...state,
+                    currentTrack: playerShuffle
+                        ? random
+                        : state.currentTrack + 1,
+                    playing: true,
+                    history: [...state.history, state.currentTrack],
+                });
+            } else {
+                setState({
+                    ...state,
+                    currentTrack: 1,
+                    playing: true,
+                });
+            }
         }
     };
 
     const previousTrack = () => {
-        if (playerRef.current.currentTime > 5) {
-            playerRef.current.currentTime = 0;
-        } else if (state.currentTrack > 1) {
-            setState({
-                ...state,
-                currentTrack: playerShuffle
-                    ? getRandomInt(1, state.allTracks.length + 1)
-                    : state.currentTrack - 1,
-                playing: true,
-            });
+        if (state.history.length > 0) {
+            if (playerRef.current.currentTime > 5) {
+                playerRef.current.currentTime = 0;
+            } else {
+                setState({
+                    ...state,
+                    history: state.history.slice(0, -1),
+                    currentTrack: state.history[state.history.length - 1],
+                    playing: true,
+                });
+            }
         } else {
-            setState({
-                ...state,
-                currentTrack: state.allTracks.length,
-                playing: true,
-            });
+            if (playerRef.current.currentTime > 5) {
+                playerRef.current.currentTime = 0;
+            } else if (state.currentTrack > 1) {
+                setState({
+                    ...state,
+                    currentTrack: playerShuffle
+                        ? getRandomInt(1, state.allTracks.length + 1)
+                        : state.currentTrack - 1,
+                    playing: true,
+                });
+            } else {
+                setState({
+                    ...state,
+                    currentTrack: state.allTracks.length,
+                    playing: true,
+                });
+            }
         }
     };
 

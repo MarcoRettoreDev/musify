@@ -70,7 +70,12 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
                     onClick={() => {
                         setState({
                             ...state,
-                            queued: data.tracks,
+                            queued: data.tracks.filter(
+                                (track) => track.id !== data.tracks[0].id
+                            ),
+                            currentTrack: data.tracks[0].id,
+                            firstTimePlaying: true,
+                            playing: true,
                         });
                     }}
                     className="text-greenPrimary hover:text-greenSecondary cursor-pointer"
