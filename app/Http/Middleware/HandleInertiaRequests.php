@@ -2,6 +2,9 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Artist;
+use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tightenco\Ziggy\Ziggy;
@@ -41,9 +44,13 @@ class HandleInertiaRequests extends Middleware
             },
             'appName' => config('app.name'),
             'flash' => [
-                // 'message' => fn () => $request->get('message')
                 'message' => fn () => $request->session()->get('message')
             ],
+            'data' => [
+                'allPlaylist' => User::find(auth()->user()->id)->playlists,
+                'allArtist' => Artist::all(),
+                'allTracks' => Track::all(),
+            ]
         ]);
     }
 }

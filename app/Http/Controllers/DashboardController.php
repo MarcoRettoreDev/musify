@@ -8,6 +8,7 @@ use App\Models\Artist;
 use App\Models\Genre;
 use App\Models\Playlist;
 use App\Models\Track;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
@@ -22,30 +23,19 @@ class DashboardController extends Controller
      */
     public function index(Request $request)
     {
-        // dd($request->all());
         $lastFiveTracksFromDifferentArtist = Track::latest()->take(25)->get()->unique('artist_id');
 
         $tracks = [];
+
         foreach ($lastFiveTracksFromDifferentArtist as $track) {
-            $track->image = $track->getImages();
-            $track->artist = $track->artist()->first()->name;
             $tracks[] = $track;
         }
 
         $allTracks = Track::all();
         $allArtist = Artist::all();
-        $allPlaylist = Playlist::all();
+        // $allPlaylist = Playlist::where('user_id', auth()->user()->id);
+        $allPlaylist = User::find(auth()->user()->id)->playlists;
         $allAlbums = Album::all();
-
-        foreach ($allTracks as $track) {
-            $track->image = $track->getImages();
-            $track->artist = $track->artist()->first()->name;
-            $track->audio = $track->getAudio();
-        }
-
-        foreach ($allPlaylist as $playlist) {
-            $playlist->image = $playlist->getImages();
-        }
 
         return Inertia::render('Dashboard', [
             'tracks' => $tracks,
