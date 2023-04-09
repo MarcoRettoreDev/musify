@@ -33,6 +33,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $userId = $request->user() ? $request->user()->id : null;
+
         return array_merge(parent::share($request), [
             'auth' => [
                 'user' => $request->user(),
@@ -47,7 +49,7 @@ class HandleInertiaRequests extends Middleware
                 'message' => fn () => $request->session()->get('message')
             ],
             'data' => [
-                'allPlaylist' => User::find(auth()->user()->id)->playlists,
+                'allPlaylist' => $userId ? User::find($userId)->playlists : null,
                 'allArtist' => Artist::all(),
                 'allTracks' => Track::all(),
             ]
