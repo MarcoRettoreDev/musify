@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
 use App\Models\Playlist;
+use App\Models\Track;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -57,6 +58,9 @@ class PlaylistController extends Controller
 
         return Redirect::route(
             'dashboard',
+            [
+                'playlist' => $playlist->id,
+            ]
         )->with('message', 'Playlist created successfully');
     }
 
@@ -88,6 +92,22 @@ class PlaylistController extends Controller
         //
     }
 
+
+    /**
+     * Attach a track to a playlist
+     *
+     * @param  \App\Models\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function addTrack(Playlist $playlist, Track $track)
+    {
+
+        $playlist->tracks()->attach($track->id);
+
+        // return a message without view
+        return back()->with('message', 'Track added successfully');
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -97,7 +117,14 @@ class PlaylistController extends Controller
      */
     public function update(UpdatePlaylistRequest $request, Playlist $playlist)
     {
-        //
+        $data = $request->validated();
+
+        $playlist->update($data);
+
+        // Ordenamos los nuevos recorridos
+        $playlist->syncPlaylistTrack($data['tracks']);
+
+        return Redirect::route('dashboard')->with('message', 'Playlist updated successfully');
     }
 
     /**
@@ -108,6 +135,9 @@ class PlaylistController extends Controller
      */
     public function destroy(Playlist $playlist)
     {
-        //
+
+        $playlist->delete();
+
+        return Redirect::route('dashboard')->with('message', 'Playlist deleted');
     }
 }

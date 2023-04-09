@@ -7,8 +7,11 @@ import { MyContentCreate } from "./MyContent/MyContentCreate";
 import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 
 function Dashboard(propsFromLayout) {
+    console.log(
+        "🚀 ~ file: Dashboard.jsx:10 ~ Dashboard ~ propsFromLayout:",
+        propsFromLayout
+    );
     const { props, state, setState } = propsFromLayout;
-
     const { ziggy } = usePage().props;
 
     const location = window.location.href;
@@ -44,7 +47,11 @@ function Dashboard(propsFromLayout) {
             )}
 
             {pathname.includes("playlist.show") && (
-                <ShowPlaylist playlist={props.playlist} />
+                <ShowPlaylist
+                    playlist={props.playlist}
+                    setState={setState}
+                    state={state}
+                />
             )}
         </>
     );

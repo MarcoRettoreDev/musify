@@ -13,7 +13,7 @@ class UpdatePlaylistRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class UpdatePlaylistRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string',
+            'tracks' => 'required|array',
         ];
     }
 }

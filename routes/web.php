@@ -29,7 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/mycontent', [DashboardController::class, 'store'])->name('mycontent.store');
     Route::get('/dashboard/playlist', [PlaylistController::class, 'create'])->name('playlist.create');
     Route::post('/dashboard/playlist', [PlaylistController::class, 'store'])->name('playlist.store');
+    Route::post('/dashboard/playlist/{playlist}/add/{track}', [PlaylistController::class, 'addTrack'])->name('playlist.addTrack');
     Route::get('/dashboard/playlist/{playlist}', [PlaylistController::class, 'show'])->name('playlist.show');
+    Route::post('/dashboard/playlist/{playlist}', [PlaylistController::class, 'update'])->name('playlist.update');
+    Route::delete('/playlist/{playlist}', [PlaylistController::class, 'destroy'])->name('playlist.delete');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

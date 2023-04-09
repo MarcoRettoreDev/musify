@@ -1,9 +1,12 @@
-import { Icon } from "@iconify/react";
-import { Link } from "@inertiajs/react";
 import React from "react";
+import { Icon } from "@iconify/react";
+import { Link, router } from "@inertiajs/react";
 import { useRef, useEffect, useState } from "react";
+import MenuItem from "@mui/material/MenuItem";
+import Menu from "@mui/material/Menu";
+import { IconButton } from "@mui/material";
 
-export const Player = ({ state, setState }) => {
+export const Player = ({ allPlaylist, state, setState }) => {
     const playerRef = useRef(null);
     const playerContainerRef = useRef(null);
     const playIconRef = useRef(null);
@@ -15,6 +18,7 @@ export const Player = ({ state, setState }) => {
 
     const [volumeIconControl, setVolumeIconControl] = useState(null);
     const [playerShuffle, setPlayerShuffle] = useState(false);
+    const [anchorEl, setAnchorEl] = useState(null);
 
     var raf = null;
     var seeking = false;
@@ -273,21 +277,118 @@ export const Player = ({ state, setState }) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    const addTrackToPlaylist = (playlistId, trackId) => {
+        const track = state.allTracks.find((track) => track.id === trackId);
+        const playlist = allPlaylist.find(
+            (playlist) => playlist.id === playlistId
+        );
+        const newPlaylist = {
+            ...playlist,
+            tracks: [...playlist.tracks, track],
+        };
+        const newPlaylists = allPlaylist.map((playlist) =>
+            playlist.id === playlistId ? newPlaylist : playlist
+        );
+
+        setState({
+            ...state,
+            allPlaylist: newPlaylists,
+        });
+
+        router.post(
+            route("playlist.addTrack", { playlist: playlistId, track: trackId })
+        );
+    };
+
+    const handleProfileMenuOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const verifyIfTrackIsInPlaylist = (playlistId, trackId) => {
+        const playlist = allPlaylist.find(
+            (playlist) => playlist.id === playlistId
+        );
+        const track = playlist.tracks.find((track) => track.id === trackId);
+        if (track) {
+            return true;
+        } else {
+            return false;
+        }
+    };
+
+    const renderAddPlaylistMenu = () => (
+        <div className="flex text-slate-700">
+            <IconButton
+                size="large"
+                edge="end"
+                aria-label="mi cuenta"
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+            >
+                <Icon
+                    icon={`ri:heart-add-line`}
+                    width="1.5rem"
+                    className="text-whiteLight hover:!text-greenSecondary"
+                />
+            </IconButton>
+            <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                }}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
+                {allPlaylist.length > 0 &&
+                    allPlaylist.map((playlist) => (
+                        <MenuItem
+                            onClick={() => {
+                                handleClose();
+                                addTrackToPlaylist(
+                                    playlist.id,
+                                    state.currentTrack
+                                );
+                            }}
+                            key={playlist.id}
+                            disabled={verifyIfTrackIsInPlaylist(
+                                playlist.id,
+                                state.currentTrack
+                            )}
+                            // disabled={true}
+                        >
+                            {playlist.name}
+                        </MenuItem>
+                    ))}
+            </Menu>
+        </div>
+    );
+
     return (
         <div
             ref={playerContainerRef}
             id="playerContainer"
             className="bg-blackSecondary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
         >
-            <div className="flex cursor-default">
+            <div className="flex cursor-default items-center space-x-4">
                 <img
                     src={currentTrackPlaying?.avatar}
                     alt=""
                     className="h-20"
                 />
-                <div className="flex flex-col justify-center ml-4">
+                <div className="flex flex-col justify-center">
                     <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
-
                     <Link
                         className="hover:underline"
                         href={route(
@@ -298,6 +399,8 @@ export const Player = ({ state, setState }) => {
                         <h6>{currentTrackPlaying?.artist}</h6>
                     </Link>
                 </div>
+
+                {renderAddPlaylistMenu()}
             </div>
 
             <div

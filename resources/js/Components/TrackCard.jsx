@@ -3,7 +3,7 @@ export const TrackCard = ({ track }) => {
     return (
         <div className="flex bg-blackSecondary rounded-lg cursor-pointer">
             <div
-                className="h-32 w-1/3 bg-cover bg-center  my-auto"
+                className="h-24 w-1/3 bg-cover bg-center  my-auto rounded-l-md "
                 style={{ backgroundImage: `url(${avatar})` }}
             ></div>
             <div className="w-2/3 px-2 py-2 flex flex-col justify-evenly ">

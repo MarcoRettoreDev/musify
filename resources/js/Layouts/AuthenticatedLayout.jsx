@@ -1,6 +1,6 @@
 import { Player } from "@/Components/Player";
 import Dashboard from "@/Pages/Dashboard";
-import { useRemember } from "@inertiajs/react";
+import { router, useRemember } from "@inertiajs/react";
 import { useRef, useState } from "react";
 import Header from "./Header";
 import { RightMenu } from "./RightMenu";
@@ -10,24 +10,31 @@ import { ToastMessages } from "@/Components/ToastMessages";
 import { useEffect } from "react";
 import { usePage } from "@inertiajs/react";
 
-export default function AuthenticatedLayout({ appName, auth, children }) {
+export default function AuthenticatedLayout(props) {
     console.log(
-        "🚀 ~ file: AuthenticatedLayout.jsx:14 ~ AuthenticatedLayout ~ children:",
-        children
+        "🚀 ~ file: AuthenticatedLayout.jsx:14 ~ AuthenticatedLayout ~ props:",
+        props
     );
+    const { appName, auth, children } = props;
+
     const [state, setState] = useRemember(
         {
-            allTracks: children.props.allTracks,
-            allArtist: children.props.allArtist,
-            allPlaylist: children.props.allPlaylist,
+            allTracks: children.props.data.allTracks,
+            allArtist: children.props.data.allArtist,
+            allPlaylist: children.props.data.allPlaylist,
             currentTrack: null,
-            duration: null,
+            queued: [],
             playing: false,
             ended: false,
             firstTimePlaying: false,
             repeat: false,
         },
         "userState"
+    );
+
+    console.log(
+        "🚀 ~ file: AuthenticatedLayout.jsx:28 ~ AuthenticatedLayout ~ state:",
+        state
     );
 
     const { flash } = usePage().props; // Flash messages from controler using handleInertiaResquest
@@ -41,7 +48,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
     );
     const trigger = useRef(null);
 
-    const optionsElements = state.allArtist.map((artist) => {
+    const optionsElements = children.props.data.allArtist.map((artist) => {
         return {
             id: artist.id,
             value: artist.id,
@@ -50,7 +57,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
         };
     });
 
-    state.allTracks.forEach((track) => {
+    children.props.data.allTracks.forEach((track) => {
         optionsElements.push({
             id: track.id,
             value: track.id,
@@ -69,9 +76,12 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
     );
 
     useEffect(() => {
-        if (flash.message?.includes("successfully")) {
+        if (flash.message?.includes("Playlist created")) {
+            setState({
+                ...state,
+                allPlaylist: children.props.allPlaylist,
+            });
             setPlaylistModal(false);
-            console.log("desactivo el modal");
         }
     }, [flash.message]);
 
@@ -92,7 +102,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                 setPlaylistModal={setPlaylistModal}
             />
 
-            <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full bg-blackPrimary ">
                 <Header
                     trigger={trigger}
                     sidebarCollapsed={sidebarCollapsed}
@@ -104,7 +114,7 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
                     setState={setState}
                 />
 
-                <main className="bg-blackPrimary">
+                <main className="">
                     <div className="px-16 sm:px-6 lg:px-16 lg:pb-28 lg:pt-8 w-full max-w-9xl mx-auto ">
                         {/* {children} */}
                         {playlistModal && renderModal()}
@@ -119,10 +129,14 @@ export default function AuthenticatedLayout({ appName, auth, children }) {
             </div>
 
             {state.firstTimePlaying && (
-                <Player state={state} setState={setState} />
+                <Player
+                    allPlaylist={children.props.data.allPlaylist}
+                    state={state}
+                    setState={setState}
+                />
             )}
 
-            <RightMenu allPlaylist={state.allPlaylist} />
+            <RightMenu allPlaylist={children.props.data.allPlaylist} />
 
             {children.props.flash?.message && (
                 <ToastMessages

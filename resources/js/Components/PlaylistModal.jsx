@@ -4,6 +4,7 @@ import { BoxImgUpload } from "./BoxImgUpload";
 import { CloseIcon } from "./CloseIcon";
 import { InputText } from "./InputText";
 import { TextArea } from "./TextArea";
+import { BackDropModal } from "./BackDropModal";
 
 const PlaylistModal = ({ playlist, playlistModal, setPlaylistModal }) => {
     const { data, setData, post, processing, errors } = useForm({
@@ -25,7 +26,7 @@ const PlaylistModal = ({ playlist, playlistModal, setPlaylistModal }) => {
     };
 
     return (
-        <div className="playlistModalBackdrop">
+        <BackDropModal>
             <div className="playlistModal">
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="flex justify-between items-center">
@@ -73,7 +74,7 @@ const PlaylistModal = ({ playlist, playlistModal, setPlaylistModal }) => {
                     </div>
                 </form>
             </div>
-        </div>
+        </BackDropModal>
     );
 };
 
