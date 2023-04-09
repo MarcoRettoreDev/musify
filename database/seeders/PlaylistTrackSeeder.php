@@ -17,6 +17,6 @@ class PlaylistTrackSeeder extends Seeder
      */
     public function run()
     {
-        Playlist::find(1)->tracks()->attach([1, 2, 3, 4, 5]);
+        Playlist::find(1)->tracks()->sync([1 => ['order' => 1], 2 => ['order' => 2], 3 => ['order' => 3], 4 => ['order' => 4], 5 => ['order' => 5]]);
     }
 }

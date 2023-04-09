@@ -26,6 +26,8 @@ return new class extends Migration
                 ->constrained('tracks')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->integer('order')->default(0);
         });
     }
 
