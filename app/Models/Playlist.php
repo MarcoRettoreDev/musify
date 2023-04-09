@@ -29,6 +29,11 @@ class Playlist extends BaseModel implements HasMedia
         'user_id' => 'integer'
     ];
 
+    protected $appends = [
+        'image',
+        'tracks'
+    ];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE)
@@ -49,15 +54,40 @@ class Playlist extends BaseModel implements HasMedia
             ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 
+    public function getTracksAttribute()
+    {
+        return $this->tracks()->get();
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getImages();
+    }
+
     public function getImages()
     {
         return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 
+    public function syncPlaylistTrack($data)
+    {
+        // Remove old relations
+        $this->tracks()->sync([]);
+
+        // Establish new relations
+        if (isset($data)) {
+            foreach ($data as $index => $track) {
+                $this->tracks()->attach($track['id'], ['order' => $index + 1]);
+            }
+        }
+    }
+
     // Relations
     public function tracks()
     {
-        return $this->belongsToMany(Track::class);
+        return $this->belongsToMany(Track::class)
+            ->withPivot('order')
+            ->orderByPivot('order', 'asc');;
     }
 
     public function user()

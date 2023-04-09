@@ -40,6 +40,8 @@ class Track extends BaseModel implements HasMedia
     protected $appends = [
         'avatar',
         'image',
+        'artist',
+        'audio'
     ];
 
     public function registerMediaCollections(): void
@@ -101,6 +103,16 @@ class Track extends BaseModel implements HasMedia
     public function getImageAttribute()
     {
         return $this->getImages();
+    }
+
+    public function getArtistAttribute()
+    {
+        return $this->artist()->first()->name;
+    }
+
+    public function getAudioAttribute()
+    {
+        return $this->getAudio();
     }
 
     public function getDurationTime()
