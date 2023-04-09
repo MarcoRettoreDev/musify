@@ -24,7 +24,9 @@
         "@emotion/react": "^11.10.5",
         "@emotion/styled": "^11.10.5",
         "@mui/material": "^5.11.7",
+        "array-move": "^4.0.0",
         "daisyui": "^2.51.3",
-        "framer-motion": "^10.11.2"
+        "framer-motion": "^10.11.2",
+        "react-sortable-hoc": "^2.0.0"
     }
 }
