@@ -12,12 +12,6 @@ export const sideBarLinks = [
         routeLink: "mycontent.create",
     },
     {
-        label: "Notifications",
-        icon: "ic:baseline-notifications",
-        pathName: null,
-        routeLink: "",
-    },
-    {
         label: "Create playlist",
         icon: "mdi:cards-heart",
         pathName: null,
@@ -39,6 +33,12 @@ export const sideBarLinks = [
     {
         label: "Profile",
         icon: "ph:user-fill",
+        pathName: null,
+        routeLink: "",
+    },
+    {
+        label: "About me",
+        icon: "solar:info-square-bold",
         pathName: null,
         routeLink: "",
     },

@@ -17,7 +17,7 @@ export const ToastMessages = ({ icon, message }) => {
     }, [message]);
 
     return (
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={true} mode="popLayout">
             {present && (
                 <motion.div
                     initial={{

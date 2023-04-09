@@ -40,6 +40,7 @@ class Track extends BaseModel implements HasMedia
     protected $appends = [
         'avatar',
         'image',
+        'thumb',
         'artist',
         'audio'
     ];
@@ -56,6 +57,10 @@ class Track extends BaseModel implements HasMedia
             ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE)
             ->fit(Manipulations::FIT_FILL, 500, 500)
             ->background('151513');
+
+        $this->addMediaConversion(BaseModel::MEDIA_CONVERSION_THUMBNAIL)
+            ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE)
+            ->fit(Manipulations::FIT_CROP, 100, 100);
     }
 
 
@@ -85,6 +90,11 @@ class Track extends BaseModel implements HasMedia
         return $this->getMedia(BaseModel::MEDIA_COLLECTION_IMAGE)->first()->getUrl(BaseModel::MEDIA_CONVERSION_AVATAR);
     }
 
+    public function getThumb()
+    {
+        return $this->getMedia(BaseModel::MEDIA_COLLECTION_IMAGE)->first()->getUrl(BaseModel::MEDIA_CONVERSION_THUMBNAIL);
+    }
+
     public function getImages()
     {
         return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
@@ -103,6 +113,11 @@ class Track extends BaseModel implements HasMedia
     public function getImageAttribute()
     {
         return $this->getImages();
+    }
+
+    public function getThumbAttribute()
+    {
+        return $this->getThumb();
     }
 
     public function getArtistAttribute()
