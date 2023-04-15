@@ -47,6 +47,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     ...state,
                     ended: true,
                     history: [...state.history, state.currentTrack],
+                    currentPlaylist: state.queued.length === 0 && null,
                 });
             });
         }
@@ -198,6 +199,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                         : state.currentTrack + 1,
                     playing: true,
                     history: [...state.history, state.currentTrack],
+                    currentPlaylist: state.queued.length === 0 && null,
                 });
             } else {
                 setState({
@@ -333,6 +335,18 @@ export const Player = ({ allPlaylist, state, setState }) => {
         );
     };
 
+    // const addTrackToQueue = (trackId) => {
+    //     const track = state.allTracks.find((track) => track.id === trackId);
+    //     setState({
+    //         ...state,
+    //         queued: [...state.queued, track],
+    //     });
+    // };
+
+    //  const verifyIfTrackIsInQueue = (trackId) => {
+    //     return state.queued.some((track) => track.id === trackId);
+    // };
+
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -422,6 +436,12 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 <div className="flex flex-col justify-center ml-4">
                     <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
                     <Link
+                        onClick={() =>
+                            setState((state) => ({
+                                ...state,
+                                queueOpen: false,
+                            }))
+                        }
                         className="hover:underline"
                         href={route(
                             "artist.show",
@@ -577,17 +597,6 @@ export const Player = ({ allPlaylist, state, setState }) => {
                         max="100"
                     />
                 </div>
-                {/* <button
-                    onClick={() =>
-                        setState({
-                            ...state,
-                            playing: !state.playing,
-                            firstTimePlaying: false,
-                        })
-                    }
-                >
-                    Reset playing
-                </button> */}
             </div>
         </div>
     );
