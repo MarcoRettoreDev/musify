@@ -74,6 +74,7 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
                                 (track) => track.id !== data.tracks[0].id
                             ),
                             currentTrack: data.tracks[0].id,
+                            currentPlaylist: playlist.id,
                             firstTimePlaying: true,
                             playing: true,
                         });
@@ -100,6 +101,7 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
             </div>
 
             <PlaylistTable
+                playlistID={playlist.id}
                 tracks={playlist.tracks}
                 handleChange={handleSortChange}
                 setState={setState}

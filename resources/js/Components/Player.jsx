@@ -24,6 +24,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
     var seeking = false;
 
     let bigIconStyle = "3rem";
+    let mediumIconStyle = "2.2rem";
     let smallIconStyle = "1.5rem";
 
     let currentTrackPlaying = state.allTracks.find(
@@ -67,6 +68,13 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     ended: false,
                 });
             }
+        }
+        if (state.playing === false) {
+            playerRef.current.pause();
+            cancelAnimationFrame(raf);
+        } else {
+            playerRef.current.play();
+            requestAnimationFrame(whilePlaying);
         }
     }, [state.ended, state.playing]);
 
@@ -240,8 +248,8 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 return (
                     <Icon
                         onClick={() => mutePlayer()}
-                        width={smallIconStyle}
-                        height={smallIconStyle}
+                        width={mediumIconStyle}
+                        height={mediumIconStyle}
                         icon="bi:volume-mute-fill"
                         className="cursor-pointer  hover:text-greySecondary"
                     />
@@ -254,8 +262,8 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 return (
                     <Icon
                         onClick={() => mutePlayer()}
-                        width={smallIconStyle}
-                        height={smallIconStyle}
+                        width={mediumIconStyle}
+                        height={mediumIconStyle}
                         icon="bi:volume-down-fill"
                         className="cursor-pointer hover:text-greySecondary"
                     />
@@ -264,8 +272,8 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 return (
                     <Icon
                         onClick={() => mutePlayer()}
-                        width={smallIconStyle}
-                        height={smallIconStyle}
+                        width={mediumIconStyle}
+                        height={mediumIconStyle}
                         icon="bi:volume-up-fill"
                         className="cursor-pointer hover:text-greySecondary"
                     />
@@ -391,7 +399,6 @@ export const Player = ({ allPlaylist, state, setState }) => {
                                 playlist.id,
                                 state.currentTrack
                             )}
-                            // disabled={true}
                         >
                             {playlist.name}
                         </MenuItem>
@@ -406,13 +413,13 @@ export const Player = ({ allPlaylist, state, setState }) => {
             id="playerContainer"
             className="bg-blackSecondary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
         >
-            <div className="flex cursor-default items-center space-x-4">
+            <div className="flex cursor-default items-center ">
                 <img
                     src={currentTrackPlaying?.avatar}
                     alt=""
                     className="h-20"
                 />
-                <div className="flex flex-col justify-center">
+                <div className="flex flex-col justify-center ml-4">
                     <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
                     <Link
                         className="hover:underline"
@@ -540,7 +547,21 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     </div>
                 </div>
 
-                <div className="flex items-center">
+                <div className="flex items-center space-x-4">
+                    <Icon
+                        width={mediumIconStyle}
+                        height={mediumIconStyle}
+                        icon="ph:queue-fill"
+                        className={`cursor-pointer hover:text-greySecondary ${
+                            state.queueOpen && "!text-greenPrimary"
+                        }`}
+                        onClick={() =>
+                            setState({
+                                ...state,
+                                queueOpen: !state.queueOpen,
+                            })
+                        }
+                    />
                     {renderVolumeIcon()}
 
                     <input
