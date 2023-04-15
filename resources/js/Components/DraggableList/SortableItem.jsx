@@ -1,6 +1,7 @@
 import { sortableElement } from "react-sortable-hoc";
 import { Checkbox, ListItem, ListItemIcon, ListItemText } from "@mui/material";
 import { Icon } from "@iconify/react";
+import { TrackItem } from "../TrackItem";
 
 const formatDuration = (duration) => {
     const temp = duration.split("T")[1].split(".")[0];
@@ -79,28 +80,13 @@ export const SortableItem = sortableElement(
                             }
                         />
                     </ListItemIcon>
-                    <div className="w-full">
-                        <div className="w-full flex justify-between items-center">
-                            <div
-                                style={{
-                                    backgroundImage: `url(${value.thumb})`,
-                                }}
-                                className="h-12 w-14 bg-contain bg-center bg-no-repeat rounded"
-                            />
-                            <p className="w-[40%] ">{value.title}</p>
-                            <div className="flex w-[50%] justify-between">
-                                <p className="w-[33%] text-center">
-                                    {value.artist}
-                                </p>
-                                <p className="w-[33%] text-center">
-                                    {formatDuration(value.duration)}
-                                </p>
-                                <p className="w-[33%] text-center">
-                                    {value.release.split("T")[0]}
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    <TrackItem
+                        title={value.title}
+                        artist={value.artist}
+                        duration={value.duration}
+                        release={value.release}
+                        img={value.thumb}
+                    />
                 </ListItem>
             </div>
         );

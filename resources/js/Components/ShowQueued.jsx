@@ -69,8 +69,6 @@ export const ShowQueued = ({ state, setState }) => {
                         <TrackItem
                             i={1}
                             id={currentTrackPlaying.id}
-                            setState={setState}
-                            state={state}
                             title={currentTrackPlaying.title}
                             artist={currentTrackPlaying.artist}
                             duration={currentTrackPlaying.duration}
@@ -79,15 +77,22 @@ export const ShowQueued = ({ state, setState }) => {
                         />
                     </ul>
 
-                    <h3 className="text-lg font-semibold">
-                        Next from:&nbsp;
-                        <Link
-                            className="text-whitePrimary hover:!underline"
-                            href={route("playlist.show", state.currentPlaylist)}
-                        >
-                            {playlistName}
-                        </Link>
-                    </h3>
+                    {state.currentPlaylist && state.queued.length > 0 ? (
+                        <h3 className="text-lg font-semibold">
+                            Next from:&nbsp;
+                            <Link
+                                className="text-whitePrimary hover:!underline"
+                                href={route(
+                                    "playlist.show",
+                                    state.currentPlaylist
+                                )}
+                            >
+                                {playlistName}
+                            </Link>
+                        </h3>
+                    ) : (
+                        <h3 className="text-lg font-semibold">Queued</h3>
+                    )}
 
                     <div>{customList(state.queued)}</div>
                 </motion.div>
@@ -95,24 +100,3 @@ export const ShowQueued = ({ state, setState }) => {
         </AnimatePresence>
     );
 };
-
-{
-    /* <div className="!flex items-center space-x-4 cursor-pointer hover:bg-greyPrimary rounded">
-                        {state.queued.map((track, i) => (
-                            <div
-                                key={track.id}
-                                className="MuiListItem-root MuiListItem-gutters MuiListItem-padding"
-                            >
-                                <TrackItem
-                                    i={i + 1}
-                                    id={track.id}
-                                    title={track.title}
-                                    artist={track.artist}
-                                    duration={track.duration}
-                                    release={track.release.split("T")[0]}
-                                    img={track.thumb}
-                                />
-                            </div>
-                        ))}
-                    </div> */
-}

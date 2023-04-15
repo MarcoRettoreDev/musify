@@ -2,13 +2,14 @@ import { PlaylistItem } from "@/Components/PlaylistItem";
 import React from "react";
 import { useEffect } from "react";
 
-export const RightMenu = ({ allPlaylist }) => {
+export const RightMenu = ({ allPlaylist, setState }) => {
     const renderItems = () => {
         if (allPlaylist?.length > 0) {
             return (
                 <div className="flex flex-col h-[85vh] space-y-3 overflow-scroll">
                     {allPlaylist.map((playlist) => (
                         <PlaylistItem
+                            setState={setState}
                             key={playlist.id}
                             id={playlist.id}
                             imgURL={playlist?.image}

@@ -5,6 +5,7 @@ function SidebarLinkGroup({
     activecondition,
     sidebarCollapsed,
     setsidebarCollapsed,
+    setState,
     playlistModal,
     setPlaylistModal,
 }) {
@@ -14,6 +15,11 @@ function SidebarLinkGroup({
         if (event === "openModalPlaylist") {
             setPlaylistModal(!playlistModal);
         }
+
+        setState((state) => ({
+            ...state,
+            queueOpen: false,
+        }));
         // setsidebarCollapsed(!sidebarCollapsed);
     };
 

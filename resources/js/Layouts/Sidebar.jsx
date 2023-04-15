@@ -10,6 +10,7 @@ function Sidebar({
     setPlaylistModal,
     appName,
     trigger,
+    setState,
 }) {
     const sidebar = useRef(null);
 
@@ -112,6 +113,7 @@ function Sidebar({
                     className="flex flex-col align-center justify-between h-full mt-8"
                 >
                     <Menu
+                        setState={setState}
                         playlistModal={playlistModal}
                         setPlaylistModal={setPlaylistModal}
                         sidebarCollapsed={sidebarCollapsed}

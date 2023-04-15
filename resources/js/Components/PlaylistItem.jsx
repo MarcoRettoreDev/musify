@@ -1,9 +1,17 @@
 import { Link } from "@inertiajs/react";
 import defaultPlaylistImage from "../../css/icons/defaultPlaylist.svg";
 
-export const PlaylistItem = ({ imgURL, name, id }) => {
+export const PlaylistItem = ({ imgURL, name, id, setState }) => {
     return (
-        <Link href={route("playlist.show", id)}>
+        <Link
+            href={route("playlist.show", id)}
+            onClick={() =>
+                setState((state) => ({
+                    ...state,
+                    queueOpen: false,
+                }))
+            }
+        >
             <div className="flex items-center space-x-2 ">
                 <div
                     style={{

@@ -10,6 +10,7 @@ export default function Menu({
     setsidebarCollapsed,
     playlistModal,
     setPlaylistModal,
+    setState,
 }) {
     const { auth } = usePage().props;
     const { ziggy } = usePage().props;
@@ -19,6 +20,7 @@ export default function Menu({
 
     const renderLinks = () => (
         <SidebarLinkGroup
+            setState={setState}
             activecondition={false}
             sidebarCollapsed={sidebarCollapsed}
             setsidebarCollapsed={setsidebarCollapsed}

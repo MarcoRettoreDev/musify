@@ -42,6 +42,21 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
         });
     };
 
+    const playPlaylist = () => {
+        if (state.currentPlaylist !== playlist.id) {
+            setState((state) => ({
+                ...state,
+                queued: data.tracks.filter(
+                    (track) => track.id !== data.tracks[0].id
+                ),
+                currentTrack: data.tracks[0].id,
+                currentPlaylist: playlist.id,
+                firstTimePlaying: true,
+                playing: true,
+            }));
+        }
+    };
+
     useEffect(() => {
         if (confirmDelete.confirmation) {
             router.delete(route("playlist.delete", playlist.id));
@@ -67,18 +82,7 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
 
             <div className="flex items-center justify-between space-x-6 my-5">
                 <Icon
-                    onClick={() => {
-                        setState({
-                            ...state,
-                            queued: data.tracks.filter(
-                                (track) => track.id !== data.tracks[0].id
-                            ),
-                            currentTrack: data.tracks[0].id,
-                            currentPlaylist: playlist.id,
-                            firstTimePlaying: true,
-                            playing: true,
-                        });
-                    }}
+                    onClick={playPlaylist}
                     className="text-greenPrimary hover:text-greenSecondary cursor-pointer"
                     width="4rem"
                     icon="material-symbols:play-circle-rounded"

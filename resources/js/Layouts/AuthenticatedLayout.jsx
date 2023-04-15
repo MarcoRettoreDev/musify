@@ -95,6 +95,7 @@ export default function AuthenticatedLayout(props) {
                 trigger={trigger}
                 playlistModal={playlistModal}
                 setPlaylistModal={setPlaylistModal}
+                setState={setState}
             />
 
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full bg-blackPrimary ">
@@ -135,7 +136,10 @@ export default function AuthenticatedLayout(props) {
                 />
             )}
 
-            <RightMenu allPlaylist={children.props.data.allPlaylist} />
+            <RightMenu
+                allPlaylist={children.props.data.allPlaylist}
+                setState={setState}
+            />
 
             {children.props.flash?.message && (
                 <ToastMessages
