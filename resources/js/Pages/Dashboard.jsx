@@ -7,10 +7,6 @@ import { MyContentCreate } from "./MyContent/MyContentCreate";
 import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 
 function Dashboard(propsFromLayout) {
-    console.log(
-        "🚀 ~ file: Dashboard.jsx:10 ~ Dashboard ~ propsFromLayout:",
-        propsFromLayout
-    );
     const { props, state, setState } = propsFromLayout;
     const { ziggy } = usePage().props;
 

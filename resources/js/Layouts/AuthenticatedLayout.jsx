@@ -9,6 +9,7 @@ import PlaylistModal from "@/Components/PlaylistModal";
 import { ToastMessages } from "@/Components/ToastMessages";
 import { useEffect } from "react";
 import { usePage } from "@inertiajs/react";
+import { ShowQueued } from "@/Components/ShowQueued";
 
 export default function AuthenticatedLayout(props) {
     const { appName, auth, children } = props;
@@ -19,19 +20,16 @@ export default function AuthenticatedLayout(props) {
             allArtist: children.props.data.allArtist,
             allPlaylist: children.props.data.allPlaylist,
             currentTrack: null,
+            currentPlaylist: null,
             queued: [],
             history: [],
             playing: false,
             ended: false,
             firstTimePlaying: false,
             repeat: false,
+            queueOpen: false,
         },
         "userState"
-    );
-
-    console.log(
-        "🚀 ~ file: AuthenticatedLayout.jsx:28 ~ AuthenticatedLayout ~ state:",
-        state
     );
 
     const { flash } = usePage().props; // Flash messages from controler using handleInertiaResquest
@@ -116,11 +114,15 @@ export default function AuthenticatedLayout(props) {
                         {/* {children} */}
                         {playlistModal && renderModal()}
 
-                        <Dashboard
-                            props={children.props}
-                            state={state}
-                            setState={setState}
-                        />
+                        {state.queueOpen ? (
+                            <ShowQueued state={state} setState={setState} />
+                        ) : (
+                            <Dashboard
+                                props={children.props}
+                                state={state}
+                                setState={setState}
+                            />
+                        )}
                     </div>
                 </main>
             </div>
