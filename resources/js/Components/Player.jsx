@@ -128,6 +128,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
         renderVolumeIcon();
         if (volumeIconControl === null) {
             setVolumeIconControl(50);
+            volumeSliderRef.current.value = 50;
         }
     }, [volumeIconControl]);
 
@@ -334,18 +335,6 @@ export const Player = ({ allPlaylist, state, setState }) => {
             route("playlist.addTrack", { playlist: playlistId, track: trackId })
         );
     };
-
-    // const addTrackToQueue = (trackId) => {
-    //     const track = state.allTracks.find((track) => track.id === trackId);
-    //     setState({
-    //         ...state,
-    //         queued: [...state.queued, track],
-    //     });
-    // };
-
-    //  const verifyIfTrackIsInQueue = (trackId) => {
-    //     return state.queued.some((track) => track.id === trackId);
-    // };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
