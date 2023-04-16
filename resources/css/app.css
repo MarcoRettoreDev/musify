@@ -43,6 +43,8 @@
     }
 }
 
+/* Basic config */
+
 input {
     --tw-ring-shadow: 0 0 #000 !important;
     --tw-ring-color: #000 !important;
@@ -61,6 +63,21 @@ fieldset {
     --tw-ring-shadow: 0 0 #000 !important;
     --tw-ring-color: #000 !important;
     border-color: #15803d !important;
+}
+
+/* Scroll bar config */
+
+*::-webkit-scrollbar {
+    width: 3px;
+}
+
+*::-webkit-scrollbar-track {
+    background: var(--blackPrimary);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: #3d3b3c;
+    border-radius: 20px;
 }
 
 /* PLAYER STYLES */
