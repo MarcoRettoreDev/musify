@@ -143,7 +143,16 @@ export default function AuthenticatedLayout(props) {
 
             {children.props.flash?.message && (
                 <ToastMessages
-                    icon="material-symbols:check-circle-outline"
+                    iconColor={`${
+                        flash?.message.includes("successfully")
+                            ? "text-greenPrimary"
+                            : "text-red-700"
+                    }`}
+                    icon={`${
+                        flash?.message.includes("successfully")
+                            ? "material-symbols:check-circle-outline"
+                            : "material-symbols:error"
+                    }`}
                     message={flash?.message}
                 />
             )}

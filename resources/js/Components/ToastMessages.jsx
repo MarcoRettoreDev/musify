@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export const ToastMessages = ({ icon, message }) => {
+export const ToastMessages = ({ icon, message, iconColor }) => {
     const [present, setPresent] = useState(true);
 
     useEffect(() => {
@@ -21,9 +21,9 @@ export const ToastMessages = ({ icon, message }) => {
             {present && (
                 <motion.div
                     initial={{
-                        x: -300,
+                        x: -2000,
                         opacity: 0,
-                        transition: { duration: 0.5 },
+                        transition: { duration: 0.8 },
                     }}
                     animate={{
                         x: 0,
@@ -33,11 +33,7 @@ export const ToastMessages = ({ icon, message }) => {
                     exit={{ x: 300, opacity: 0, transition: { duration: 0.5 } }}
                     className="absolute bottom-[10%] right-[1%] px-4 py-4 bg-whitePrimary rounded-md flex space-x-2 items-center"
                 >
-                    <Icon
-                        className="text-greenPrimary"
-                        icon={icon}
-                        width="1.5rem"
-                    />
+                    <Icon className={iconColor} icon={icon} width="1.5rem" />
                     <div className="text-blackSecondary font-bold">
                         {message}
                     </div>
