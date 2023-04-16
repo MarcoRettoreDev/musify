@@ -1,16 +1,30 @@
 import { sortableElement } from "react-sortable-hoc";
-import { Checkbox, ListItem, ListItemIcon, ListItemText } from "@mui/material";
+import {
+    Checkbox,
+    IconButton,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Menu,
+    MenuItem,
+} from "@mui/material";
 import { Icon } from "@iconify/react";
 import { TrackItem } from "../TrackItem";
-
-const formatDuration = (duration) => {
-    const temp = duration.split("T")[1].split(".")[0];
-    if (temp[0] === "0") return temp.slice(1, 5);
-    return temp.slice(0, 5);
-};
+import { useState } from "react";
+import addHeartIcon from "../../../css/icons/heart-add-line.svg";
+import { router } from "@inertiajs/react";
 
 export const SortableItem = sortableElement(
-    ({ value, i, state, setState, playlistID }) => {
+    ({ value, i, state, setState, playlistID, allPlaylist }) => {
+        const [anchorEl, setAnchorEl] = useState(null);
+
+        const handleClose = () => {
+            setAnchorEl(null);
+        };
+        const handleProfileMenuOpen = (event) => {
+            setAnchorEl(event.currentTarget);
+        };
+
         const handleCLickTest = (value) => () => {
             if (state.currentTrack === value.id && state.playing) {
                 setState((state) => ({
@@ -27,13 +41,83 @@ export const SortableItem = sortableElement(
                 }));
             }
         };
+
+        const verifyIfTrackIsInPlaylist = (playlistId, trackId) => {
+            const playlist = allPlaylist.find(
+                (playlist) => playlist.id === playlistId
+            );
+            const track = playlist.tracks.find((track) => track.id === trackId);
+            if (track) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+
+        const addTrackToPlaylist = (playlistId, trackId) => {
+            const track = state.allTracks.find((track) => track.id === trackId);
+            const playlist = allPlaylist.find(
+                (playlist) => playlist.id === playlistId
+            );
+            const newPlaylist = {
+                ...playlist,
+                tracks: !playlist.tracks.includes(track) && [
+                    ...playlist.tracks,
+                    track,
+                ],
+            };
+
+            const newPlaylists = allPlaylist.map((playlist) =>
+                playlist.id === playlistId ? newPlaylist : playlist
+            );
+
+            setState({
+                ...state,
+                allPlaylist: newPlaylists,
+            });
+
+            router.post(
+                route("playlist.addTrack", {
+                    playlist: playlistId,
+                    track: trackId,
+                })
+            );
+        };
+
+        const removeTrackFormPlaylist = (trackId) => {
+            const playlist = allPlaylist.find(
+                (playlist) => playlist.id === playlistID
+            );
+
+            const newPlaylist = {
+                ...playlist,
+                tracks: playlist.tracks.filter((track) => track.id !== trackId),
+            };
+
+            const newPlaylists = allPlaylist.map((playlist) =>
+                playlist.id === playlistID ? newPlaylist : playlist
+            );
+
+            setState({
+                ...state,
+                allPlaylist: newPlaylists,
+            });
+
+            router.delete(
+                route("playlist.removeTrack", {
+                    playlist: playlistID,
+                    track: trackId,
+                })
+            );
+        };
+
         return (
-            <div className="flex flex-row align-center">
+            <div className="flex flex-row align-center hover:bg-greyPrimary rounded">
                 <ListItem
                     key={value.id}
                     role="listitem"
                     onClick={handleCLickTest(value)}
-                    className="!flex space-x-4 cursor-pointer hover:bg-greyPrimary rounded "
+                    className="!flex cursor-pointer hover:bg-greyPrimary rounded "
                 >
                     <ListItemIcon>
                         <ListItemText
@@ -87,6 +171,67 @@ export const SortableItem = sortableElement(
                         release={value.release}
                         img={value.thumb}
                     />
+                </ListItem>
+                <ListItem className="!w-[5%] !p-0 !m-0">
+                    <IconButton
+                        size="large"
+                        edge="end"
+                        aria-label="mi cuenta"
+                        aria-haspopup="true"
+                        onClick={handleProfileMenuOpen}
+                        className="!w-[100%] !h-[100%] !p-0 !m-0 text bg-no-repeat bg-center bg-fill"
+                        style={{
+                            backgroundImage: `url(${addHeartIcon})`,
+                        }}
+                    />
+                    <Menu
+                        id="menu-appbar"
+                        anchorEl={anchorEl}
+                        anchorOrigin={{
+                            vertical: "bottom",
+                            horizontal: "left",
+                        }}
+                        keepMounted
+                        transformOrigin={{
+                            vertical: "top",
+                            horizontal: "left",
+                        }}
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        {allPlaylist.length > 0 &&
+                            allPlaylist.map((playlist) => {
+                                if (playlist.id !== playlistID)
+                                    return (
+                                        <MenuItem
+                                            onClick={() => {
+                                                handleClose();
+                                                addTrackToPlaylist(
+                                                    playlist.id,
+                                                    value.id
+                                                );
+                                            }}
+                                            key={playlist.id}
+                                            disabled={verifyIfTrackIsInPlaylist(
+                                                playlist.id,
+                                                state.currentTrack
+                                            )}
+                                        >
+                                            {playlist.name}
+                                        </MenuItem>
+                                    );
+                            })}
+                        <MenuItem
+                            onClick={() => {
+                                handleClose();
+                                removeTrackFormPlaylist(value.id);
+                            }}
+                        >
+                            <span className="text-red-600 font-bold">
+                                Remove from playlist
+                            </span>
+                        </MenuItem>
+                    </Menu>
                 </ListItem>
             </div>
         );

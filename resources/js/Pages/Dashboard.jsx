@@ -5,14 +5,29 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { ShowArtist } from "./Artist/ShowArtist";
 import { MyContentCreate } from "./MyContent/MyContentCreate";
 import { ShowPlaylist } from "./Playlist/ShowPlaylist";
+import { useEffect } from "react";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
+
     const { ziggy } = usePage().props;
 
     const location = window.location.href;
 
     const pathname = route().current();
+
+    const renderShowPlaylist = () => (
+        <ShowPlaylist
+            playlist={props.playlist}
+            setState={setState}
+            state={state}
+            allPlaylist={props.data.allPlaylist}
+        />
+    );
+
+    useEffect(() => {
+        renderShowPlaylist();
+    }, [props.playlist]);
 
     return (
         <>
@@ -42,13 +57,7 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {pathname.includes("playlist.show") && (
-                <ShowPlaylist
-                    playlist={props.playlist}
-                    setState={setState}
-                    state={state}
-                />
-            )}
+            {pathname.includes("playlist.show") && renderShowPlaylist()}
         </>
     );
 }

@@ -56,12 +56,15 @@ class PlaylistController extends Controller
             $playlist->addImage($playlist, $data['image']);
         }
 
-        return Redirect::route(
-            'dashboard',
-            [
-                'playlist' => $playlist->id,
-            ]
-        )->with('message', 'Playlist created successfully');
+
+        return back()->with('message', 'Playlist created successfully');
+
+        // return Redirect::route(
+        //     'dashboard',
+        //     [
+        //         'playlist' => $playlist->id,
+        //     ]
+        // )->with('message', 'Playlist created successfully');
     }
 
     /**
@@ -101,11 +104,28 @@ class PlaylistController extends Controller
      */
     public function addTrack(Playlist $playlist, Track $track)
     {
-
-        $playlist->tracks()->attach($track->id);
+        if ($playlist->tracks()->where('track_id', $track->id)->exists()) {
+            return back()->with('message', 'Track already exists in playlist');
+        } else {
+            $playlist->tracks()->attach($track->id);
+        }
 
         // return a message without view
         return back()->with('message', 'Track added successfully');
+    }
+
+    /**
+     * Remove a track to a playlist
+     *
+     * @param  \App\Models\Playlist  $playlist
+     * @return \Illuminate\Http\Response
+     */
+    public function removeTrack(Playlist $playlist, Track $track)
+    {
+        $playlist->tracks()->detach($track->id);
+
+        // return a message without view
+        return back()->with('message', 'Track removed successfully');
     }
 
     /**

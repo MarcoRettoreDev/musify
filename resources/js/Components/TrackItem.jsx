@@ -7,7 +7,7 @@ export const TrackItem = ({ i, title, artist, duration, img, release }) => {
         return temp.slice(0, 5);
     };
     return (
-        <ListItem className="!flex space-x-4 cursor-pointer hover:bg-greyPrimary rounded">
+        <ListItem className="!flex space-x-4 cursor-pointer">
             {i && <p>{i}</p>}
             <div
                 style={{ backgroundImage: `url(${img})` }}
@@ -15,7 +15,7 @@ export const TrackItem = ({ i, title, artist, duration, img, release }) => {
             />
             <div className="w-full flex justify-between items-center">
                 <p className="w-[40%] ">{title}</p>
-                <div className="flex w-[50%] justify-between">
+                <div className="flex w-[50%] justify-between items-center">
                     <p className="w-[33%] text-center">{artist}</p>
                     <p className="w-[33%] text-center">
                         {formatDuration(duration)}

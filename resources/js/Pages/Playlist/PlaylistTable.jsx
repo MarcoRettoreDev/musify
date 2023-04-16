@@ -11,6 +11,7 @@ export const PlaylistTable = ({
     handleChange,
     setState,
     state,
+    allPlaylist,
 }) => {
     const [trackItems, setTrackItems] = useState(tracks);
 
@@ -23,6 +24,7 @@ export const PlaylistTable = ({
             {items.map((value, index) => {
                 return (
                     <SortableItem
+                        allPlaylist={allPlaylist}
                         state={state}
                         setState={setState}
                         key={value.id}
@@ -41,19 +43,23 @@ export const PlaylistTable = ({
         handleChange(trackItems);
     }, [trackItems]);
 
+    useEffect(() => {
+        setTrackItems(tracks);
+    }, [tracks]);
+
     return (
         <div className="mt-6">
             <div className="px-4 py-2 mb-2 flex w-full border-b border-b-slate-100 border-opacity-10 cursor-default">
                 <p className="w-[5%] text-left">#</p>
                 <p className="w-[25%] text-center">Title</p>
-                <p className="w-[40%] text-right pr-12 2xl:pr-28">Artist</p>
-                <div className="w-[15%] text-center flex">
+                <p className="w-[39%] text-right pr-12 2xl:pr-28">Artist</p>
+                <div className="w-[9%] text-center flex">
                     <Icon
                         icon="ic:sharp-access-time"
                         className="mx-auto my-auto"
                     />
                 </div>
-                <p className="w-[15%] text-center">Release</p>
+                <p className="w-[19%] text-center">Release</p>
             </div>
             {customList(trackItems)}
         </div>

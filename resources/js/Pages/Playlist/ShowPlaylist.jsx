@@ -7,7 +7,9 @@ import { ModalConfirm } from "@/Components/ModalConfirm";
 import { useState } from "react";
 import { useEffect } from "react";
 
-export const ShowPlaylist = ({ playlist, setState, state }) => {
+export const ShowPlaylist = (props) => {
+    const { playlist, setState, state, allPlaylist } = props;
+
     const { data, setData, post, processing, errors } = useForm({
         name: playlist.name ?? "",
         image: playlist.image ?? "",
@@ -63,6 +65,15 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
         }
     }, [confirmDelete]);
 
+    useEffect(() => {
+        setData({
+            name: playlist.name ?? "",
+            image: playlist.image ?? "",
+            description: playlist.description ?? "",
+            tracks: playlist.tracks ?? [],
+        });
+    }, [playlist]);
+
     return (
         <div className="h-full">
             <ModalConfirm
@@ -105,8 +116,9 @@ export const ShowPlaylist = ({ playlist, setState, state }) => {
             </div>
 
             <PlaylistTable
+                allPlaylist={allPlaylist}
                 playlistID={playlist.id}
-                tracks={playlist.tracks}
+                tracks={data.tracks}
                 handleChange={handleSortChange}
                 setState={setState}
                 state={state}
