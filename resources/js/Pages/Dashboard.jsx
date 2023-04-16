@@ -45,6 +45,7 @@ function Dashboard(propsFromLayout) {
                     state={state}
                     setState={setState}
                     artist={props.artist}
+                    allplaylist={props.data.allPlaylist}
                 />
             )}
 

@@ -1,7 +1,7 @@
 import { TrackCard } from "@/Components/TrackCard";
 import React from "react";
 
-export const ShowArtist = ({ artist, state, setState }) => {
+export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
     return (
         <>
             <div className="grid grid-cols-2 mb-24">
@@ -37,19 +37,12 @@ export const ShowArtist = ({ artist, state, setState }) => {
             <h2 className="text-3xl text-whitePrimary mb-4">Tracks</h2>
             <div className="grid grid-cols-3 gap-8 mb-4">
                 {artist.tracks.map((track) => (
-                    <div
-                        key={track.id}
-                        onClick={() =>
-                            setState({
-                                ...state,
-                                currentTrack: track.id,
-                                playing: true,
-                                firstTimePlaying: true,
-                            })
-                        }
-                    >
-                        <TrackCard track={track} />
-                    </div>
+                    <TrackCard
+                        track={track}
+                        allPlaylist={allplaylist}
+                        state={state}
+                        setState={setState}
+                    />
                 ))}
             </div>
         </>
