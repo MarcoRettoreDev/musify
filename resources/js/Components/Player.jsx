@@ -387,7 +387,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                    vertical: "bottom",
+                    vertical: "top",
                     horizontal: "left",
                 }}
                 keepMounted
@@ -428,10 +428,11 @@ export const Player = ({ allPlaylist, state, setState }) => {
             className="bg-blackSecondary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
         >
             <div className="flex cursor-default items-center ">
-                <img
-                    src={currentTrackPlaying?.avatar}
-                    alt=""
-                    className="h-20"
+                <div
+                    className="h-20 w-20 bg-no-repeat bg-contain bg-center rounded-md"
+                    style={{
+                        backgroundImage: `url(${currentTrackPlaying?.avatar})`,
+                    }}
                 />
                 <div className="flex flex-col justify-center ml-4">
                     <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
