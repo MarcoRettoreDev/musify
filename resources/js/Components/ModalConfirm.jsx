@@ -28,7 +28,7 @@ export const ModalConfirm = ({ show, callBack, message, title }) => {
                         This action will delete <strong>{title}</strong>
                     </p>
                     <div className="flex space-x-4 ml-auto">
-                        <DangerButton
+                        <PrimaryButton
                             children="Cancel"
                             onClick={() =>
                                 callBack({
@@ -37,7 +37,7 @@ export const ModalConfirm = ({ show, callBack, message, title }) => {
                                 })
                             }
                         />
-                        <PrimaryButton
+                        <DangerButton
                             children="Confirm"
                             onClick={() =>
                                 callBack({
