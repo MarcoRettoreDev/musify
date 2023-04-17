@@ -35,7 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/playlist/{playlist}', [PlaylistController::class, 'update'])->name('playlist.update');
     Route::delete('/playlist/{playlist}', [PlaylistController::class, 'destroy'])->name('playlist.delete');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 

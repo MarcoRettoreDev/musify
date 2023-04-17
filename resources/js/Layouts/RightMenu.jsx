@@ -6,7 +6,7 @@ export const RightMenu = ({ allPlaylist, setState }) => {
     const renderItems = () => {
         if (allPlaylist?.length > 0) {
             return (
-                <div className="flex flex-col h-[85vh] space-y-3 overflow-scroll">
+                <div className="flex flex-col h-[85vh] space-y-3 overflow-auto">
                     {allPlaylist.map((playlist) => (
                         <PlaylistItem
                             setState={setState}

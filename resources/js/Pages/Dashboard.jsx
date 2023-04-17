@@ -6,6 +6,7 @@ import { ShowArtist } from "./Artist/ShowArtist";
 import { MyContentCreate } from "./MyContent/MyContentCreate";
 import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 import { useEffect } from "react";
+import EditProfile from "./Profile/Edit";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
@@ -59,6 +60,13 @@ function Dashboard(propsFromLayout) {
             )}
 
             {pathname.includes("playlist.show") && renderShowPlaylist()}
+
+            {pathname.includes("profile.edit") && (
+                <EditProfile
+                    user={props.user}
+                    // auth={props.auth}
+                />
+            )}
         </>
     );
 }

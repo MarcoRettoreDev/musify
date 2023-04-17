@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Playlist;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use App\Models\BaseModel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, Notifiable, InteractsWithMedia;
+
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +24,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
     ];
 
     /**
@@ -31,6 +35,10 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+    ];
+
+    protected $appends = [
+        'image'
     ];
 
     /**
@@ -45,5 +53,25 @@ class User extends Authenticatable
     public function playlists()
     {
         return $this->hasMany(Playlist::class);
+    }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE)
+            ->singleFile();
+    }
+
+    public function addImage($image)
+    {
+        if ($this->hasMedia(BaseModel::MEDIA_COLLECTION_IMAGE)) {
+            $this->clearMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
+        }
+
+        $this->addMedia($image)->toMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE);
+    }
+
+    public function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 }

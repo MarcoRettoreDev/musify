@@ -51,10 +51,6 @@ class Artist extends BaseModel implements HasMedia
     }
 
     // Relations
-    // public function albums()
-    // {
-    //     return $this->belongsToMany(Album::class);
-    // }
 
     public function getAvatar()
     {

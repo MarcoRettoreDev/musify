@@ -59,10 +59,6 @@ class DashboardController extends Controller
         return Redirect::route('dashboard', [
             'created' => true,
         ]);
-
-        // return Inertia::render('Dashboard', [
-        //     'created' => true,
-        // ]);
     }
 
     /**
