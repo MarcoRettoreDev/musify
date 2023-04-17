@@ -5,13 +5,17 @@ export const ImageUpload = ({
     bgWhite,
     name,
     handleChange,
+    label = "Cover photo",
     imageData,
     errors,
+    imageClass = "h-full max-h-44 w-full object-contain ",
 }) => {
     const handlePreviewUrl = (imageData) => {
         if (imageData?.type == "image/jpeg" || imageData?.type == "image/png") {
             const blob = URL.createObjectURL(imageData);
             return blob;
+        } else {
+            return imageData;
         }
     };
 
@@ -27,7 +31,7 @@ export const ImageUpload = ({
                         bgWhite ? "text-blackPrimary" : "text-whitePrimary"
                     }`}
                 >
-                    Cover photo
+                    {label}
                 </label>
                 <ErrorText text={errors?.[name]} />
                 <div
@@ -89,10 +93,10 @@ export const ImageUpload = ({
             </div>
             <div className="col-6 ">
                 <img
-                    style={{ display: imageData?.type ? "block" : "none" }}
+                    style={{ display: imageData ? "block" : "none" }}
                     src={handlePreviewUrl(imageData)}
                     alt="preview"
-                    className="h-full max-h-44 w-full object-contain"
+                    className={imageClass}
                 />
             </div>
         </div>
