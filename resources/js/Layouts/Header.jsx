@@ -81,7 +81,6 @@ export default function Header({
                     <div className="lg:hidden ">
                         <IconButton
                             ref={trigger}
-                            classes="lg:hidden"
                             size="large"
                             edge="start"
                             color="inherit"

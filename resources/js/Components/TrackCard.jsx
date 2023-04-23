@@ -132,7 +132,7 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
     return (
         <div className="flex bg-blackSecondary rounded-lg" key={track.id}>
             <div
-                className="min-h-full w-1/3 bg-contain bg-no-repeat bg-center rounded-l-md "
+                className="min-h-full w-1/3 bg-cover bg-no-repeat bg-center rounded-l-md "
                 style={{ backgroundImage: `url(${avatar})` }}
             />
             <div

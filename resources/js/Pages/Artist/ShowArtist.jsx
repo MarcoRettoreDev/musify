@@ -38,6 +38,7 @@ export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
             <div className="grid grid-cols-3 gap-8 mb-4">
                 {artist.tracks.map((track) => (
                     <TrackCard
+                        key={track.id}
                         track={track}
                         allPlaylist={allplaylist}
                         state={state}
