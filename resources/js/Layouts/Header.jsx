@@ -96,8 +96,15 @@ export default function Header({
                         </IconButton>
                     </div>
 
-                    <div className="flex-grow text-slate-200 hidden md:block">
-                        <h1 className="font-bold text-xl">{userName}</h1>
+                    <div className="md:flex space-x-4 md:flex-row items-center flex-grow text-slate-200 hidden">
+                        <img
+                            src={auth.user.image}
+                            className="rounded-full w-12"
+                            alt=""
+                        />
+                        <h1 className="font-bold text-xl cursor-default">
+                            {userName}
+                        </h1>
                     </div>
                     {renderSearchBar()}
                 </Toolbar>
