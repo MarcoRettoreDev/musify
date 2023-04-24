@@ -7,7 +7,6 @@ import {
 } from "@mui/material";
 
 const AutocompleteCustom = ({
-    name,
     handleChange,
     wrapperclass,
     options,
@@ -21,13 +20,15 @@ const AutocompleteCustom = ({
             <Autocomplete
                 fullWidth={fullWidth}
                 disablePortal
-                name={name}
                 options={options ?? []}
                 size={size}
                 value={options.find((e) => e.id === value)}
                 onChange={(e, value) => handleChange(value)}
                 popupIcon={null}
                 clearOnEscape={true}
+                getOptionLabel={(option) =>
+                    option.hasOwnProperty("name") ? option.name : option.title
+                }
                 isOptionEqualToValue={(option, value) =>
                     option.label === value.label
                 }

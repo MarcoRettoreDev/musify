@@ -43,24 +43,6 @@ export default function AuthenticatedLayout(props) {
     );
     const trigger = useRef(null);
 
-    const optionsElements = children.props.data.allArtist.map((artist) => {
-        return {
-            id: artist.id,
-            value: artist.id,
-            label: artist.name,
-            type: "artist",
-        };
-    });
-
-    children.props.data.allTracks.forEach((track) => {
-        optionsElements.push({
-            id: track.id,
-            value: track.id,
-            label: track.title,
-            type: "track",
-        });
-    });
-
     const renderModal = () => (
         <PlaylistModal
             allArtist={state.allArtist}
@@ -105,7 +87,8 @@ export default function AuthenticatedLayout(props) {
                     setsidebarCollapsed={setsidebarCollapsed}
                     appName={appName}
                     auth={auth}
-                    optionsElements={optionsElements}
+                    allArtist={state.allArtist}
+                    allTracks={state.allTracks}
                     state={state}
                     setState={setState}
                 />
