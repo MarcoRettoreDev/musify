@@ -32,9 +32,8 @@ export const LastAddedCard = ({
                 backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
                 height: "50vh",
-                width: "100%",
             }}
-            className="relative rounded-2xl"
+            className="relative rounded-2xl xl:w-full 2xl:w-4/5 mx-auto"
             custom={direction}
             variants={variants}
             initial="enter"
@@ -85,7 +84,7 @@ export const LastAddedCard = ({
                     }}
                 >
                     <Icon
-                        className="text-whitePrimary bg-blackSecondary hover:text-greenPrimary hover:cursor-pointer opacity-70 rounded-full"
+                        className="text-whitePrimary bg-blackSecondary hover:text-greenPrimary hover:cursor-pointer bg-opacity-30 hover:bg-opacity-80 rounded-full"
                         width="5rem"
                         height="5rem"
                         icon="ic:round-play-arrow"
@@ -93,27 +92,29 @@ export const LastAddedCard = ({
                 </div>
             </div>
             <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
-                <Icon
-                    className="bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-greySecondary text-whitePrimary mr-3"
-                    onClick={() => {
-                        paginate(-1);
-                        setCurrentArtist(prevArtistId); // pre artist id
-                    }}
-                    width={"2rem"}
-                    height={"2rem"}
-                    icon="material-symbols:arrow-back-ios-new-rounded"
-                />
+                <div className="p-1 ml-3 rounded-lg bg-blackSecondary bg-opacity-30 hover:bg-opacity-80 hover:text-greenPrimary text-whitePrimary">
+                    <Icon
+                        onClick={() => {
+                            paginate(-1);
+                            setCurrentArtist(prevArtistId); // pre artist id
+                        }}
+                        width={"2rem"}
+                        height={"2rem"}
+                        icon="material-symbols:arrow-back-ios-new-rounded"
+                    />
+                </div>
 
-                <Icon
-                    className=" bg-blackSecondary bg-opacity-60 hover:bg-transparent hover:text-greySecondary text-whitePrimary ml-3"
-                    onClick={() => {
-                        paginate(1);
-                        setCurrentArtist(nextArtistId); // post artist id
-                    }}
-                    width={"2rem"}
-                    height={"2rem"}
-                    icon="material-symbols:arrow-forward-ios-rounded"
-                />
+                <div className="p-1 mr-3 rounded-lg bg-blackSecondary bg-opacity-30 hover:bg-opacity-80 hover:text-greenPrimary text-whitePrimary">
+                    <Icon
+                        onClick={() => {
+                            paginate(1);
+                            setCurrentArtist(nextArtistId); // post artist id
+                        }}
+                        width={"2rem"}
+                        height={"2rem"}
+                        icon="material-symbols:arrow-forward-ios-rounded"
+                    />
+                </div>
             </div>
         </motion.div>
     );
