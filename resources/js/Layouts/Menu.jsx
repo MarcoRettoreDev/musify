@@ -51,6 +51,7 @@ export default function Menu({
         >
             {(handleClick, open) => (
                 <SidebarLink
+                    event="logout"
                     routeLink={"logout"}
                     pathName={"logout"}
                     label={"Log out"}
@@ -62,9 +63,9 @@ export default function Menu({
     );
     return (
         <div className="h-full space-y-8 bg-blackSecondary ">
-            <div className="h-full flex flex-col justify-between">
+            <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
-                {/* <ul>{renderLogOut()}</ul> */}
+                <ul>{renderLogOut()}</ul>
             </div>
         </div>
     );
