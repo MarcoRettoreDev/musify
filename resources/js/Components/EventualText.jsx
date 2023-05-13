@@ -10,7 +10,7 @@ export const EventualText = ({ text, durationInMs }) => {
 
     return (
         <h3
-            className={`text-slate-700 mb-3 transition-opacity duration-200 opacity-0 ${
+            className={`text-white mb-3 transition-opacity duration-200 opacity-0 ${
                 visible && "opacity-100"
             }`}
         >

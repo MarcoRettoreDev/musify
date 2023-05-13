@@ -75,7 +75,6 @@ export default function Login({ status, canResetPassword }) {
                         autoComplete="current-password"
                         handleChange={onHandleChange}
                     />
-
                     <InputError message={errors.password} className="mt-2" />
                 </div>
 
