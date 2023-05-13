@@ -12,13 +12,14 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ["Nunito", ...defaultTheme.fontFamily.sans],
+                sans: ["Istok Web", ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 greenPrimary: "#15803d",
                 greenSecondary: "#166534",
                 blackPrimary: "#0e0e11",
                 blackSecondary: "#15191d",
+                blackSoft: "#292926",
                 whitePrimary: "#e2e8f0",
                 whiteLight: "#818792",
                 greyPrimary: "#3D3B3C",

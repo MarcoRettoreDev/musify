@@ -31,12 +31,6 @@ export const sideBarLinks = [
         routeLink: "",
     },
     {
-        label: "Profile",
-        icon: "ph:user-fill",
-        pathName: null,
-        routeLink: "profile.edit",
-    },
-    {
         label: "About me",
         icon: "solar:info-square-bold",
         pathName: null,

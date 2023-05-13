@@ -43,29 +43,10 @@ export default function Menu({
         </SidebarLinkGroup>
     );
 
-    const renderLogOut = () => (
-        <SidebarLinkGroup
-            activecondition={false}
-            sidebarCollapsed={sidebarCollapsed}
-            setsidebarCollapsed={setsidebarCollapsed}
-        >
-            {(handleClick, open) => (
-                <SidebarLink
-                    event="logout"
-                    routeLink={"logout"}
-                    pathName={"logout"}
-                    label={"Log out"}
-                    icon="mdi:logout"
-                    handleClick={handleClick}
-                />
-            )}
-        </SidebarLinkGroup>
-    );
     return (
         <div className="h-full space-y-8 bg-blackSecondary ">
             <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
-                <ul>{renderLogOut()}</ul>
             </div>
         </div>
     );

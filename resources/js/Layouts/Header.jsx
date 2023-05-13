@@ -7,30 +7,19 @@ import { Icon } from "@iconify/react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import { Link, usePage } from "@inertiajs/react";
-import { InputAdornment, TextField } from "@mui/material";
-import AutocompleteCustom from "@/Components/AutocompleteCustom";
-import { set } from "lodash";
-import { useRef } from "react";
+import SearchForm from "@/Components/SearchForm";
 import { router } from "@inertiajs/react";
-import { RadioSelect } from "@/Components/RadioSelect";
 
 export default function Header({
     sidebarCollapsed,
     setsidebarCollapsed,
     auth,
     trigger,
-    allArtist,
-    allTracks,
     state,
     setState,
 }) {
     const userName = auth.user.name;
     const [anchorEl, setAnchorEl] = useState(null);
-    const [radioValue, setRadioValue] = useState("tracks");
-
-    const handleRadioChange = (event) => {
-        setRadioValue(event.target.value);
-    };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -40,38 +29,40 @@ export default function Header({
         setAnchorEl(null);
     };
 
-    const handleAutoCompleteChange = (value) => {
-        if (value) {
-            if (value.hasOwnProperty("bio")) {
-                trigger.current.click();
-                router.visit(route("artist.show", value.id));
-            } else {
-                setState({
-                    ...state,
-                    currentTrack: value.id,
-                    playing: true,
-                    firstTimePlaying: true,
-                });
-            }
-        }
+    // const handleAutoCompleteChange = (value) => {
+    //     if (value) {
+    //         if (value.hasOwnProperty("bio")) {
+    //             trigger.current.click();
+    //             router.visit(route("artist.show", value.id));
+    //         } else {
+    //             setState({
+    //                 ...state,
+    //                 currentTrack: value.id,
+    //                 playing: true,
+    //                 firstTimePlaying: true,
+    //             });
+    //         }
+    //     }
+    // };
+
+    const handleOnChangeInput = (e) => {
+        console.log(e.target.value);
     };
 
     const renderSearchBar = () => (
-        <div className="flex justify-center items-center text-slate-900 w-full md:w-auto">
-            <AutocompleteCustom
+        <div className="flex justify-center items-center w-full md:w-auto">
+            <SearchForm
                 fullWidth={true}
                 variant="outlined"
-                wrapperclass="bg-whitePrimary text-blackSecondary rounded focus:border-none w-full lg:w-96"
-                handleChange={handleAutoCompleteChange}
-                options={radioValue === "tracks" ? allTracks : allArtist}
-                value=""
+                wrapperclass="bg-blackSoft rounded-3xl focus:border-none w-full lg:w-96"
+                handleChange={handleOnChangeInput}
                 size="small"
             />
         </div>
     );
 
-    const renderAddPlaylistMenu = () => (
-        <div className="flex text-slate-700">
+    const profileMenu = () => (
+        <div className="">
             <IconButton
                 size="large"
                 edge="end"
@@ -79,12 +70,13 @@ export default function Header({
                 aria-haspopup="true"
                 onClick={handleProfileMenuOpen}
                 color="inherit"
+                className="!p-0 !pr-2"
             >
                 <Icon
-                    icon="mingcute:settings-2-line"
-                    width="2rem"
-                    height="2rem"
-                    className="text-greenPrimary hover:text-greenSecondary cursor-pointer ml-3"
+                    icon="ic:round-arrow-drop-down"
+                    width="3rem"
+                    height="3rem"
+                    className="text-greenPrimary hover:text-greenSecondary cursor-pointer "
                 />
             </IconButton>
             <Menu
@@ -97,24 +89,37 @@ export default function Header({
                 keepMounted
                 transformOrigin={{
                     vertical: "top",
-                    horizontal: "left",
+                    horizontal: "right",
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                MenuListProps={{
+                    className: "bg-blackSoft text-whitePrimary border-none",
+                }}
             >
-                <MenuItem onClick={() => handleClose()}>
-                    <RadioSelect
-                        formLabel="Search on"
-                        options={[
-                            { value: "tracks", label: "Tracks" },
-                            {
-                                value: "artists",
-                                label: "Artists",
-                            },
-                        ]}
-                        radioValue={radioValue}
-                        handleChange={handleRadioChange}
-                    />
+                <MenuItem onClick={handleClose}>
+                    <Link
+                        href={route("dashboard")}
+                        className="flex items-center w-full font-bold"
+                    >
+                        Home
+                    </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose} divider>
+                    <Link
+                        href={route("profile.edit")}
+                        className="flex items-center w-full font-bold"
+                    >
+                        Profile
+                    </Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link
+                        href={route("logout")}
+                        className="flex items-center w-full font-bold"
+                    >
+                        Close Session
+                    </Link>
                 </MenuItem>
             </Menu>
         </div>
@@ -126,7 +131,7 @@ export default function Header({
                 position="static"
                 sx={{ backgroundColor: "#15191d", boxShadow: "none" }}
             >
-                <Toolbar className="lg:!px-2 flex justify-between md:justify-around text-slate-700">
+                <Toolbar className="lg:!px-16 flex justify-between md:justify-between text-slate-700">
                     <div className="lg:hidden ">
                         <IconButton
                             ref={trigger}
@@ -145,18 +150,19 @@ export default function Header({
                         </IconButton>
                     </div>
 
-                    <div className="md:flex space-x-4 md:flex-row items-center flex-grow text-slate-200 hidden">
+                    {renderSearchBar()}
+
+                    <div className="!bg-blackPrimary rounded-3xl my-6 px-1 md:flex md:flex-row items-center text-slate-200 hidden">
                         <img
                             src={auth.user.image}
-                            className="rounded-full w-12"
+                            className="rounded-full w-14 p-1"
                             alt=""
                         />
-                        <h1 className="font-bold text-xl cursor-default">
+                        <h1 className="font-bold text-xl cursor-default px-4">
                             {userName}
                         </h1>
+                        {profileMenu()}
                     </div>
-                    {renderSearchBar()}
-                    {renderAddPlaylistMenu()}
                 </Toolbar>
             </AppBar>
         </Box>

@@ -119,11 +119,6 @@ export default function AuthenticatedLayout(props) {
                 />
             )}
 
-            <RightMenu
-                allPlaylist={children.props.data.allPlaylist}
-                setState={setState}
-            />
-
             {children.props.flash?.message && (
                 <ToastMessages
                     iconColor={`${
