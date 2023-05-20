@@ -31,9 +31,8 @@ export const LastAddedCard = ({
                 backgroundSize: "cover",
                 backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
-                height: "50vh",
             }}
-            className="relative rounded-2xl xl:w-full 2xl:w-4/5 mx-auto"
+            className="relative rounded-2xl xl:h-[50vh] xl:w-full 2xl:h-[60vh] 2xl:w-5/6 mx-auto"
             custom={direction}
             variants={variants}
             initial="enter"
@@ -58,13 +57,13 @@ export const LastAddedCard = ({
             }}
         >
             <div className="flex justify-between text-whitePrimary absolute 2xl:top-[65%] lg:top-[55%] px-8 w-full">
-                <div className="pl-8 pr-12 py-6 rounded-lg">
+                <div className="pl-8 pr-8 py-6 rounded-lg bg-black bg-opacity-30">
                     <h1 className="font-bold text-5xl mb-3">{title}</h1>
                     <p className="font-semibold text-3xl">
                         {
                             <Link
                                 href={route("artist.show", artistId)}
-                                className="hover:underline"
+                                className="hover:text-greenSecondary underline"
                             >
                                 {artist}
                             </Link>

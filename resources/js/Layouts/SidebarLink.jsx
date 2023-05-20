@@ -37,11 +37,7 @@ export default function SidebarLink({
                         )}
                         {!sidebarCollapsed && (
                             <Link
-                                href={
-                                    routeLink.length > 0
-                                        ? route(routeLink, parameters)
-                                        : "#"
-                                }
+                                href={routeLink && route(routeLink, parameters)}
                                 className={`group block text-slate-500 transition duration-150 truncate`}
                             >
                                 <span

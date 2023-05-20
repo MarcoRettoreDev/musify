@@ -6,11 +6,11 @@ import { InputText } from "./InputText";
 import { TextArea } from "./TextArea";
 import { BackDropModal } from "./BackDropModal";
 
-const PlaylistModal = ({ playlist, playlistModal, setPlaylistModal }) => {
+const PlaylistModal = ({ playlistModal, setPlaylistModal }) => {
     const { data, setData, post, processing, errors } = useForm({
-        name: playlist?.name || "",
-        description: playlist?.description || "",
-        image: playlist?.image || "",
+        name: "",
+        description: "",
+        image: "",
     });
 
     const handleChangeImage = (e) => {

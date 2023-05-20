@@ -3,7 +3,6 @@ import Dashboard from "@/Pages/Dashboard";
 import { router, useRemember } from "@inertiajs/react";
 import { useRef, useState } from "react";
 import Header from "./Header";
-import { RightMenu } from "./RightMenu";
 import Sidebar from "./Sidebar";
 import PlaylistModal from "@/Components/PlaylistModal";
 import { ToastMessages } from "@/Components/ToastMessages";
@@ -47,7 +46,6 @@ export default function AuthenticatedLayout(props) {
     const renderModal = () => (
         <PlaylistModal
             allArtist={state.allArtist}
-            playlist={children.props?.playlist}
             playlistModal={playlistModal}
             setPlaylistModal={setPlaylistModal}
         />

@@ -15,7 +15,7 @@ export const sideBarLinks = [
         label: "New playlist",
         icon: "material-symbols:library-add-outline-rounded",
         pathName: null,
-        routeLink: "",
+        routeLink: null,
         event: "openModalPlaylist",
     },
     {
