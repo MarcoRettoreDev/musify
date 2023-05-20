@@ -33,7 +33,6 @@ class DashboardController extends Controller
 
         $allTracks = Track::all();
         $allArtist = Artist::all();
-        // $allPlaylist = Playlist::where('user_id', auth()->user()->id);
         $allPlaylist = User::find(auth()->user()->id)->playlists;
         $allAlbums = Album::all();
 

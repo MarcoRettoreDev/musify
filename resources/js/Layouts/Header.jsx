@@ -20,6 +20,7 @@ export default function Header({
 }) {
     const userName = auth.user.name;
     const [anchorEl, setAnchorEl] = useState(null);
+    const [searchValue, setSearchValue] = useState(null);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
@@ -29,24 +30,13 @@ export default function Header({
         setAnchorEl(null);
     };
 
-    // const handleAutoCompleteChange = (value) => {
-    //     if (value) {
-    //         if (value.hasOwnProperty("bio")) {
-    //             trigger.current.click();
-    //             router.visit(route("artist.show", value.id));
-    //         } else {
-    //             setState({
-    //                 ...state,
-    //                 currentTrack: value.id,
-    //                 playing: true,
-    //                 firstTimePlaying: true,
-    //             });
-    //         }
-    //     }
-    // };
-
     const handleOnChangeInput = (e) => {
-        console.log(e.target.value);
+        setSearchValue(e.target.value);
+    };
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        router.post(route("search.store"), { searchValue });
     };
 
     const renderSearchBar = () => (
@@ -57,6 +47,7 @@ export default function Header({
                 wrapperclass="bg-blackSoft rounded-3xl focus:border-none w-full lg:w-96"
                 handleChange={handleOnChangeInput}
                 size="small"
+                onSubmit={onSubmit}
             />
         </div>
     );
@@ -152,15 +143,15 @@ export default function Header({
 
                     {renderSearchBar()}
 
-                    <div className="!bg-blackPrimary rounded-3xl my-6 px-1 md:flex md:flex-row items-center text-slate-200 hidden">
+                    <div className="!bg-blackPrimary rounded-3xl my-3 px-1 md:flex md:flex-row items-center text-slate-200 hidden">
                         <img
                             src={auth.user.image}
                             className="rounded-full w-14 p-1"
                             alt=""
                         />
-                        <h1 className="font-bold text-xl cursor-default px-4">
+                        <h3 className="font-bold cursor-default px-4">
                             {userName}
-                        </h1>
+                        </h3>
                         {profileMenu()}
                     </div>
                 </Toolbar>

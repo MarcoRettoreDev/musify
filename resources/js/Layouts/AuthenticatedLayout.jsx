@@ -41,6 +41,7 @@ export default function AuthenticatedLayout(props) {
     const [sidebarCollapsed, setsidebarCollapsed] = useState(
         screenWidth >= 1024 ? true : false
     );
+
     const trigger = useRef(null);
 
     const renderModal = () => (
@@ -78,6 +79,7 @@ export default function AuthenticatedLayout(props) {
                 playlistModal={playlistModal}
                 setPlaylistModal={setPlaylistModal}
                 setState={setState}
+                allPlaylist={children.props.data.allPlaylist}
             />
 
             <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full bg-blackPrimary ">

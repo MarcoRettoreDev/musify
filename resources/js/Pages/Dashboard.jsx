@@ -7,6 +7,7 @@ import { MyContentCreate } from "./MyContent/MyContentCreate";
 import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 import { useEffect } from "react";
 import EditProfile from "./Profile/Edit";
+import ShowSearch from "./Search/ShowSearch";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
@@ -41,7 +42,18 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {pathname.includes("artist.show") && (
+            {props.searched && (
+                <ShowSearch
+                    allArtists={props.data.allArtist}
+                    tracks={props.searchTracks}
+                    artists={props.searchArtists}
+                    state={state}
+                    setState={setState}
+                    allplaylist={props.data.allPlaylist}
+                />
+            )}
+
+            {pathname?.includes("artist.show") && (
                 <ShowArtist
                     state={state}
                     setState={setState}
@@ -50,7 +62,7 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {pathname.includes("dashboard") && !props.created && (
+            {pathname?.includes("dashboard") && !props.created && (
                 <LastAdded
                     allTracks={props.allTracks}
                     itemsToRender={props.tracks}
@@ -59,13 +71,10 @@ function Dashboard(propsFromLayout) {
                 />
             )}
 
-            {pathname.includes("playlist.show") && renderShowPlaylist()}
+            {pathname?.includes("playlist.show") && renderShowPlaylist()}
 
-            {pathname.includes("profile.edit") && (
-                <EditProfile
-                    user={props.user}
-                    // auth={props.auth}
-                />
+            {pathname?.includes("profile.edit") && (
+                <EditProfile user={props.user} />
             )}
         </>
     );
