@@ -11,6 +11,7 @@ export default function Menu({
     playlistModal,
     setPlaylistModal,
     setState,
+    allPlaylist,
 }) {
     const { auth } = usePage().props;
     const { ziggy } = usePage().props;
@@ -43,10 +44,38 @@ export default function Menu({
         </SidebarLinkGroup>
     );
 
+    const renderUserPlaylist = () => (
+        <SidebarLinkGroup
+            setState={setState}
+            activecondition={false}
+            sidebarCollapsed={sidebarCollapsed}
+            setsidebarCollapsed={setsidebarCollapsed}
+            playlistModal={playlistModal}
+            setPlaylistModal={setPlaylistModal}
+        >
+            {(handleClick, open) =>
+                allPlaylist?.map((playlist) => (
+                    <SidebarLink
+                        key={playlist.id}
+                        routeLink={"playlist.show"}
+                        pathName={playlist.id}
+                        label={playlist.name}
+                        icon={null}
+                        event={"playlist"}
+                        handleClick={handleClick}
+                        parameters={{ id: playlist.id }}
+                        sidebarCollapsed={sidebarCollapsed}
+                    />
+                ))
+            }
+        </SidebarLinkGroup>
+    );
+
     return (
         <div className="h-full space-y-8 bg-blackSecondary ">
             <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
+                <ul>{renderUserPlaylist()}</ul>
             </div>
         </div>
     );

@@ -12,23 +12,11 @@ export const sideBarLinks = [
         routeLink: "mycontent.create",
     },
     {
-        label: "Create playlist",
-        icon: "mdi:cards-heart",
+        label: "New playlist",
+        icon: "material-symbols:library-add-outline-rounded",
         pathName: null,
         routeLink: "",
         event: "openModalPlaylist",
-    },
-    {
-        label: "Downloads",
-        icon: "ion:download",
-        pathName: null,
-        routeLink: "",
-    },
-    {
-        label: "Settings",
-        icon: "material-symbols:settings-rounded",
-        pathName: null,
-        routeLink: "",
     },
     {
         label: "About me",
