@@ -9,11 +9,7 @@ export const InputText = ({
 }) => {
     return (
         <>
-            {errors && (
-                <p className="text-xs text-red-500 absolute top-[37%] right-[33%] z-40 ">
-                    {errors}
-                </p>
-            )}
+            {errors && <p className="text-xs text-red-500  z-40 ">{errors}</p>}
 
             {label && (
                 <label htmlFor={name} className={labelClass}>

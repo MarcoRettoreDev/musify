@@ -27,6 +27,7 @@ export const ShowQueued = ({ state, setState }) => {
             {items.map((value, index) => {
                 return (
                     <SortableItem
+                        allPlaylist={state.allPlaylist}
                         state={state}
                         setState={setState}
                         key={value.id}

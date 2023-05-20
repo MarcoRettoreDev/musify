@@ -6,7 +6,7 @@ export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
         <>
             <div className="grid grid-cols-2 mb-24">
                 <div
-                    style={{ backgroundImage: `url(${artist.image})` }}
+                    style={{ backgroundImage: `url(${artist.images})` }}
                     className="w-full  bg-no-repeat bg-cover bg-center rounded-lg"
                 />
 

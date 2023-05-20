@@ -4,7 +4,7 @@ import gmailLogo from "../../css/icons/gmail-svgrepo-com 1.svg";
 export const HomeText = ({ appName }) => {
     return (
         <div className="space-y-4 flex flex-col justify-between text-greyLight p-0 2xl:px-20 mb-40">
-            <h1 className="bg-gradientDown titleMusify mb-16">
+            <h1 className="text-gradientDown titleMusify mb-16">
                 {appName.toUpperCase()}
             </h1>
             <h2 className="text-white">Discover us!</h2>
