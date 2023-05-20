@@ -27,6 +27,7 @@ export default function Menu({
             setsidebarCollapsed={setsidebarCollapsed}
             playlistModal={playlistModal}
             setPlaylistModal={setPlaylistModal}
+            spacing={true}
         >
             {(handleClick, open) =>
                 sideBarLinks.map((link) => (
@@ -52,6 +53,7 @@ export default function Menu({
             setsidebarCollapsed={setsidebarCollapsed}
             playlistModal={playlistModal}
             setPlaylistModal={setPlaylistModal}
+            spacing={false}
         >
             {(handleClick, open) =>
                 allPlaylist?.map((playlist) => (
@@ -75,6 +77,9 @@ export default function Menu({
         <div className="h-full space-y-8 bg-blackSecondary ">
             <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
+                {allPlaylist.length > 0 && !sidebarCollapsed && (
+                    <h4 className="font-bold">Playlists</h4>
+                )}
                 <ul>{renderUserPlaylist()}</ul>
             </div>
         </div>

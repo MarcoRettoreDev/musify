@@ -149,9 +149,9 @@ export default function Header({
                             className="rounded-full w-14 p-1"
                             alt=""
                         />
-                        <h3 className="font-bold cursor-default px-4">
+                        <h4 className="font-bold cursor-default px-4">
                             {userName}
-                        </h3>
+                        </h4>
                         {profileMenu()}
                     </div>
                 </Toolbar>

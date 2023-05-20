@@ -21,7 +21,7 @@ export default function SidebarLink({
         <React.Fragment>
             <div
                 href="#0"
-                className={`group block truncate transition duration-150 mb-8 `}
+                className={`group block truncate transition duration-150`}
                 onClick={(e) => {
                     e.preventDefault();
                     handleClick(event);
@@ -45,7 +45,11 @@ export default function SidebarLink({
                                 className={`group block text-slate-500 transition duration-150 truncate`}
                             >
                                 <span
-                                    className={`ml-2 text-slate-200 font-semibold hover:!text-greenSecondary ${
+                                    className={`ml-2 text-slate-200 ${
+                                        routeLink === "playlist.show"
+                                            ? "font-normal"
+                                            : "font-bold"
+                                    } hover:!text-greenSecondary ${
                                         pathname?.includes(`${pathName}`) |
                                             (routeLink === "playlist.show" &&
                                                 locationName.includes(

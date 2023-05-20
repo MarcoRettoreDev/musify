@@ -8,6 +8,7 @@ function SidebarLinkGroup({
     setState,
     playlistModal,
     setPlaylistModal,
+    spacing,
 }) {
     const [open, setOpen] = useState(activecondition);
 
@@ -25,9 +26,9 @@ function SidebarLinkGroup({
 
     return (
         <li
-            className={`px-3 py-2 rounded-sm mb-0.5 last:mb-0 ${
+            className={`px-3 py-2  rounded-sm mb-0.5 last:mb-0 ${
                 activecondition && "bg-slate-200"
-            }`}
+            } ${spacing ? "space-y-6" : "space-y-3"}`}
         >
             {children(handleClick, open)}
         </li>

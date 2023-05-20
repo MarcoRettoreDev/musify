@@ -46,7 +46,7 @@ function Sidebar({
 
     const renderLogo = () => (
         <Link href="#" target="_blank" className="block">
-            {/* <img className="my-auto max-w-[42px]" src={PanalLogoV} alt="" /> */}
+            <h1 className="text-gradientDown">M</h1>
         </Link>
     );
 
@@ -111,7 +111,7 @@ function Sidebar({
                         screenWidth >= 1024 &&
                             setsidebarCollapsed(!sidebarCollapsed);
                     }}
-                    className="flex flex-col align-center justify-between h-full mt-8"
+                    className="flex flex-col align-center justify-between h-full pt-8"
                 >
                     <Menu
                         setState={setState}
