@@ -31,8 +31,8 @@
 
 @layer base {
     :root {
-        --greenPrimary: "#15803d";
-        --greenSecondary: "#166534";
+        --greenPrimary: "#FF00B8";
+        --greenSecondary: "#E601C6";
         --blackPrimary: "#0e0e11";
         --blackSecondary: "#15191d";
         --whitePrimary: "#e2e8f0";
@@ -47,32 +47,32 @@
     }
 
     h1 {
-        @apply text-4xl font-bold;
+        @apply text-4xl font-bold text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
     h2 {
-        @apply text-2xl font-semibold;
+        @apply text-2xl font-semibold text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
     h3 {
-        @apply text-xl font-medium;
+        @apply text-xl font-medium text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
     h4 {
-        @apply text-lg;
+        @apply text-lg text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
     h5 {
-        @apply text-sm;
+        @apply text-sm text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
     h6 {
-        @apply text-xs;
+        @apply text-xs text-whitePrimary;
         font-family: "Raleway", sans-serif;
     }
 
@@ -188,7 +188,7 @@ input[type="range"]::before {
 }
 
 input[type="range"]:hover::before {
-    background-color: #15803d !important; /* #GREEN PRIMARY */
+    background-color: #ff00b8 !important; /* #GREEN PRIMARY */
 }
 
 /* pelotita */
