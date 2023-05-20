@@ -8,8 +8,6 @@ use App\Models\Playlist;
 use App\Models\Track;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
-use Illuminate\Support\Str;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 class PlaylistController extends Controller
 {
@@ -56,15 +54,7 @@ class PlaylistController extends Controller
             $playlist->addImage($playlist, $data['image']);
         }
 
-
         return back()->with('message', 'Playlist created successfully');
-
-        // return Redirect::route(
-        //     'dashboard',
-        //     [
-        //         'playlist' => $playlist->id,
-        //     ]
-        // )->with('message', 'Playlist created successfully');
     }
 
     /**
@@ -140,6 +130,10 @@ class PlaylistController extends Controller
         $data = $request->validated();
 
         $playlist->update($data);
+
+        if (isset($data['image'])) {
+            $playlist->addImage($playlist, $data['image']);
+        }
 
         // Ordenamos los nuevos recorridos
         $playlist->syncPlaylistTrack($data['tracks']);

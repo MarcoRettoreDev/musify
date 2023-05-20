@@ -26,6 +26,7 @@ class UpdatePlaylistRequest extends FormRequest
         return [
             'name' => 'required|string',
             'tracks' => 'required|array',
+            'image' => 'nullable|image',
         ];
     }
 }

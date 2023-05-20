@@ -50,8 +50,6 @@ class ArtistController extends Controller
     {
         $artist->load('tracks');
 
-        $artist['image'] = $artist->getImages();
-
         return Inertia::render('Dashboard', [
             'artist' => $artist,
         ]);

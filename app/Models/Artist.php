@@ -30,6 +30,11 @@ class Artist extends BaseModel implements HasMedia
         'expires_at' => 'datetime',
     ];
 
+    protected $appends = [
+        'avatar',
+        'images',
+    ];
+
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection(BaseModel::MEDIA_COLLECTION_IMAGE)
@@ -48,6 +53,18 @@ class Artist extends BaseModel implements HasMedia
             ->background('151513')
             ->optimize()
             ->performOnCollections(BaseModel::MEDIA_COLLECTION_IMAGE);
+    }
+
+    // Appends
+
+    public function getAvatarAttribute()
+    {
+        return $this->getMedia(BaseModel::MEDIA_COLLECTION_IMAGE)->first()->getUrl(BaseModel::MEDIA_CONVERSION_AVATAR);
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->getFirstMediaUrl(BaseModel::MEDIA_COLLECTION_IMAGE);
     }
 
     // Relations
