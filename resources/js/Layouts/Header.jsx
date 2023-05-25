@@ -120,7 +120,7 @@ export default function Header({
         <Box>
             <AppBar
                 position="static"
-                sx={{ backgroundColor: "#15191d", boxShadow: "none" }}
+                sx={{ backgroundColor: "transparent", boxShadow: "none" }}
             >
                 <Toolbar className="lg:!px-16 flex justify-between md:justify-between text-slate-700">
                     <div className="lg:hidden ">
@@ -144,10 +144,12 @@ export default function Header({
                     {renderSearchBar()}
 
                     <div className="!bg-blackPrimary rounded-3xl my-3 px-1 md:flex md:flex-row items-center text-slate-200 hidden">
-                        <img
-                            src={auth.user.image}
-                            className="rounded-full w-14 p-1"
-                            alt=""
+                        <div
+                            style={{
+                                backgroundImage: `url(${auth.user.image})`,
+                                borderRadius: "50%",
+                            }}
+                            className="h-14 w-14 p-1 bg-center bg-no-repeat bg-cover"
                         />
                         <h4 className="font-bold cursor-default px-4">
                             {userName}
