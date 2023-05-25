@@ -2,7 +2,7 @@ import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
-import { Link, router, useForm, usePage } from "@inertiajs/react";
+import { useForm } from "@inertiajs/react";
 import { Transition } from "@headlessui/react";
 import { ImageUpload } from "@/Components/ImageUpload";
 
@@ -90,14 +90,13 @@ export default function UpdateProfileInformation({ user }) {
                         label="Profile picture"
                         handleChange={handleChangeImage}
                         imageData={data.image}
-                        imageClass="w-44 rounded-full object-cover mx-auto my-auto h-full"
                     />
                 </div>
 
                 <div className="flex items-center gap-4">
                     <PrimaryButton
                         processing={processing}
-                        className="bg-greenPrimary font-bold hover:bg-greenSecondary"
+                        className="bg-greenPrimary font-bold hover:bg-greenSecondary ml-auto"
                     >
                         Save
                     </PrimaryButton>
