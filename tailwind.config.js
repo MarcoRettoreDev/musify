@@ -15,6 +15,7 @@ module.exports = {
                 sans: ["Istok Web", ...defaultTheme.fontFamily.sans],
             },
             colors: {
+                greenSuccess: "#3DB872",
                 greenPrimary: "#FF00B8",
                 greenSecondary: "#E601C6",
                 blackPrimary: "#0e0e11",

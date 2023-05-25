@@ -37,6 +37,13 @@ export default function AuthenticatedLayout(props) {
 
     const [playlistModal, setPlaylistModal] = useState(false);
 
+    const [toastMessages, setToastMessages] = useState({
+        icon: "",
+        message: "",
+        iconColor: "",
+        show: false,
+    });
+
     const [sidebarCollapsed, setsidebarCollapsed] = useState(
         screenWidth >= 1024 ? true : false
     );
@@ -58,8 +65,22 @@ export default function AuthenticatedLayout(props) {
                 allPlaylist: children.props.allPlaylist,
             });
             setPlaylistModal(false);
+            setToastMessages({
+                iconColor: "text-greenSuccess",
+                icon: "material-symbols:check-circle-outline",
+                message: flash.message,
+                show: true,
+            });
         }
-    }, [flash.message]);
+        if (flash.message?.includes("Track added")) {
+            setToastMessages({
+                iconColor: "text-greenSuccess",
+                icon: "material-symbols:check-circle-outline",
+                message: flash.message,
+                show: true,
+            });
+        }
+    }, [flash]);
 
     useEffect(() => {
         if (playlistModal) {
@@ -67,8 +88,10 @@ export default function AuthenticatedLayout(props) {
         }
     }, [playlistModal]);
 
+    useEffect(() => {}, [toastMessages]);
+
     return (
-        <div className="flex h-screen overflow-hidden bg-body ">
+        <div className="flex h-screen overflow-hidden bg-body">
             <Sidebar
                 sidebarCollapsed={sidebarCollapsed}
                 setsidebarCollapsed={setsidebarCollapsed}
@@ -118,22 +141,13 @@ export default function AuthenticatedLayout(props) {
                     setState={setState}
                 />
             )}
-
-            {children.props.flash?.message && (
-                <ToastMessages
-                    iconColor={`${
-                        flash?.message.includes("successfully")
-                            ? "text-greenPrimary"
-                            : "text-red-700"
-                    }`}
-                    icon={`${
-                        flash?.message.includes("successfully")
-                            ? "material-symbols:check-circle-outline"
-                            : "material-symbols:error"
-                    }`}
-                    message={flash?.message}
-                />
-            )}
+            <ToastMessages
+                iconColor={toastMessages.iconColor}
+                icon={toastMessages.icon}
+                message={toastMessages.message}
+                show={toastMessages.show}
+                setToastMessages={setToastMessages}
+            />
         </div>
     );
 }
