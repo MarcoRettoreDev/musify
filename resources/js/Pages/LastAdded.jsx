@@ -33,17 +33,17 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
             </div>
 
             <div className="flex justify-between items-center mb-6">
-                <h2 className="text-slate-200 text-xl font-bold">
+                <h3 className="text-slate-200  font-bold">
                     Tracks from&nbsp;
                     {
                         <Link
                             href={route("artist.show", currentArtist)}
-                            className="hover:underline"
+                            className="hover:text-greenSecondary text-lg underline"
                         >
                             {artistName}
                         </Link>
                     }
-                </h2>
+                </h3>
                 <Link href={route("artist.show", currentArtist)}>
                     <h4 className="px-4 py-2 text-lg font-bold border border-greenPrimary border-opacity-60 hover:bg-greenPrimary hover:text-whitePrimary text-greenPrimary rounded-3xl">
                         See more

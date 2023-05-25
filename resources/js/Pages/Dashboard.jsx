@@ -11,10 +11,7 @@ import ShowSearch from "./Search/ShowSearch";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
-
-    const { ziggy } = usePage().props;
-
-    const location = window.location.href;
+    console.log("🚀 ~ file: Dashboard.jsx:14 ~ Dashboard ~ props:", props);
 
     const pathname = route().current();
 
