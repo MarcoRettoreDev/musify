@@ -129,6 +129,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
         if (volumeIconControl === null) {
             setVolumeIconControl(50);
             volumeSliderRef.current.value = 50;
+            playerRef.current.volume = 0.5;
         }
     }, [volumeIconControl]);
 
@@ -183,14 +184,38 @@ export const Player = ({ allPlaylist, state, setState }) => {
     };
 
     const nextTrack = () => {
+        // Si hay canciones en la cola
         if (state.queued.length > 0) {
-            setState({
-                ...state,
-                queued: state.queued.slice(1),
-                currentTrack: state.queued[0].id,
-                playing: true,
-            });
-        } else {
+            // Verificamos si la canción actual está en la lista de canciones
+            if (state.queued.some((x) => x.id === state.currentTrack)) {
+                // Si está, obtenemos la siguiente canción de la lista
+
+                const currentTrackIndex = state.queued.findIndex(
+                    (x) => x.id === state.currentTrack
+                );
+
+                const nextTrackFromQueue = state.queued[currentTrackIndex + 1];
+
+                setState((state) => ({
+                    ...state,
+                    currentTrack: nextTrackFromQueue.id,
+                    playing: true,
+                    queued: state.queued.slice(0, currentTrackIndex),
+                    history: [...state.history, state.currentTrack],
+                    currentPlaylist: state.queued.length === 0 && null,
+                }));
+            } else {
+                setState({
+                    ...state,
+                    queued: state.queued.slice(1),
+                    currentTrack: state.queued[0].id,
+                    playing: true,
+                });
+            }
+        }
+        // Si no hay canciones en la cola
+        else {
+            // Si la canción actual no es la última de la lista
             if (state.currentTrack < state.allTracks.length) {
                 let random = getRandomInt(1, state.allTracks.length + 1);
                 setState({
@@ -202,10 +227,12 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     history: [...state.history, state.currentTrack],
                     currentPlaylist: state.queued.length === 0 && null,
                 });
-            } else {
+            }
+            // Peor de los casos: volvemos a la primera canción
+            else {
                 setState({
                     ...state,
-                    currentTrack: 1,
+                    currentTrack: state.allTracks[0].id,
                     playing: true,
                 });
             }
@@ -414,7 +441,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
         <div
             ref={playerContainerRef}
             id="playerContainer"
-            className="bg-blackSecondary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
+            className="bg-black absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
         >
             <div className="flex cursor-default items-center ">
                 <div

@@ -138,8 +138,8 @@ fieldset {
     font-family: "Istok Web", sans-serif !important;
 }
 
-.MuiModal-hidden {
-    overflow-x: hidden !important;
+.MuiPaper-root {
+    background-color: var(--blackSecondary) !important;
 }
 
 /* Scroll bar config */
