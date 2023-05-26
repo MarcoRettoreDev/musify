@@ -34,7 +34,9 @@ export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
                 </div>
             </div>
 
-            <h2 className="text-3xl text-whitePrimary mb-4">Tracks</h2>
+            <h2 className="text-3xl text-whitePrimary mb-4">
+                Tracks of artist
+            </h2>
             <div className="grid grid-cols-3 gap-8 mb-4">
                 {artist.tracks.map((track) => (
                     <TrackCard

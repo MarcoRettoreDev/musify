@@ -24,7 +24,6 @@ class DashboardController extends Controller
     public function index(Request $request)
     {
         $lastFiveTracksFromDifferentArtist = Track::latest()->take(25)->get()->unique('artist_id');
-
         $tracks = [];
 
         foreach ($lastFiveTracksFromDifferentArtist as $track) {

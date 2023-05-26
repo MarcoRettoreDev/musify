@@ -11,10 +11,10 @@ const SearchForm = ({
 }) => {
     return (
         <div className={wrapperclass}>
-            <form onSubmit={onSubmit}>
+            <form onSubmit={onSubmit} className="">
                 <TextField
                     id="outlined-basic"
-                    className="text-white"
+                    className="text-white !bg-blackSoft active:!bg-blackSoft focus:!bg-blackSoft "
                     name="searchInput"
                     onChange={handleChange}
                     fullWidth

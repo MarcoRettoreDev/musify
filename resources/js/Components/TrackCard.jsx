@@ -18,6 +18,7 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
             (playlist) => playlist.id === playlistId
         );
         const track = playlist.tracks.find((track) => track.id === trackId);
+
         if (track) {
             return true;
         } else {
@@ -26,6 +27,7 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
     };
 
     const addTrackToPlaylist = (playlistId, trackId) => {
+        handleClose();
         const track = state.allTracks.find((track) => track.id === trackId);
         const playlist = allPlaylist.find(
             (playlist) => playlist.id === playlistId
@@ -42,10 +44,10 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
             playlist.id === playlistId ? newPlaylist : playlist
         );
 
-        setState({
+        setState((state) => ({
             ...state,
             allPlaylist: newPlaylists,
-        });
+        }));
 
         router.post(
             route("playlist.addTrack", {
@@ -56,11 +58,13 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
     };
 
     const addTrackToQueue = (trackId) => {
+        handleClose();
+
         const track = state.allTracks.find((track) => track.id === trackId);
-        setState({
+        setState((state) => ({
             ...state,
             queued: [...state.queued, track],
-        });
+        }));
     };
 
     const verifyIfTrackIsInQueue = (trackId) => {
@@ -104,10 +108,9 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
                 {allPlaylist.length > 0 &&
                     allPlaylist.map((playlist) => (
                         <MenuItem
-                            onClick={() => {
-                                handleClose();
-                                addTrackToPlaylist(playlist.id, track.id);
-                            }}
+                            onClick={() =>
+                                addTrackToPlaylist(playlist.id, track.id)
+                            }
                             key={playlist.id}
                             disabled={verifyIfTrackIsInPlaylist(
                                 playlist.id,
@@ -119,10 +122,7 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
                     ))}
 
                 <MenuItem
-                    onClick={() => {
-                        handleClose();
-                        addTrackToQueue(track.id);
-                    }}
+                    onClick={() => addTrackToQueue(track.id)}
                     disabled={verifyIfTrackIsInQueue(track.id)}
                 >
                     Add to queue

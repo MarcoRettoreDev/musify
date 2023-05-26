@@ -6,6 +6,7 @@ use App\Http\Requests\StorePlaylistRequest;
 use App\Http\Requests\UpdatePlaylistRequest;
 use App\Models\Playlist;
 use App\Models\Track;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -131,12 +132,16 @@ class PlaylistController extends Controller
 
         $playlist->update($data);
 
-        if (isset($data['image'])) {
-            $playlist->addImage($playlist, $data['image']);
+        $img = $request->file('image');
+
+        if (isset($img)) {
+            $playlist->addImage($playlist, $img);
         }
 
         // Ordenamos los nuevos recorridos
-        $playlist->syncPlaylistTrack($data['tracks']);
+        if (isset($data['tracks'])) {
+            $playlist->syncPlaylistTrack($data['tracks']);
+        }
 
         return Redirect::route('dashboard')->with('message', 'Playlist updated successfully');
     }

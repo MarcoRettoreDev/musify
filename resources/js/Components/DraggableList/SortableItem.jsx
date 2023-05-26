@@ -54,6 +54,24 @@ export const SortableItem = sortableElement(
             }
         };
 
+        const verifyIfTrackIsInQueue = (trackId) => {
+            return state.queued.some((track) => track.id === trackId);
+        };
+
+        const addTrackToQueue = (trackId) => {
+            const track = state.allTracks.find((track) => track.id === trackId);
+            setState({
+                ...state,
+                queued: [...state.queued, track],
+            });
+        };
+
+        const removeTrackFromQueue = (trackId) =>
+            setState((state) => ({
+                ...state,
+                queued: state.queued.filter((track) => track.id !== trackId),
+            }));
+
         const addTrackToPlaylist = (playlistId, trackId) => {
             const track = state.allTracks.find((track) => track.id === trackId);
             const playlist = allPlaylist.find(
@@ -221,6 +239,29 @@ export const SortableItem = sortableElement(
                                         </MenuItem>
                                     );
                             })}
+                        {verifyIfTrackIsInQueue(value.id) ? (
+                            <MenuItem
+                                onClick={() => {
+                                    handleClose();
+                                    removeTrackFromQueue(value.id);
+                                }}
+                            >
+                                <span className="text-red-600 font-bold">
+                                    Remove from queue
+                                </span>
+                            </MenuItem>
+                        ) : (
+                            <MenuItem
+                                onClick={() => {
+                                    handleClose();
+                                    addTrackToQueue(value.id);
+                                }}
+                            >
+                                <span className="text-white font-bold">
+                                    Add to queue
+                                </span>
+                            </MenuItem>
+                        )}
                         <MenuItem
                             onClick={() => {
                                 handleClose();

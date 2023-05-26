@@ -15,8 +15,6 @@ export default function Header({
     setsidebarCollapsed,
     auth,
     trigger,
-    state,
-    setState,
 }) {
     const userName = auth.user.name;
     const [anchorEl, setAnchorEl] = useState(null);
@@ -34,13 +32,13 @@ export default function Header({
 
     const handleOnChangeInput = (e) => {
         setSearchValue(e.target.value);
+        url.searchParams.set("searchValue", e.target.value);
+        window.history.pushState(null, "", url.toString());
     };
 
     const onSubmit = (e) => {
         e.preventDefault();
-        router.post(route("search.store"), { searchValue });
-        url.searchParams.set("search", searchValue);
-        window.history.pushState(null, "", url.toString());
+        router.get(route("search.store"), { searchValue });
     };
 
     const renderSearchBar = () => (
@@ -48,7 +46,7 @@ export default function Header({
             <SearchForm
                 fullWidth={true}
                 variant="outlined"
-                wrapperclass="bg-blackSoft rounded-3xl focus:border-none w-full lg:w-96"
+                wrapperclass="rounded-3xl focus:border-none w-full lg:w-96"
                 handleChange={handleOnChangeInput}
                 size="small"
                 onSubmit={onSubmit}

@@ -2,8 +2,10 @@ import React from "react";
 import { ShowArtist } from "../Artist/ShowArtist";
 import { NoResults } from "./NoResults";
 import { TrackCard } from "@/Components/TrackCard";
+import { useEffect } from "react";
 
 const ShowSearch = ({
+    searchValue,
     tracks,
     artists,
     state,
@@ -11,8 +13,12 @@ const ShowSearch = ({
     allplaylist,
     allArtists,
 }) => {
-    console.log("🚀 ~ file: ShowSearch.jsx:4 ~ ShowSearch ~ tracks:", tracks);
-    console.log("🚀 ~ file: ShowSearch.jsx:4 ~ ShowSearch ~ artist:", artists);
+    const url = new URL(window.location);
+
+    useEffect(() => {
+        url.searchParams.set("searchValue", searchValue);
+        window.history.pushState(null, "", url.toString());
+    }, [searchValue]);
 
     if (tracks.length === 0 && artists.length === 0)
         return <NoResults allArtists={allArtists} />;
@@ -20,7 +26,7 @@ const ShowSearch = ({
     return (
         <div>
             {artists.length > 0 && (
-                <>
+                <div className="mb-20">
                     <h1 className="mb-4">Artist</h1>
                     {artists.map((artist) => (
                         <ShowArtist
@@ -31,12 +37,12 @@ const ShowSearch = ({
                             allplaylist={allplaylist}
                         />
                     ))}
-                </>
+                </div>
             )}
 
             {tracks.length > 0 && (
                 <>
-                    <h1 className="mb-4">Tracks</h1>
+                    <h1 className="mb-6">Tracks</h1>
                     <div className="grid grid-cols-3 gap-8 mb-4">
                         {tracks.map((track) => (
                             <TrackCard

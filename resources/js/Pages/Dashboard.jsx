@@ -11,7 +11,6 @@ import ShowSearch from "./Search/ShowSearch";
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
-    console.log("🚀 ~ file: Dashboard.jsx:14 ~ Dashboard ~ props:", props);
 
     const pathname = route().current();
 
@@ -47,6 +46,7 @@ function Dashboard(propsFromLayout) {
                     state={state}
                     setState={setState}
                     allplaylist={props.data.allPlaylist}
+                    searchValue={props.searchValue}
                 />
             )}
 
