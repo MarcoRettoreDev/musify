@@ -22,6 +22,8 @@ export default function Header({
     const [anchorEl, setAnchorEl] = useState(null);
     const [searchValue, setSearchValue] = useState(null);
 
+    const url = new URL(window.location);
+
     const handleProfileMenuOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -37,6 +39,8 @@ export default function Header({
     const onSubmit = (e) => {
         e.preventDefault();
         router.post(route("search.store"), { searchValue });
+        url.searchParams.set("search", searchValue);
+        window.history.pushState(null, "", url.toString());
     };
 
     const renderSearchBar = () => (
@@ -85,7 +89,7 @@ export default function Header({
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
                 MenuListProps={{
-                    className: "bg-blackSoft text-whitePrimary border-none",
+                    className: "bg-blackSecondary text-whitePrimary",
                 }}
             >
                 <MenuItem onClick={handleClose}>
@@ -151,6 +155,7 @@ export default function Header({
                             }}
                             className="h-14 w-14 p-1 bg-center bg-no-repeat bg-cover"
                         />
+
                         <h4 className="font-bold cursor-default px-4">
                             {userName}
                         </h4>

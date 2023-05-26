@@ -74,7 +74,7 @@ export default function Menu({
     );
 
     return (
-        <div className="h-full space-y-8 bg-blackSecondary ">
+        <div className="h-full space-y-8 bg-black ">
             <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
                 {allPlaylist.length > 0 && !sidebarCollapsed && (

@@ -97,6 +97,9 @@ export const TrackCard = ({ track, allPlaylist, state, setState }) => {
                 }}
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
+                MenuListProps={{
+                    className: "bg-blackSecondary text-whitePrimary",
+                }}
             >
                 {allPlaylist.length > 0 &&
                     allPlaylist.map((playlist) => (
