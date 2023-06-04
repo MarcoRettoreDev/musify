@@ -8,7 +8,7 @@ export const ArtistForm = ({
     errors,
 }) => {
     return (
-        <>
+        <div className="cardTemplate">
             <div className="md:col-span-12">
                 <p className="altText">
                     Here you can fill information about the artist of the track
@@ -16,13 +16,10 @@ export const ArtistForm = ({
                 </p>
             </div>
             <div className="mt-5 md:col-span-12 md:mt-0">
-                <div className="bg-white space-y-6 px-4 py-5 sm:p-6 rounded-md">
+                <div className="space-y-6 px-4 py-5 sm:p-6 rounded-md">
                     <div className="grid grid-cols-3 gap-6">
                         <div className="col-span-1">
-                            <label
-                                htmlFor="artistName"
-                                className="labelClass text-blackPrimary"
-                            >
+                            <label htmlFor="artistName" className="labelClass ">
                                 Artist name
                             </label>
                             <input
@@ -38,7 +35,7 @@ export const ArtistForm = ({
                         <div className="col-span-1">
                             <label
                                 htmlFor="artistBirthDate"
-                                className="labelClass text-blackPrimary"
+                                className="labelClass "
                             >
                                 Artist birthdate
                             </label>
@@ -55,7 +52,7 @@ export const ArtistForm = ({
                         <div className="">
                             <label
                                 htmlFor="artistNacionality"
-                                className="labelClass text-blackPrimary"
+                                className="labelClass "
                             >
                                 Nacionality
                             </label>
@@ -72,10 +69,7 @@ export const ArtistForm = ({
                             <ErrorText text={errors?.artistNacionality} />
                         </div>
                         <div className="col-span-3">
-                            <label
-                                htmlFor="artistBio"
-                                className="labelClass text-blackPrimary"
-                            >
+                            <label htmlFor="artistBio" className="labelClass ">
                                 Biography
                             </label>
                             <div className="mt-2">
@@ -103,6 +97,6 @@ export const ArtistForm = ({
                     />
                 </div>
             </div>
-        </>
+        </div>
     );
 };

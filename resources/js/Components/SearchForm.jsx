@@ -14,12 +14,13 @@ const SearchForm = ({
             <form onSubmit={onSubmit} className="">
                 <TextField
                     id="outlined-basic"
-                    className="text-white rounded-3xl !bg-blackSoft active:!bg-blackSoft focus:!bg-blackSoft "
+                    className="text-white rounded-3xl !bg-blackPrimary active:!bg-blackPrimary focus:!bg-blackPrimary "
                     name="searchInput"
                     onChange={handleChange}
                     fullWidth
                     size={size}
                     variant={variant}
+                    placeholder="Search"
                     InputProps={{
                         startAdornment: (
                             <InputAdornment position="start">

@@ -130,12 +130,12 @@ export const SortableItem = sortableElement(
         };
 
         return (
-            <div className="flex flex-row align-center hover:bg-greyPrimary rounded">
+            <div className="flex flex-row align-center hover:bg-blackSecondary hover:bg-opacity-20 rounded ">
                 <ListItem
                     key={value.id}
                     role="listitem"
                     onClick={handleCLickTest(value)}
-                    className="!flex cursor-pointer hover:bg-greyPrimary rounded "
+                    className="!flex cursor-pointer  rounded "
                 >
                     <ListItemIcon>
                         <ListItemText
@@ -151,9 +151,6 @@ export const SortableItem = sortableElement(
                             sx={{
                                 color: "transparent",
                                 backgroundColor: "transparent",
-                                "&:hover": {
-                                    color: "#15803d",
-                                },
                             }}
                             tabIndex={-1}
                             disableRipple
@@ -217,7 +214,8 @@ export const SortableItem = sortableElement(
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                         MenuListProps={{
-                            className: "bg-blackSecondary text-whitePrimary",
+                            className:
+                                "bg-blackSecondary hover:bg-blackSecondary hover:bg-opacity-20 text-whitePrimary",
                         }}
                     >
                         {allPlaylist.length > 0 &&

@@ -1,14 +1,13 @@
 import { useEffect } from "react";
 import { ErrorText } from "./ErrorText";
+import { Badge } from "./Badge";
 
 export const ImageUpload = ({
-    bgWhite,
     name,
     handleChange,
     label = "Cover photo",
     imageData,
     errors,
-    imageClass = "w-44 h-44 rounded-full object-cover mx-auto my-auto",
 }) => {
     const handlePreviewUrl = (imageData) => {
         if (imageData?.type == "image/jpeg" || imageData?.type == "image/png") {
@@ -26,23 +25,17 @@ export const ImageUpload = ({
     return (
         <div className="grid grid-cols-2">
             <div className="col-6">
-                <label
-                    className={`block text-sm font-medium leading-6 ${
-                        bgWhite ? "text-blackPrimary" : "text-whitePrimary"
-                    }`}
-                >
-                    {label}
-                </label>
+                <label className={`labelClass `}>{label}</label>
                 <ErrorText text={errors?.[name]} />
                 <div
-                    className={`mt-2 flex justify-center rounded-md border-2 border-dashed ${
+                    className={`mt-2 flex justify-center rounded-md border-2 border-dashed  ${
                         errors?.[name] ? "border-red-700" : "border-gray-300"
                     } px-6 pt-5 pb-6`}
                 >
-                    <div className="space-y-1 text-center">
+                    <div className="space-y-1 text-center ">
                         <label
                             htmlFor={name}
-                            className={`relative cursor-pointer focus-within:outline-none focus-within:ring-2`}
+                            className={`labelClass  hover:cursor-pointer`}
                         >
                             <svg
                                 className="mx-auto h-12 w-12 text-gray-400"
@@ -59,19 +52,9 @@ export const ImageUpload = ({
                                 />
                             </svg>
                             <div
-                                className={`flex text-sm ${
-                                    bgWhite
-                                        ? "text-whitePrimary"
-                                        : "text-greySecondary"
-                                } `}
+                                className={`flex items-center text-sm text-greySecondary `}
                             >
-                                <span
-                                    className={`px-2 rounded-md ${
-                                        bgWhite ? "bg-black" : "bg-white"
-                                    } font-medium`}
-                                >
-                                    Upload a file
-                                </span>
+                                <Badge text="Upload a file" />
                                 <input
                                     id={name}
                                     name={name}

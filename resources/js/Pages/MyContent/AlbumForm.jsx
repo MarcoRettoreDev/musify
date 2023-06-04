@@ -8,7 +8,7 @@ export const AlbumForm = ({
     errors,
 }) => {
     return (
-        <div className="space-y-6 bg-blackPrimary py-5">
+        <div className="space-y-6 cardTemplate">
             <div className="md:col-span-12">
                 <div className="px-4 sm:px-0">
                     <p className="altText">

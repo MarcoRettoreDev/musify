@@ -38,9 +38,9 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
     };
 
     const renderArtistSection = () => {
-        if (data.artistId === null || typeof data.artistId === "string") {
+        if (data.artistId !== undefined || typeof data.artistId === "string") {
             return (
-                <div className="col-span-12 mt-4">
+                <div className="col-span-12 mt-4 cardTemplate">
                     <label
                         htmlFor="artistId"
                         className="labelClass text-whitePrimary"
@@ -54,7 +54,9 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                         onChange={(e) =>
                             setData({ ...data, artistId: e.target.value })
                         }
+                        defaultValue={undefined}
                     >
+                        <option value={undefined}>Select an artist</option>
                         {allArtists.map((artist) => (
                             <option key={artist.id} value={Number(artist.id)}>
                                 {artist.name}
@@ -64,7 +66,7 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                     <ErrorText text={errors?.artistId} />
 
                     <div
-                        className="buttonBasic"
+                        className="buttonBasic "
                         onClick={() =>
                             setData({ ...data, artistId: undefined })
                         }
@@ -85,9 +87,9 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
     };
 
     const renderAlbumSection = () => {
-        if (data.albumId === null) {
+        if (data.albumId !== undefined) {
             return (
-                <div className="col-span-12 mt-4">
+                <div className="col-span-12 mt-4 cardTemplate">
                     <label
                         htmlFor="albumId"
                         className="labelClass text-whitePrimary"
@@ -101,7 +103,10 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                         onChange={(e) =>
                             setData({ ...data, albumId: e.target.value })
                         }
+                        selected="selected"
+                        defaultValue={undefined}
                     >
+                        <option value={undefined}>Select an album</option>
                         {allAlbums.map((album) => (
                             <option key={album.id} value={album.id}>
                                 {album.title}
@@ -111,8 +116,13 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                     <ErrorText text={errors?.albumId} />
 
                     <div
-                        className="buttonBasic "
-                        onClick={() => setData({ ...data, albumId: undefined })}
+                        className="buttonBasic hover:text-greenSecondary hover:border-greenSecondary"
+                        onClick={() =>
+                            setData({
+                                ...data,
+                                albumId: undefined,
+                            })
+                        }
                     >
                         Add new album
                     </div>
@@ -147,12 +157,12 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                 />
             </div>
             <div className="mt-10">
-                <h3 className="subtitle">Artist</h3>
+                <h3 className="subtitle mb-4">Artist</h3>
                 {renderArtistSection()}
             </div>
 
             <div className="mt-10">
-                <h3 className="subtitle">Album</h3>
+                <h3 className="subtitle mb-4">Album</h3>
                 {renderAlbumSection()}
             </div>
             <div className="flex">

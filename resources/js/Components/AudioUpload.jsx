@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Badge } from "./Badge";
 
 export const AudioUpload = ({
     name,
@@ -25,10 +26,10 @@ export const AudioUpload = ({
                 <div className="flex justify-center items-center">
                     <audio src={handlePreviewUrl(audioData)} controls />
                 </div>
-                <div className="space-y-1 text-center mt-2 rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
+                <div className="text-center mt-2 rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                     <label
                         htmlFor={name}
-                        className={` relative cursor-pointer  focus-within:outline-none focus-within:ring-2`}
+                        className={`labelClass hover:cursor-pointer space-y-2`}
                     >
                         <svg
                             className="text-gray-400 mx-auto h-12 w-12"
@@ -47,12 +48,8 @@ export const AudioUpload = ({
                             onChange={handleChange}
                             className="sr-only"
                         />
-                        <span
-                            className="bg-white rounded-md
-                         font-medium px-2"
-                        >
-                            Upload audio
-                        </span>
+
+                        <Badge text="Upload an audio" />
 
                         <p className="text-xs text-gray-500">
                             MP3, WAV up to 6MB

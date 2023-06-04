@@ -103,7 +103,7 @@ export default function AuthenticatedLayout(props) {
                 allPlaylist={children.props.data.allPlaylist}
             />
 
-            <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full bg-blackPrimary ">
+            <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full backgroundContent ">
                 <Header
                     trigger={trigger}
                     sidebarCollapsed={sidebarCollapsed}
@@ -117,7 +117,11 @@ export default function AuthenticatedLayout(props) {
                 />
 
                 <main className="">
-                    <div className="px-16 sm:px-6 lg:px-16 lg:pb-28 lg:pt-8 w-full max-w-9xl mx-auto ">
+                    <div
+                        className={`px-16 sm:px-6 ${
+                            state.firstTimePlaying ? "lg:pb-28" : "lg:pb-14"
+                        }  lg:pt-3 w-full max-w-9xl mx-auto `}
+                    >
                         {/* {children} */}
                         {playlistModal && renderModal()}
 

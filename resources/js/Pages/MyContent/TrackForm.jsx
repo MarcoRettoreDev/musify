@@ -10,9 +10,9 @@ export const TrackForm = ({
     errors,
 }) => {
     return (
-        <div className="mt-5 md:col-span-2 md:mt-0">
+        <div className="mt-5 md:col-span-2 md:mt-0 cardTemplate">
             <div className="shadow sm:overflow-hidden sm:rounded-md">
-                <div className="space-y-6 bg-blackPrimary py-5">
+                <div className="space-y-6 ">
                     <h3 className="subtitle">Track</h3>
                     <div className="grid grid-cols-2 gap-6">
                         <div className="">

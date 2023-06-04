@@ -7,7 +7,7 @@
         @apply text-whitePrimary text-2xl;
     }
     .labelClass {
-        @apply block text-sm font-medium leading-6 text-whitePrimary;
+        @apply block text-base font-medium leading-6 text-whitePrimary;
     }
     .altText {
         @apply mt-1 text-sm text-greySecondary;
@@ -16,7 +16,7 @@
         @apply mt-2 block w-full rounded-md border !border-greyLight py-1.5 text-blackPrimary shadow-md ring-1 ring-inset  focus:shadow-xl;
     }
     .buttonBasic {
-        @apply mt-4 px-2 py-1 border border-whiteLight rounded-md cursor-pointer inline-block;
+        @apply mt-4 px-2 py-1 border border-whiteLight rounded-md cursor-pointer inline-block font-semibold hover:text-greenSecondary hover:border-greenSecondary;
     }
     .playlistModal {
         @apply bg-blackSecondary rounded-md p-6  max-w-xl overflow-y-auto -z-50;
@@ -26,6 +26,9 @@
     }
     .titleMusify {
         @apply text-9xl font-bold py-2 tracking-widest text-center;
+    }
+    .cardTemplate {
+        @apply bg-blackPrimary p-4 rounded-xl;
     }
 }
 
@@ -107,6 +110,15 @@
 
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+    }
+
+    .backgroundContent {
+        background: rgb(66, 66, 66);
+        background: radial-gradient(
+            circle,
+            rgba(66, 66, 66, 1) 0%,
+            rgba(21, 25, 29, 1) 100%
+        );
     }
 }
 

@@ -444,7 +444,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
         <div
             ref={playerContainerRef}
             id="playerContainer"
-            className="bg-black absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6"
+            className="bg-blackPrimary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6 space-x-5"
         >
             <div className="flex cursor-default items-center ">
                 <div

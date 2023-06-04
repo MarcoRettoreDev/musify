@@ -7,7 +7,7 @@ export const TrackItem = ({ i, title, artist, duration, img, release }) => {
         return temp.slice(0, 5);
     };
     return (
-        <ListItem className="!flex space-x-4 cursor-pointer">
+        <ListItem className="!flex space-x-4 cursor-pointer font-medium">
             {i && <p>{i}</p>}
             <div
                 style={{ backgroundImage: `url(${img})` }}

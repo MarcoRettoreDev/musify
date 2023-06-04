@@ -151,12 +151,12 @@ export default function Header({
                                 backgroundImage: `url(${auth.user.image})`,
                                 borderRadius: "50%",
                             }}
-                            className="h-14 w-14 p-1 bg-center bg-no-repeat bg-cover"
+                            className="h-11 w-11 p-1 bg-center bg-no-repeat bg-cover"
                         />
 
-                        <h4 className="font-bold cursor-default px-4">
+                        <h5 className="font-bold cursor-default px-4">
                             {userName}
-                        </h4>
+                        </h5>
                         {profileMenu()}
                     </div>
                 </Toolbar>
