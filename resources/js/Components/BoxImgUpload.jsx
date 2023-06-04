@@ -2,11 +2,12 @@ import { useEffect } from "react";
 
 export const BoxImgUpload = (props) => {
     const { name, handleChange, imageData, errors } = props;
+
     const handlePreviewUrl = (imageData) => {
         if (imageData?.type == "image/jpeg" || imageData?.type == "image/png") {
             const blob = URL.createObjectURL(imageData);
             return blob;
-        }
+        } else return imageData;
     };
 
     useEffect(() => {
@@ -60,12 +61,13 @@ export const BoxImgUpload = (props) => {
                         accept="image/png, image/jpeg"
                     />
 
-                    <img
-                        style={{ display: imageData?.type ? "block" : "none" }}
-                        src={handlePreviewUrl(imageData)}
-                        alt="preview"
-                        className="h-full w-full object-contain"
-                    />
+                    {imageData && (
+                        <img
+                            src={handlePreviewUrl(imageData)}
+                            alt="preview"
+                            className="h-48 w-48 object-contain"
+                        />
+                    )}
                 </label>
             </div>
         </div>

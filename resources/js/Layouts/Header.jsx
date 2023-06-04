@@ -6,7 +6,7 @@ import IconButton from "@mui/material/IconButton";
 import { Icon } from "@iconify/react";
 import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
-import { Link, usePage } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import SearchForm from "@/Components/SearchForm";
 import { router } from "@inertiajs/react";
 

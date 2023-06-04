@@ -1,36 +1,38 @@
 import { Icon } from "@iconify/react";
 import PlaylistImage from "../../../css/icons/defaultPlaylist.svg";
 import { useState } from "react";
+import { BoxImgUpload } from "@/Components/BoxImgUpload";
 
 export const PlaylistHeader = ({
     data,
-    imgURL,
     songsQuantity,
     duration,
     handleChange,
+    handleChangeImage,
+    errors,
 }) => {
     const [editMode, setEditMode] = useState(false);
-
     return (
         <div className="flex space-x-4">
-            <div
-                style={{
-                    backgroundImage: `url(${
-                        imgURL.length === 0 ? PlaylistImage : imgURL
-                    })`,
-                }}
-                className="w-48 h-40 bg-center bg-cover"
+            <BoxImgUpload
+                name="image"
+                imageData={data.image}
+                handleChange={handleChangeImage}
+                errors={errors?.image}
             />
             <div className="flex flex-col justify-evenly w-full">
                 <div className="flex justify-between items-center">
                     {editMode ? (
-                        <input
-                            onChange={handleChange}
-                            type="text"
-                            name="name"
-                            className="border-none text-whitePrimary text-4xl bg-transparent focus:outline-none"
-                            value={data.name}
-                        />
+                        <div className="flex items-center space-x-4">
+                            <label htmlFor="name">Name:</label>
+                            <input
+                                onChange={handleChange}
+                                type="text"
+                                name="name"
+                                className="border-none text-whitePrimary text-4xl bg-transparent focus:outline-none !bg-blackSecondary rounded-md"
+                                value={data.name}
+                            />
+                        </div>
                     ) : (
                         <h1 className="text-4xl text-whitePrimary">
                             {data.name}
@@ -54,13 +56,16 @@ export const PlaylistHeader = ({
                 </div>
 
                 {editMode ? (
-                    <input
-                        onChange={handleChange}
-                        type="text"
-                        name="description"
-                        className="border-none text-whitePrimary  bg-transparent focus:outline-none"
-                        value={data.description}
-                    />
+                    <div className="flex items-center space-x-4">
+                        <label htmlFor="description">Description:</label>
+                        <input
+                            onChange={handleChange}
+                            type="text"
+                            name="description"
+                            className="border-none text-whitePrimary bg-transparent focus:outline-none !bg-blackSecondary rounded-md w-3/5"
+                            value={data.description}
+                        />
+                    </div>
                 ) : (
                     <p>{data.description}</p>
                 )}

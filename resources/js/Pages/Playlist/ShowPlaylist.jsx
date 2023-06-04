@@ -9,7 +9,6 @@ import { useEffect } from "react";
 
 export const ShowPlaylist = (props) => {
     const { playlist, setState, state, allPlaylist } = props;
-
     const { data, setData, post, processing, errors } = useForm({
         name: playlist.name ?? "",
         image: playlist.image ?? "",
@@ -29,6 +28,13 @@ export const ShowPlaylist = (props) => {
         });
     };
 
+    const handleChangeImage = (e) => {
+        setData((data) => ({
+            ...data,
+            [e.target.name]: e.target.files[0],
+        }));
+    };
+
     const handleSortChange = (items) => {
         setData({ ...data, tracks: items });
     };
@@ -45,7 +51,17 @@ export const ShowPlaylist = (props) => {
     };
 
     const playPlaylist = () => {
-        if (state.currentPlaylist !== playlist.id) {
+        // Si la playlist ya está siendo playeada, se debe resumir donde quedó, sinó. Se debe empezar desde el principio
+        if (state.currentPlaylist === playlist.id) {
+            setState((state) => ({
+                ...state,
+                queued: data.tracks.filter(
+                    (track) => track.id !== data.tracks[0].id
+                ),
+                firstTimePlaying: true,
+                playing: true,
+            }));
+        } else {
             setState((state) => ({
                 ...state,
                 queued: data.tracks.filter(
@@ -82,22 +98,38 @@ export const ShowPlaylist = (props) => {
                 message={"Are you sure to delete this?"}
                 title={data.name}
             />
+
             <PlaylistHeader
+                handleChangeImage={handleChangeImage}
+                errors={errors}
                 data={data}
                 handleChange={handleChange}
-                imgURL={playlist.image}
                 name={playlist.name}
                 description={playlist.description}
                 songsQuantity={playlist.tracks.length}
             />
 
             <div className="flex items-center justify-between space-x-6 my-5">
-                <Icon
-                    onClick={playPlaylist}
-                    className="text-greenPrimary hover:text-greenSecondary cursor-pointer"
-                    width="4rem"
-                    icon="material-symbols:play-circle-rounded"
-                />
+                {state.currentPlaylist === playlist.id && state.playing ? (
+                    <Icon
+                        onClick={() =>
+                            setState((state) => ({
+                                ...state,
+                                playing: false,
+                            }))
+                        }
+                        className="text-greenPrimary hover:text-greenSecondary cursor-pointer"
+                        width="4rem"
+                        icon="material-symbols:pause-circle-rounded"
+                    />
+                ) : (
+                    <Icon
+                        onClick={playPlaylist}
+                        className="text-greenPrimary hover:text-greenSecondary cursor-pointer"
+                        width="4rem"
+                        icon="material-symbols:play-circle-rounded"
+                    />
+                )}
 
                 <div className="flex space-x-4">
                     <AcceptButton

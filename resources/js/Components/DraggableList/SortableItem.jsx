@@ -216,6 +216,9 @@ export const SortableItem = sortableElement(
                         }}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
+                        MenuListProps={{
+                            className: "bg-blackSecondary text-whitePrimary",
+                        }}
                     >
                         {allPlaylist.length > 0 &&
                             allPlaylist.map((playlist) => {

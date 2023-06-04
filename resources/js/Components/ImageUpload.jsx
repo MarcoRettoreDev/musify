@@ -8,7 +8,7 @@ export const ImageUpload = ({
     label = "Cover photo",
     imageData,
     errors,
-    imageClass = "h-full max-h-44 w-full object-contain ",
+    imageClass = "w-44 h-44 rounded-full object-cover mx-auto my-auto",
 }) => {
     const handlePreviewUrl = (imageData) => {
         if (imageData?.type == "image/jpeg" || imageData?.type == "image/png") {
@@ -92,11 +92,12 @@ export const ImageUpload = ({
                 </div>
             </div>
             <div className="col-6 ">
-                <img
-                    style={{ display: imageData ? "block" : "none" }}
-                    src={handlePreviewUrl(imageData)}
-                    alt="preview"
-                    className={imageClass}
+                <div
+                    className="h-44 w-44  bg-center bg-cover bg-no-repeat mx-auto "
+                    style={{
+                        backgroundImage: `url(${handlePreviewUrl(imageData)})`,
+                        borderRadius: "50%",
+                    }}
                 />
             </div>
         </div>
