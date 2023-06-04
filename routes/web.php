@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -26,8 +27,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\AuthenticatedSessionController@
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/dashboard/artist/{artist}', [ArtistController::class, 'show'])->name('artist.show');
-    Route::get('/dashboard/mycontent', [DashboardController::class, 'create'])->name('mycontent.create');
-    Route::post('/dashboard/mycontent', [DashboardController::class, 'store'])->name('mycontent.store');
+    Route::get('/mycontent', [DashboardController::class, 'create'])->name('mycontent.create');
+    Route::post('/mycontent', [DashboardController::class, 'store'])->name('mycontent.store');
     Route::get('/dashboard/playlist', [PlaylistController::class, 'create'])->name('playlist.create');
     Route::post('/dashboard/playlist', [PlaylistController::class, 'store'])->name('playlist.store');
     Route::post('/dashboard/playlist/{playlist}/add/{track}', [PlaylistController::class, 'addTrack'])->name('playlist.addTrack');
@@ -38,6 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/about', [AboutMeController::class, 'index'])->name('aboutme.index');
 
     Route::get('/dashboard/search', [SearchController::class, 'store'])->name('search.store');
 });
