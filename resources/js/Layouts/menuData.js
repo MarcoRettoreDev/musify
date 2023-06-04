@@ -21,7 +21,7 @@ export const sideBarLinks = [
     {
         label: "About me",
         icon: "solar:info-square-bold",
-        pathName: null,
-        routeLink: "",
+        pathName: "aboutme.index",
+        routeLink: "aboutme.index",
     },
 ];

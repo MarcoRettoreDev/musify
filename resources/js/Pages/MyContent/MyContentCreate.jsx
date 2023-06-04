@@ -6,7 +6,7 @@ import { AlbumForm } from "./AlbumForm";
 import { ArtistForm } from "./ArtistForm";
 import { TrackForm } from "./TrackForm";
 
-export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
+export const MyContentCreate = ({ state, allAlbums }) => {
     const { data, setData, post, processing, errors } = useForm({
         trackTitle: undefined,
         trackRelease: undefined,
@@ -45,7 +45,7 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                         htmlFor="artistId"
                         className="labelClass text-whitePrimary"
                     >
-                        All artist
+                        All artists
                     </label>
                     <select
                         id="artistId"
@@ -57,7 +57,7 @@ export const MyContentCreate = ({ allArtists, allAlbums, allGenres }) => {
                         defaultValue={undefined}
                     >
                         <option value={undefined}>Select an artist</option>
-                        {allArtists.map((artist) => (
+                        {state.allArtist.map((artist) => (
                             <option key={artist.id} value={Number(artist.id)}>
                                 {artist.name}
                             </option>

@@ -8,6 +8,14 @@ import { ShowPlaylist } from "./Playlist/ShowPlaylist";
 import { useEffect } from "react";
 import EditProfile from "./Profile/Edit";
 import ShowSearch from "./Search/ShowSearch";
+import { AboutMe } from "./AboutMe/AboutMe";
+
+/*
+ * Disclaimer: this component act like a router, its allways mounted on AuthenticatedLayout
+ * Its like a switch case, it renders the component that is needed
+ * You send the apropiate props to the component that is going to be rendered
+ * BTW: i know its not the best way to do it, but it works to my proupose of this project
+ */
 
 function Dashboard(propsFromLayout) {
     const { props, state, setState } = propsFromLayout;
@@ -31,11 +39,7 @@ function Dashboard(propsFromLayout) {
         <>
             <Head title="Dashboard" />
             {props.created && (
-                <MyContentCreate
-                    allAlbums={props.allAlbums}
-                    allArtists={props.allArtist}
-                    allTracks={props.allTracks}
-                />
+                <MyContentCreate state={state} allAlbums={props.allAlbums} />
             )}
 
             {props.searched && (
@@ -49,6 +53,8 @@ function Dashboard(propsFromLayout) {
                     searchValue={props.searchValue}
                 />
             )}
+
+            {props.aboutme && <AboutMe />}
 
             {pathname?.includes("artist.show") && (
                 <ShowArtist

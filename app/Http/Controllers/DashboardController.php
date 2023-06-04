@@ -33,13 +33,11 @@ class DashboardController extends Controller
         $allTracks = Track::all();
         $allArtist = Artist::all();
         $allPlaylist = User::find(auth()->user()->id)->playlists;
-        $allAlbums = Album::all();
 
         return Inertia::render('Dashboard', [
             'tracks' => $tracks,
             'allTracks' => $allTracks,
             'allArtist' => $allArtist,
-            'allAlbums' => $allAlbums,
             'allPlaylist' => $allPlaylist,
             'playlist' => $request->playlist ? $request->playlist : null,
             'created' => $request->created ? $request->created : null,
@@ -54,8 +52,12 @@ class DashboardController extends Controller
      */
     public function create()
     {
-        return Redirect::route('dashboard', [
+
+        $allAlbums = Album::all();
+
+        return Inertia::render('Dashboard', [
             'created' => true,
+            'allAlbums' => $allAlbums,
         ]);
     }
 
