@@ -68,7 +68,7 @@ export const ShowQueued = ({ state, setState }) => {
                     <h3 className="text-lg font-semibold">Now playing</h3>
                     <ul className="!flex px-4 items-center space-x-4 cursor-pointer hover:bg-greyPrimary rounded">
                         <TrackItem
-                            i={1}
+                            i={null}
                             id={currentTrackPlaying.id}
                             title={currentTrackPlaying.title}
                             artist={currentTrackPlaying.artist}
