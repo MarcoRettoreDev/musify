@@ -2,25 +2,19 @@ import { Icon } from "@iconify/react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect } from "react";
 
-export const ToastMessages = ({
-    icon,
-    message,
-    iconColor,
-    show,
-    setToastMessages,
-}) => {
+export const ToastMessages = ({ toastMessages, setToastMessages }) => {
     useEffect(() => {
         setTimeout(() => {
             setToastMessages((state) => ({
                 ...state,
                 show: false,
             }));
-        }, 3000);
-    }, [show]);
+        }, toastMessages.duration);
+    }, [toastMessages.show]);
 
     return (
         <AnimatePresence initial={true} mode="popLayout">
-            {show && (
+            {toastMessages.show && (
                 <motion.div
                     initial={{
                         x: -2000,
@@ -33,15 +27,18 @@ export const ToastMessages = ({
                         transition: { duration: 0.2 },
                     }}
                     exit={{
-                        x: 300,
                         opacity: 0,
                         transition: { duration: 0.5 },
                     }}
                     className="absolute bottom-[10%] right-[1%] px-4 py-4 bg-whitePrimary rounded-md flex space-x-2 items-center"
                 >
-                    <Icon className={iconColor} icon={icon} width="1.5rem" />
-                    <div className="text-blackSecondary font-bold">
-                        {message}
+                    <Icon
+                        className={toastMessages.iconColor}
+                        icon={toastMessages.icon}
+                        width="1.5rem"
+                    />
+                    <div className="text-blackSecondary font-bold text-sm">
+                        {toastMessages.message}
                     </div>
                 </motion.div>
             )}

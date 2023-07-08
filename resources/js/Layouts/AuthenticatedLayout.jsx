@@ -42,6 +42,7 @@ export default function AuthenticatedLayout(props) {
         message: "",
         iconColor: "",
         show: false,
+        duration: 3000,
     });
 
     const [sidebarCollapsed, setsidebarCollapsed] = useState(
@@ -70,6 +71,7 @@ export default function AuthenticatedLayout(props) {
                 icon: "material-symbols:check-circle-outline",
                 message: flash.message,
                 show: true,
+                duration: 3000,
             });
         }
         if (flash.message?.includes("Track added")) {
@@ -78,6 +80,7 @@ export default function AuthenticatedLayout(props) {
                 icon: "material-symbols:check-circle-outline",
                 message: flash.message,
                 show: true,
+                duration: 3000,
             });
         }
     }, [flash]);
@@ -146,10 +149,7 @@ export default function AuthenticatedLayout(props) {
                 />
             )}
             <ToastMessages
-                iconColor={toastMessages.iconColor}
-                icon={toastMessages.icon}
-                message={toastMessages.message}
-                show={toastMessages.show}
+                toastMessages={toastMessages}
                 setToastMessages={setToastMessages}
             />
         </div>
