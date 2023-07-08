@@ -1,20 +1,19 @@
 export default function PrimaryButton({
     type = "submit",
     className = "",
-    processing,
     children,
     onClick,
+    styleProp,
 }) {
     return (
         <button
             type={type}
             onClick={onClick}
             className={
-                ` text-center px-4 py-2 bg-slate-700 bg-opacity-50 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gradientButton hover:text-blackSecondary hover:font-bold transition ease-out duration-50 ${
-                    processing && "opacity-25"
-                } ` + className
+                ` text-center px-4 py-2 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gradientButton hover:text-blackSecondary hover:font-bold transition ease-out duration-50` +
+                className
             }
-            disabled={processing}
+            style={styleProp}
         >
             {children}
         </button>

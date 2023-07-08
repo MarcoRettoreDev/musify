@@ -5,12 +5,12 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { useForm } from "@inertiajs/react";
 import React from "react";
+import { useEffect } from "react";
 
 export const BoxLogin = ({ user, handleGenerateValues }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
-        name: user?.name,
-        email: user?.email,
-        password: user?.viewPassword,
+        email: "",
+        password: "",
     });
 
     const handleSubmit = (e) => {
@@ -24,20 +24,25 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
         setData({ ...data, [name]: val });
     };
 
+    useEffect(() => {
+        if (user) {
+            setData({
+                email: user?.email,
+                password: user?.viewPassword,
+            });
+        }
+    }, [user]);
+
     return (
-        <div className="w-full max-w-md mx-auto space-y-4">
+        <div className="w-full max-w-md mx-auto space-y-4 px-4 ">
             <form
                 onSubmit={handleSubmit}
-                className="w-full bg-slate-600 bg-opacity-40 px-6 py-6 rounded "
+                className="w-full px-6 py-6 rounded-lg"
+                style={{
+                    backgroundColor: "rgba(255, 255, 255, 0.05)",
+                    backdropFilter: "blur(3px)",
+                }}
             >
-                <div>
-                    {data.name && (
-                        <EventualText
-                            text="This account will be deleted after 24 hs"
-                            durationInMs={7000}
-                        />
-                    )}
-                </div>
                 <div>
                     <InputLabel forInput="email" value="Email" />
 
@@ -73,8 +78,6 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
             </form>
             <div className="flex items-center justify-around">
                 <PrimaryButton
-                    className="ml-4"
-                    processing={processing}
                     onClick={() => {
                         setData({
                             name: "",
@@ -83,10 +86,20 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
                         });
                     }}
                     type="button"
+                    styleProp={{
+                        backgroundColor: "rgba(255, 255, 255, 0.05)",
+                        backdropFilter: "blur(3px)",
+                    }}
                 >
                     Reset
                 </PrimaryButton>
-                <PrimaryButton className="ml-4" onClick={handleGenerateValues}>
+                <PrimaryButton
+                    styleProp={{
+                        backgroundColor: "rgba(255, 255, 255, 0.05)",
+                        backdropFilter: "blur(3px)",
+                    }}
+                    onClick={handleGenerateValues}
+                >
                     Generate
                 </PrimaryButton>
             </div>
