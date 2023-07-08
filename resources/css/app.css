@@ -25,7 +25,7 @@
         @apply fixed inset-0 bg-blackPrimary bg-opacity-80 z-40 flex items-center justify-center;
     }
     .titleMusify {
-        @apply text-9xl font-bold py-2 tracking-widest text-center;
+        @apply font-bold py-2 tracking-[0.8rem] text-center text-gradientDown drop-shadow-musifyShadow;
     }
     .cardTemplate {
         @apply bg-blackPrimary p-4 rounded-xl;

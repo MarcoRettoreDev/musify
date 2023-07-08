@@ -28,6 +28,9 @@ module.exports = {
                 greyLight: "#d1d5da",
                 greyDark: "#262626",
             },
+            dropShadow: {
+                musifyShadow: "7px 7px 5px rgba(0, 0, 0, 0.30)",
+            },
         },
     },
 
