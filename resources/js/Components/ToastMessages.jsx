@@ -17,18 +17,18 @@ export const ToastMessages = ({ toastMessages, setToastMessages }) => {
             {toastMessages.show && (
                 <motion.div
                     initial={{
-                        x: -2000,
+                        // y: 2000,
                         opacity: 0,
-                        transition: { duration: 0.8 },
+                        transition: { duration: 1.2 },
                     }}
                     animate={{
-                        x: 0,
+                        // y: 0,
                         opacity: 1,
-                        transition: { duration: 0.2 },
+                        transition: { duration: 0.4 },
                     }}
                     exit={{
                         opacity: 0,
-                        transition: { duration: 0.5 },
+                        transition: { duration: 1.2 },
                     }}
                     className="absolute bottom-[10%] right-[1%] px-4 py-4 bg-whitePrimary rounded-md flex space-x-2 items-center"
                 >
