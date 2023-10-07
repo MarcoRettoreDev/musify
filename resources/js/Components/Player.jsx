@@ -444,178 +444,218 @@ export const Player = ({ allPlaylist, state, setState }) => {
         <div
             ref={playerContainerRef}
             id="playerContainer"
-            className="bg-blackPrimary absolute flex w-screen right-0 bottom-0 justify-between items-center h-28 px-6 space-x-5"
+            className="bg-blackPrimary absolute flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5"
         >
-            <div className="flex cursor-default items-center ">
-                <div
-                    className="h-20 w-20 bg-no-repeat bg-contain bg-center rounded-md"
-                    style={{
-                        backgroundImage: `url(${currentTrackPlaying?.avatar})`,
-                    }}
-                />
-                <div className="flex flex-col justify-center ml-4">
-                    <h5 className="text-2xl">{currentTrackPlaying?.title}</h5>
-                    <Link
-                        onClick={() =>
-                            setState((state) => ({
-                                ...state,
-                                queueOpen: false,
-                            }))
-                        }
-                        className="hover:underline"
-                        href={route(
-                            "artist.show",
-                            currentTrackPlaying?.artist_id
-                        )}
-                    >
-                        <h6>{currentTrackPlaying?.artist}</h6>
-                    </Link>
-                </div>
-
-                {renderAddPlaylistMenu()}
+            <div className="flex items-center gap-4 px-2">
+                <h3 className="">{currentTrackPlaying?.title}</h3>
+                <Link
+                    onClick={() =>
+                        setState((state) => ({
+                            ...state,
+                            queueOpen: false,
+                        }))
+                    }
+                    className="hover:underline"
+                    href={route("artist.show", currentTrackPlaying?.artist_id)}
+                >
+                    <h5>{currentTrackPlaying?.artist}</h5>
+                </Link>
             </div>
 
-            <div
-                id="innerPlayerContainer"
-                className="flex w-8/12 justify-between"
-            >
-                <div id="playerControls" className="flex flex-col ">
+            <div className="flex justify-between items-center">
+                <div className="hidden lg:flex cursor-default items-center ">
                     <div
-                        id="iconsSection"
-                        className="flex justify-around items-center max-w-[70%] w-full mb-2 mx-auto"
-                    >
-                        <Icon
-                            width={smallIconStyle}
-                            height={smallIconStyle}
-                            icon="ph:shuffle-fill"
-                            onClick={() => setPlayerShuffle(!playerShuffle)}
-                            className={
-                                playerShuffle
-                                    ? "text-greenPrimary cursor-pointer"
-                                    : "cursor-pointer hover:text-greySecondary"
-                            }
-                        />
-                        <Icon
-                            width={smallIconStyle}
-                            height={smallIconStyle}
-                            icon="tabler:player-skip-back-filled"
-                            onClick={previousTrack}
-                            className="cursor-pointer hover:text-greySecondary"
-                        />
-
-                        {state.playing ? (
-                            <Icon
-                                className="cursor-pointer hover:text-greySecondary"
-                                width={bigIconStyle}
-                                height={bigIconStyle}
-                                icon="material-symbols:pause-circle-rounded"
-                                ref={pauseIconRef}
-                                onClick={() => {
-                                    setState({
-                                        ...state,
-                                        playing: !state.playing,
-                                    });
-                                    playerRef.current.pause();
-                                    cancelAnimationFrame(raf);
-                                }}
-                            />
-                        ) : (
-                            <Icon
-                                className="cursor-pointer hover:text-greySecondary"
-                                width={bigIconStyle}
-                                height={bigIconStyle}
-                                ref={playIconRef}
-                                onClick={() => {
-                                    setState({
-                                        ...state,
-                                        playing: !state.playing,
-                                        firstTimePlaying: true,
-                                    });
-                                    playerRef.current.play();
-                                    requestAnimationFrame(whilePlaying);
-                                }}
-                                icon="material-symbols:play-circle-rounded"
-                            />
-                        )}
-
-                        <Icon
-                            width={smallIconStyle}
-                            height={smallIconStyle}
-                            icon="tabler:player-skip-forward-filled"
-                            onClick={nextTrack}
-                            className="cursor-pointer hover:text-greySecondary"
-                        />
-                        <Icon
-                            width={smallIconStyle}
-                            height={smallIconStyle}
-                            icon="ph:repeat"
+                        className="lg:h-20 lg:w-20 bg-no-repeat bg-contain bg-center rounded-md"
+                        style={{
+                            backgroundImage: `url(${currentTrackPlaying?.avatar})`,
+                        }}
+                    />
+                    <div className="flex flex-col justify-center ml-4">
+                        <h5 className="text-2xl">
+                            {currentTrackPlaying?.title}
+                        </h5>
+                        <Link
                             onClick={() =>
-                                setState({ ...state, repeat: !state.repeat })
+                                setState((state) => ({
+                                    ...state,
+                                    queueOpen: false,
+                                }))
                             }
-                            className={
-                                state.repeat
-                                    ? "text-greenPrimary cursor-pointer"
-                                    : "cursor-pointer hover:text-greySecondary"
-                            }
-                        />
+                            className="hover:underline"
+                            href={route(
+                                "artist.show",
+                                currentTrackPlaying?.artist_id
+                            )}
+                        >
+                            <h6>{currentTrackPlaying?.artist}</h6>
+                        </Link>
                     </div>
-                    <div id="seekSection" className="flex">
-                        <audio
-                            ref={playerRef}
-                            preload="metadata"
-                            src={currentTrackPlaying?.audio}
-                            loop={state.repeat ? true : false}
-                        />
 
-                        <span ref={currentTimeRef} className="mr-2">
-                            0:00
-                        </span>
-
-                        <input
-                            id="seek-slider"
-                            type="range"
-                            ref={seekSliderRef}
-                            onChange={(e) =>
-                                (seekSliderRef.current.value = e.target.value)
-                            }
-                            className="w-96"
-                        />
-
-                        <span ref={durationRef} className="ml-2">
-                            0:00
-                        </span>
-                    </div>
+                    {renderAddPlaylistMenu()}
                 </div>
 
-                <div className="flex items-center space-x-4">
-                    <Icon
-                        width={mediumIconStyle}
-                        height={mediumIconStyle}
-                        icon="ph:queue-fill"
-                        className={`cursor-pointer hover:text-greySecondary ${
-                            state.queueOpen && "!text-greenPrimary"
-                        }`}
-                        onClick={() =>
-                            setState({
-                                ...state,
-                                queueOpen: !state.queueOpen,
-                            })
-                        }
-                    />
-                    {renderVolumeIcon()}
+                <div
+                    id="innerPlayerContainer"
+                    className="flex w-full lg:w-8/12 justify-between items-center px-4 lg:px-0"
+                >
+                    <div id="playerControls" className="flex flex-col w-full">
+                        <div className="flex">
+                            <div className="flex lg:hidden cursor-default items-center ">
+                                <div
+                                    className="h-12 aspect-square lg:h-20 lg:w-20 bg-no-repeat bg-contain bg-center rounded-md"
+                                    style={{
+                                        backgroundImage: `url(${currentTrackPlaying?.avatar})`,
+                                    }}
+                                />
+                            </div>
 
-                    <input
-                        id="volume-slider"
-                        type="range"
-                        ref={volumeSliderRef}
-                        onInput={(e) => {
-                            changeVolume(e.target.value);
-                            volumeSliderRef.current.value = e.target.value;
-                            setVolumeIconControl(e.target.value);
-                            displayVolumeBeforeWidth();
-                        }}
-                        max="100"
-                    />
+                            <div
+                                id="iconsSection"
+                                className="flex justify-around items-center max-w-[70%] w-full mb-2 mx-auto"
+                            >
+                                <Icon
+                                    width={smallIconStyle}
+                                    height={smallIconStyle}
+                                    icon="ph:shuffle-fill"
+                                    onClick={() =>
+                                        setPlayerShuffle(!playerShuffle)
+                                    }
+                                    className={
+                                        playerShuffle
+                                            ? "text-greenPrimary cursor-pointer"
+                                            : "cursor-pointer hover:text-greySecondary"
+                                    }
+                                />
+                                <Icon
+                                    width={smallIconStyle}
+                                    height={smallIconStyle}
+                                    icon="tabler:player-skip-back-filled"
+                                    onClick={previousTrack}
+                                    className="cursor-pointer hover:text-greySecondary"
+                                />
+
+                                {state.playing ? (
+                                    <Icon
+                                        className="cursor-pointer hover:text-greySecondary"
+                                        width={bigIconStyle}
+                                        height={bigIconStyle}
+                                        icon="material-symbols:pause-circle-rounded"
+                                        ref={pauseIconRef}
+                                        onClick={() => {
+                                            setState({
+                                                ...state,
+                                                playing: !state.playing,
+                                            });
+                                            playerRef.current.pause();
+                                            cancelAnimationFrame(raf);
+                                        }}
+                                    />
+                                ) : (
+                                    <Icon
+                                        className="cursor-pointer hover:text-greySecondary"
+                                        width={bigIconStyle}
+                                        height={bigIconStyle}
+                                        ref={playIconRef}
+                                        onClick={() => {
+                                            setState({
+                                                ...state,
+                                                playing: !state.playing,
+                                                firstTimePlaying: true,
+                                            });
+                                            playerRef.current.play();
+                                            requestAnimationFrame(whilePlaying);
+                                        }}
+                                        icon="material-symbols:play-circle-rounded"
+                                    />
+                                )}
+
+                                <Icon
+                                    width={smallIconStyle}
+                                    height={smallIconStyle}
+                                    icon="tabler:player-skip-forward-filled"
+                                    onClick={nextTrack}
+                                    className="cursor-pointer hover:text-greySecondary"
+                                />
+                                <Icon
+                                    width={smallIconStyle}
+                                    height={smallIconStyle}
+                                    icon="ph:repeat"
+                                    onClick={() =>
+                                        setState({
+                                            ...state,
+                                            repeat: !state.repeat,
+                                        })
+                                    }
+                                    className={
+                                        state.repeat
+                                            ? "text-greenPrimary cursor-pointer"
+                                            : "cursor-pointer hover:text-greySecondary"
+                                    }
+                                />
+                            </div>
+                            <div className="lg:hidden">
+                                {renderAddPlaylistMenu()}
+                            </div>
+                        </div>
+                        <div id="seekSection" className="flex">
+                            <audio
+                                ref={playerRef}
+                                preload="metadata"
+                                src={currentTrackPlaying?.audio}
+                                loop={state.repeat ? true : false}
+                            />
+
+                            <span ref={currentTimeRef} className="mr-2">
+                                0:00
+                            </span>
+
+                            <input
+                                id="seek-slider"
+                                type="range"
+                                ref={seekSliderRef}
+                                onChange={(e) =>
+                                    (seekSliderRef.current.value =
+                                        e.target.value)
+                                }
+                                className="lg:w-96 w-full"
+                            />
+
+                            <span ref={durationRef} className="ml-2">
+                                0:00
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="hidden lg:flex items-center space-x-4">
+                        <Icon
+                            width={mediumIconStyle}
+                            height={mediumIconStyle}
+                            icon="ph:queue-fill"
+                            className={`cursor-pointer hover:text-greySecondary ${
+                                state.queueOpen && "!text-greenPrimary"
+                            }`}
+                            onClick={() =>
+                                setState({
+                                    ...state,
+                                    queueOpen: !state.queueOpen,
+                                })
+                            }
+                        />
+                        {renderVolumeIcon()}
+
+                        <input
+                            id="volume-slider"
+                            type="range"
+                            ref={volumeSliderRef}
+                            onInput={(e) => {
+                                changeVolume(e.target.value);
+                                volumeSliderRef.current.value = e.target.value;
+                                setVolumeIconControl(e.target.value);
+                                displayVolumeBeforeWidth();
+                            }}
+                            max="100"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
