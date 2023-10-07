@@ -3,14 +3,14 @@ import React from "react";
 
 export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
     return (
-        <div className="mb-20">
-            <div className="grid grid-cols-2 mb-24">
+        <div className="lg:mb-20">
+            <div className="grid grid-cols-1 lg:grid-cols-2 lg:mb-24">
                 <div
                     style={{ backgroundImage: `url(${artist.images})` }}
-                    className="w-full bg-no-repeat bg-cover bg-center rounded-lg"
+                    className="w-full aspect-video bg-no-repeat bg-cover bg-center rounded-lg"
                 />
 
-                <div className="px-6 lg:px-8">
+                <div className="lg:px-8">
                     <div className="mx-auto py-8">
                         <div className="">
                             <h1 className="text-4xl font-bold text-whitePrimary sm:text-6xl">
@@ -37,7 +37,7 @@ export const ShowArtist = ({ artist, state, setState, allplaylist }) => {
             <h2 className="text-3xl text-whitePrimary mb-4">
                 Tracks of artist
             </h2>
-            <div className="grid grid-cols-3 gap-8 mb-4">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-4">
                 {artist.tracks.map((track) => (
                     <TrackCard
                         key={track.id}
