@@ -20,7 +20,6 @@ export default function SidebarLink({
     return (
         <React.Fragment>
             <div
-                href="#0"
                 className={`group block truncate transition duration-150`}
                 onClick={(e) => {
                     e.preventDefault();
@@ -35,29 +34,25 @@ export default function SidebarLink({
                                 className={`w-6 h-6 text-greenPrimary`}
                             />
                         )}
-                        {!sidebarCollapsed && (
-                            <Link
-                                href={routeLink && route(routeLink, parameters)}
-                                className={`group block text-slate-500 transition duration-150 truncate`}
+                        <Link
+                            href={routeLink && route(routeLink, parameters)}
+                            className={`group block text-slate-500 transition duration-150 truncate`}
+                        >
+                            <span
+                                className={`ml-2 text-slate-200 ${
+                                    routeLink === "playlist.show"
+                                        ? "font-normal"
+                                        : "font-bold"
+                                } hover:!text-greenSecondary ${
+                                    pathname?.includes(`${pathName}`) |
+                                        (routeLink === "playlist.show" &&
+                                            locationName.includes(pathName)) &&
+                                    "!text-greenSecondary font-bold "
+                                }`}
                             >
-                                <span
-                                    className={`ml-2 text-slate-200 ${
-                                        routeLink === "playlist.show"
-                                            ? "font-normal"
-                                            : "font-bold"
-                                    } hover:!text-greenSecondary ${
-                                        pathname?.includes(`${pathName}`) |
-                                            (routeLink === "playlist.show" &&
-                                                locationName.includes(
-                                                    pathName
-                                                )) &&
-                                        "!text-greenSecondary font-bold "
-                                    }`}
-                                >
-                                    {label}
-                                </span>
-                            </Link>
-                        )}
+                                {label}
+                            </span>
+                        </Link>
                     </div>
                 </div>
             </div>
