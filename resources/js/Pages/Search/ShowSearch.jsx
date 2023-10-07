@@ -28,22 +28,24 @@ const ShowSearch = ({
             {artists.length > 0 && (
                 <div className="mb-20">
                     <h1 className="mb-4">Artist</h1>
-                    {artists.map((artist) => (
-                        <ShowArtist
-                            key={artist.id}
-                            artist={artist}
-                            state={state}
-                            setState={setState}
-                            allplaylist={allplaylist}
-                        />
-                    ))}
+                    <div className="flex flex-col space-y-8">
+                        {artists.map((artist) => (
+                            <ShowArtist
+                                key={artist.id}
+                                artist={artist}
+                                state={state}
+                                setState={setState}
+                                allplaylist={allplaylist}
+                            />
+                        ))}
+                    </div>
                 </div>
             )}
 
             {tracks.length > 0 && (
                 <>
                     <h1 className="mb-6">Tracks</h1>
-                    <div className="grid grid-cols-3 gap-8 mb-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-4">
                         {tracks.map((track) => (
                             <TrackCard
                                 key={track.id}
