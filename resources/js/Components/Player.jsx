@@ -446,7 +446,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
             id="playerContainer"
             className="bg-blackPrimary absolute flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5"
         >
-            <div className="flex lg:hidden items-center gap-4 px-2">
+            <div className="flex lg:hidden items-baseline gap-4 px-4">
                 <h3 className="">{currentTrackPlaying?.title}</h3>
                 <Link
                     onClick={() =>
@@ -458,7 +458,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     className="hover:underline"
                     href={route("artist.show", currentTrackPlaying?.artist_id)}
                 >
-                    <h5>{currentTrackPlaying?.artist}</h5>
+                    <h6>{currentTrackPlaying?.artist}</h6>
                 </Link>
             </div>
 
