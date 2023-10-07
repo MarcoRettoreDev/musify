@@ -1,6 +1,6 @@
 export const AboutMe = () => {
     return (
-        <div className="grid grid-cols-2 gap-8 px-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:px-12">
             <div className="mb-4">
                 <h1 className=" mb-6">Who am I ?</h1>
                 <p className="" style={{ lineHeight: "2rem" }}>

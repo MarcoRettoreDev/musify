@@ -121,11 +121,10 @@ export default function AuthenticatedLayout(props) {
 
                 <main className="">
                     <div
-                        className={`px-16 sm:px-6 ${
+                        className={`px-8 md:px-16 sm:px-6 ${
                             state.firstTimePlaying ? "lg:pb-28" : "lg:pb-14"
                         }  lg:pt-3 w-full max-w-9xl mx-auto `}
                     >
-                        {/* {children} */}
                         {playlistModal && renderModal()}
 
                         {state.queueOpen ? (

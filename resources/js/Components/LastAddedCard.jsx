@@ -32,7 +32,7 @@ export const LastAddedCard = ({
                 backgroundPosition: "top center",
                 backgroundRepeat: "no-repeat",
             }}
-            className="relative rounded-2xl xl:h-[50vh] xl:w-full 2xl:h-[60vh] 2xl:w-5/6 mx-auto"
+            className="relative rounded-2xl h-[55vh] xl:h-[50vh] xl:w-full 2xl:h-[60vh] 2xl:w-5/6 mx-auto"
             custom={direction}
             variants={variants}
             initial="enter"
@@ -56,10 +56,10 @@ export const LastAddedCard = ({
                 }
             }}
         >
-            <div className="flex justify-between text-whitePrimary absolute 2xl:top-[65%] lg:top-[55%] px-8 w-full">
-                <div className="pl-8 pr-8 py-6 rounded-lg bg-black bg-opacity-30">
-                    <h1 className="font-bold text-5xl mb-3">{title}</h1>
-                    <p className="font-semibold text-3xl">
+            <div className="flex flex-col top-[5%] gap-4 lg:gap-0 lg:flex-row justify-between text-whitePrimary absolute 2xl:top-[65%] lg:top-[55%] px-8 w-full">
+                <div className="p-4 lg:px-9 lg:py-6 rounded-lg bg-black bg-opacity-30 ">
+                    <h1 className="font-bold mb-3">{title}</h1>
+                    <p className="font-semibold ">
                         {
                             <Link
                                 href={route("artist.show", artistId)}
@@ -69,10 +69,10 @@ export const LastAddedCard = ({
                             </Link>
                         }
                     </p>
-                    <p className="text-xl">Drop on {release.split("T")[0]}</p>
+                    <p className="">Drop on {release.split("T")[0]}</p>
                 </div>
                 <div
-                    className="my-auto"
+                    className="lg:my-auto self-center lg:self-start"
                     onClick={() => {
                         setState((state) => ({
                             ...state,
@@ -90,7 +90,7 @@ export const LastAddedCard = ({
                     />
                 </div>
             </div>
-            <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-1/2">
+            <div className="absolute w-full flex justify-between transform -translate-y-1/2 left-0 right-0 top-[90%] lg:top-1/2">
                 <div className="p-1 ml-3 rounded-lg bg-blackSecondary bg-opacity-30 hover:bg-opacity-80 hover:text-greenPrimary text-whitePrimary">
                     <Icon
                         onClick={() => {

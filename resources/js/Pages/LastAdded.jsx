@@ -19,11 +19,9 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
 
     return (
         <React.Fragment>
-            <h1 className="text-whitePrimary font-bold text-4xl mb-8">
-                Recently added
-            </h1>
+            <h1 className="text-whitePrimary font-bold mb-8">Recently added</h1>
 
-            <div className="mb-12">
+            <div className="mb-8 lg:mb-12">
                 <Carousell
                     currentArtist={currentArtist}
                     setCurrentArtist={setCurrentArtist}
@@ -45,7 +43,7 @@ export const LastAdded = ({ allTracks, itemsToRender, state, setState }) => {
                     }
                 </h3>
                 <Link href={route("artist.show", currentArtist)}>
-                    <h4 className="px-4 py-2 text-lg font-bold border border-greenPrimary border-opacity-60 hover:bg-greenPrimary hover:text-whitePrimary text-greenPrimary rounded-3xl">
+                    <h4 className="text-center lg:text-left px-4 py-2 font-bold border border-greenPrimary border-opacity-60 hover:bg-greenPrimary hover:text-whitePrimary text-greenPrimary rounded-3xl">
                         See more
                     </h4>
                 </Link>

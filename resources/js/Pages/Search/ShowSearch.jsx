@@ -24,7 +24,7 @@ const ShowSearch = ({
         return <NoResults allArtists={allArtists} />;
 
     return (
-        <div>
+        <div className="">
             {artists.length > 0 && (
                 <div className="mb-20">
                     <h1 className="mb-4">Artist</h1>

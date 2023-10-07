@@ -49,7 +49,7 @@ function HomeText({ showAboutMe, setShowAboutMe, appName, loginRef }, ref) {
                         love to develop products and help people throught
                         technology, started beeing a self-taught developer and
                         also decided to study at the university i'm currently at
-                        thrid year of the Bachelor's degree in Computer Systems.{" "}
+                        thrid year of the Bachelor's degree in Computer Systems.
                         <br />
                         Feel free to contact me if you have any question or want
                         to collaborate with me.
