@@ -21,7 +21,7 @@ function SidebarLinkGroup({
             ...state,
             queueOpen: false,
         }));
-        // setsidebarCollapsed(!sidebarCollapsed);
+        setsidebarCollapsed(!sidebarCollapsed);
     };
 
     return (
