@@ -17,12 +17,10 @@ export const ToastMessages = ({ toastMessages, setToastMessages }) => {
             {toastMessages.show && (
                 <motion.div
                     initial={{
-                        // y: 2000,
                         opacity: 0,
                         transition: { duration: 1.2 },
                     }}
                     animate={{
-                        // y: 0,
                         opacity: 1,
                         transition: { duration: 0.4 },
                     }}

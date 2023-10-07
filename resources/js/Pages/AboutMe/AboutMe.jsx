@@ -1,9 +1,9 @@
 export const AboutMe = () => {
     return (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-8 px-12">
             <div className="mb-4">
-                <h1 className="text-6xl mb-6">Who am I ?</h1>
-                <p className="text-2xl" style={{ lineHeight: "2.4rem" }}>
+                <h1 className=" mb-6">Who am I ?</h1>
+                <p className="" style={{ lineHeight: "2rem" }}>
                     My name is Marco and my passion is developing software and
                     help others through technology. I started my journey in this
                     industry in 2021, being a passionated about technology, I
@@ -46,14 +46,15 @@ export const AboutMe = () => {
                     That's why I'm currently looking for a new challenge to
                     further my growth and learning. I'm seeking an international
                     team, new technologies, and new projects. <br />
-                    Over the past year I've been focusing on my comunications
+                    Over the past 2 years I've been focusing on my comunications
                     skills, improving my English everyday to be the best I can
                     be. <br />
-                    In my current company I've been involved in a product
-                    related to the turism industry. My day to day tasks include
-                    communicating with the clients, making changes in the
-                    database, adjusting the front-end, adding new features as
-                    required by clients, and many others. <br />
+                    In my current company I've been involved in many projects so
+                    i'm able to switch from one to other without any
+                    difficulties. My day to day tasks include communicating with
+                    the clients, making changes in the database, adjusting the
+                    front-end, developing new features required by clients, and
+                    many others. <br />
                     I have no problem adapting myself to new technologies or
                     projects, but if given the choise, I would prefer to work
                     with the ones I already know and master them. <br />
@@ -61,15 +62,19 @@ export const AboutMe = () => {
             </div>
 
             <div>
-                <h2 className="text-4xl mb-4">What can I do?</h2>
-                <p className="text-2xl">
+                <h2 className="mb-4">What can I do?</h2>
+                <p className=" mb-4">
                     As i said before, I'm a fullstack developer. So I'm able to
-                    create an application from scratch and on my current job I
-                    work with:
+                    create an application from scratch, not only web apps but
+                    also mobile. On my current job I work the following
+                    technologies:
                 </p>
-                <ul className="space-y-2 text-2xl">
+                <ul className="space-y-2 ">
                     <li>
-                        <strong>React</strong> for the front-end
+                        <strong>ReactJs</strong> for the front-end
+                    </li>
+                    <li>
+                        <strong>React Native & PWA</strong> for mobile apps
                     </li>
                     <li>
                         <strong>Laravel</strong> for the back-end and API. Also
@@ -77,8 +82,8 @@ export const AboutMe = () => {
                         InertiaJS.
                     </li>
                     <li>
-                        <strong>Docker</strong> to develop in a better
-                        enviroment
+                        <strong>Docker</strong> to create the best enviroment to
+                        develop.
                     </li>
                     <li>
                         <strong>CSS</strong> Plain CSS, TailwindCSS, Bootstrap
@@ -86,9 +91,6 @@ export const AboutMe = () => {
                     </li>
                     <li>
                         <strong>PostgreSQL</strong> to storage the data
-                    </li>
-                    <li>
-                        <strong>React Native & PWA</strong> for mobile apps
                     </li>
                 </ul>
             </div>

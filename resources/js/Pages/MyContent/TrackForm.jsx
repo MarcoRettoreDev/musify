@@ -13,7 +13,6 @@ export const TrackForm = ({
         <div className="mt-5 md:col-span-2 md:mt-0 cardTemplate">
             <div className="shadow sm:overflow-hidden sm:rounded-md">
                 <div className="space-y-6 ">
-                    <h3 className="subtitle">Track</h3>
                     <div className="grid grid-cols-2 gap-6">
                         <div className="">
                             <label htmlFor="trackTitle" className="labelClass">

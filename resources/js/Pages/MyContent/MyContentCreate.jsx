@@ -148,6 +148,8 @@ export const MyContentCreate = ({ state, allAlbums }) => {
         <form className="mb-5">
             <h1 className="text-whitePrimary text-3xl">Upload new content</h1>
             <div className="mt-10">
+                <h3 className="subtitle mb-4 px-1">Track</h3>
+
                 <TrackForm
                     imageData={data.trackImage}
                     handleChange={handleChange}
@@ -157,12 +159,12 @@ export const MyContentCreate = ({ state, allAlbums }) => {
                 />
             </div>
             <div className="mt-10">
-                <h3 className="subtitle mb-4">Artist</h3>
+                <h3 className="subtitle mb-4 px-1">Artist</h3>
                 {renderArtistSection()}
             </div>
 
             <div className="mt-10">
-                <h3 className="subtitle mb-4">Album</h3>
+                <h3 className="subtitle mb-4 px-1">Album</h3>
                 {renderAlbumSection()}
             </div>
             <div className="flex">
