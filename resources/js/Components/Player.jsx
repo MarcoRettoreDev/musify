@@ -446,7 +446,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
             id="playerContainer"
             className="bg-blackPrimary absolute flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5"
         >
-            <div className="flex items-center gap-4 px-2">
+            <div className="flex lg:hidden items-center gap-4 px-2">
                 <h3 className="">{currentTrackPlaying?.title}</h3>
                 <Link
                     onClick={() =>
@@ -498,7 +498,10 @@ export const Player = ({ allPlaylist, state, setState }) => {
                     id="innerPlayerContainer"
                     className="flex w-full lg:w-8/12 justify-between items-center px-4 lg:px-0"
                 >
-                    <div id="playerControls" className="flex flex-col w-full">
+                    <div
+                        id="playerControls"
+                        className="flex flex-col w-full lg:w-min"
+                    >
                         <div className="flex">
                             <div className="flex lg:hidden cursor-default items-center ">
                                 <div
