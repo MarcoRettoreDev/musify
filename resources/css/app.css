@@ -28,7 +28,7 @@
         @apply font-bold py-2 tracking-[0.8rem] text-center text-gradientDown drop-shadow-musifyShadow;
     }
     .cardTemplate {
-        @apply bg-blackPrimary p-4 rounded-xl;
+        @apply bg-blackPrimary p-2 lg:p-4 rounded-xl;
     }
 }
 

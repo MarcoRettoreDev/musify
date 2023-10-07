@@ -9,16 +9,16 @@ export const ArtistForm = ({
 }) => {
     return (
         <div className="cardTemplate">
-            <div className="md:col-span-12">
+            <div className="lg:col-span-12">
                 <p className="altText">
                     Here you can fill information about the artist of the track
                     if it isn't allready in the list
                 </p>
             </div>
-            <div className="mt-5 md:col-span-12 md:mt-0">
-                <div className="space-y-6 px-4 py-5 sm:p-6 rounded-md">
-                    <div className="grid grid-cols-3 gap-6">
-                        <div className="col-span-1">
+            <div className="lg:mt-5 lg:col-span-12 ">
+                <div className="space-y-6 lg:px-4 pt-5 lg:py-5 sm:p-6 rounded-md">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6 space-y-4">
+                        <div className="">
                             <label htmlFor="artistName" className="labelClass ">
                                 Artist name
                             </label>
@@ -32,7 +32,7 @@ export const ArtistForm = ({
                             <ErrorText text={errors?.artistName} />
                         </div>
 
-                        <div className="col-span-1">
+                        <div className="">
                             <label
                                 htmlFor="artistBirthDate"
                                 className="labelClass "
@@ -68,7 +68,7 @@ export const ArtistForm = ({
                             </select>
                             <ErrorText text={errors?.artistNacionality} />
                         </div>
-                        <div className="col-span-3">
+                        <div className="lg:col-span-3">
                             <label htmlFor="artistBio" className="labelClass ">
                                 Biography
                             </label>

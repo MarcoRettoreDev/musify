@@ -20,9 +20,9 @@ export const AudioUpload = ({
     }, [audioData]);
     return (
         <div>
-            <label className="labelClass">{label}</label>
+            <label className="labelClass mb-4">{label}</label>
 
-            <div className="grid grid-cols-2">
+            <div className="grid  grid-cols-1 gap-4 lg:gap-0 lg:grid-cols-2">
                 <div className="flex justify-center items-center">
                     <audio src={handlePreviewUrl(audioData)} controls />
                 </div>

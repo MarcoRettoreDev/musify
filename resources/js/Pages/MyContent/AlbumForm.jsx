@@ -16,7 +16,7 @@ export const AlbumForm = ({
                     </p>
                 </div>
             </div>
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="">
                     <label htmlFor="albumName" className="labelClass">
                         Album name

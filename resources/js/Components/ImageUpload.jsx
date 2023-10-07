@@ -52,7 +52,7 @@ export const ImageUpload = ({
                                 />
                             </svg>
                             <div
-                                className={`flex items-center text-sm text-greySecondary `}
+                                className={`flex flex-col gap-2 lg:gap-0 lg:flex-row items-center text-sm text-greySecondary `}
                             >
                                 <Badge text="Upload a file" />
                                 <input
