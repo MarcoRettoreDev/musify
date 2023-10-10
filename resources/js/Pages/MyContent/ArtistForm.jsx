@@ -17,7 +17,7 @@ export const ArtistForm = ({
             </div>
             <div className="lg:mt-5 lg:col-span-12 ">
                 <div className="space-y-6 lg:px-4 pt-5 lg:py-5 sm:p-6 rounded-md">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 lg:gap-6 space-y-4">
+                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         <div className="">
                             <label htmlFor="artistName" className="labelClass ">
                                 Artist name

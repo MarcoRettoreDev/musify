@@ -16,6 +16,8 @@ function Sidebar({
     const sidebar = useRef(null);
 
     let screenWidth = screen.width; // Screen width
+    const fullScreenLogoRender =
+        screenWidth >= 1024 ? !sidebarCollapsed : sidebarCollapsed;
 
     // Close on click outside
     useEffect(() => {
@@ -69,7 +71,7 @@ function Sidebar({
                 className={`bg-blackPrimary text-body bg-sidebar flex flex-col absolute z-40 h-screen w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto translate-x-0 lg:translate-x-0 no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
                     sidebarCollapsed
                         ? "translate-x-0 "
-                        : "sidebar-expanded -translate-x-72 lg:w-[14rem] overflow-y-scroll lg:overflow-y-auto"
+                        : "sidebar-expanded -translate-x-64 lg:w-[14rem] overflow-y-scroll lg:overflow-y-auto"
                 }`}
             >
                 {/* Sidebar header */}
@@ -91,7 +93,7 @@ function Sidebar({
                             <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
                         </svg>
                     </button>
-                    {!sidebarCollapsed ? (
+                    {fullScreenLogoRender ? (
                         <h1 className="text-gradientDown mx-auto tracking-widest">
                             {appName}
                         </h1>

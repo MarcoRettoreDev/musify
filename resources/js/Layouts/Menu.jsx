@@ -1,5 +1,4 @@
 import React from "react";
-import { usePage } from "@inertiajs/react";
 
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import SidebarLink from "./SidebarLink";
@@ -13,11 +12,9 @@ export default function Menu({
     setState,
     allPlaylist,
 }) {
-    const { auth } = usePage().props;
-    const { ziggy } = usePage().props;
-
-    const pathname = route().current();
-    const locationName = ziggy.location;
+    let screenWidth = screen.width; // Screen width
+    const playlistCondition =
+        screenWidth >= 1024 ? !sidebarCollapsed : sidebarCollapsed;
 
     const renderLinks = () => (
         <SidebarLinkGroup
@@ -77,10 +74,12 @@ export default function Menu({
         <div className="h-full space-y-8 bg-inherit ">
             <div className="h-full flex flex-col ">
                 <ul className="mb-3">{renderLinks()}</ul>
-                {allPlaylist.length > 0 && (
-                    <h4 className="font-bold">Playlists</h4>
+                {allPlaylist.length > 0 && playlistCondition && (
+                    <>
+                        <h4 className="font-bold">Playlists</h4>
+                        <ul>{renderUserPlaylist()}</ul>
+                    </>
                 )}
-                <ul>{renderUserPlaylist()}</ul>
             </div>
         </div>
     );
