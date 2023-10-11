@@ -50,16 +50,17 @@ export const PlaylistTable = ({
     return (
         <div className="mt-6">
             <div className="px-4 py-2 mb-2 flex w-full border-b border-b-slate-100 border-opacity-10 cursor-default">
-                <p className="w-[5%] text-left">#</p>
-                <p className="w-[25%] text-center">Title</p>
-                <p className="w-[39%] text-right pr-12 2xl:pr-28">Artist</p>
-                <div className="w-[9%] text-center flex">
+                <p className="w-[65%] lg:w-[17%] text-center">Title</p>
+                <p className="w-[25%] lg:w-[50.5%] text-right pr-12 2xl:pr-28">
+                    Artist
+                </p>
+                <div className="hidden lg:flex w-[13%] text-center">
                     <Icon
                         icon="ic:sharp-access-time"
                         className="mx-auto my-auto"
                     />
                 </div>
-                <p className="w-[19%] text-center">Release</p>
+                <p className="hidden lg:block w-[16%] text-center">Release</p>
             </div>
             {customList(trackItems)}
         </div>

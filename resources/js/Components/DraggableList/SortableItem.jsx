@@ -135,18 +135,9 @@ export const SortableItem = sortableElement(
                     key={value.id}
                     role="listitem"
                     onClick={handleCLickTest(value)}
-                    className="!flex cursor-pointer  rounded "
+                    className="!flex cursor-pointer  rounded !p-1 lg:"
                 >
                     <ListItemIcon>
-                        <ListItemText
-                            primary={i}
-                            style={{
-                                margin: "auto 0",
-                                display: "flex",
-                                justifyContent: "space-between",
-                                color: "#e2e8f0",
-                            }}
-                        />
                         <Checkbox
                             sx={{
                                 color: "transparent",

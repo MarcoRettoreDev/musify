@@ -21,7 +21,7 @@ export const ModalConfirm = ({ show, callBack, message, title }) => {
                         transition: { duration: 0.3 },
                     }}
                     exit={{ x: 300, opacity: 0, transition: { duration: 0.5 } }}
-                    className="flex flex-col justify-between bg-blackSecondary px-6 py-4 max-w-[30vw] max-h-[25vh] rounded-md absolute top-[40%] xl:right-[40%] lg:right-[32%] space-y-8"
+                    className="flex flex-col justify-between bg-blackSecondary px-6 py-4 lg:max-w-[30vw] max-h-[25vh] rounded-md absolute top-[40%] xl:right-[40%] lg:right-[32%] space-y-8"
                 >
                     <h1 className="text-xl ">{message}</h1>
                     <p>

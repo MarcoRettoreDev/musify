@@ -16,6 +16,8 @@ export const ShowPlaylist = (props) => {
         tracks: playlist.tracks ?? [],
     });
 
+    const [editMode, setEditMode] = useState(false);
+
     const [confirmDelete, setConfirmDelete] = useState({
         modal: false,
         confirmation: null,
@@ -107,6 +109,8 @@ export const ShowPlaylist = (props) => {
                 name={playlist.name}
                 description={playlist.description}
                 songsQuantity={playlist.tracks.length}
+                editMode={editMode}
+                setEditMode={setEditMode}
             />
 
             <div className="flex items-center justify-between space-x-6 my-5">
@@ -132,18 +136,21 @@ export const ShowPlaylist = (props) => {
                 )}
 
                 <div className="flex space-x-4">
-                    <AcceptButton
-                        onClick={formSubmit}
-                        className=""
-                        processing={processing}
-                        children="save"
-                    />
-                    <Icon
-                        onClick={formCancel}
-                        width="2rem"
-                        className="text-red-800 cursor-pointer"
-                        icon="material-symbols:delete-outline"
-                    />
+                    {editMode ? (
+                        <AcceptButton
+                            onClick={formSubmit}
+                            className=""
+                            processing={processing}
+                            children="save"
+                        />
+                    ) : (
+                        <Icon
+                            onClick={formCancel}
+                            width="2rem"
+                            className="text-red-800 cursor-pointer"
+                            icon="material-symbols:delete-outline"
+                        />
+                    )}
                 </div>
             </div>
 
