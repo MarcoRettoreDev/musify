@@ -101,6 +101,21 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 }
             });
 
+            playerRef.current.addEventListener("pause", () => {
+                setState({
+                    ...state,
+                    playing: false,
+                });
+            });
+
+            playerRef.current.addEventListener("play", () => {
+                setState({
+                    ...state,
+                    playing: true,
+                    firstTimePlaying: true,
+                });
+            });
+
             // Listen the seek slider input changed by the user
             seekSliderRef.current.addEventListener("input", () => {
                 if (state.playing) {
@@ -123,6 +138,8 @@ export const Player = ({ allPlaylist, state, setState }) => {
             });
         }
     }, [playerRef.current]);
+
+    console.log(state);
 
     useEffect(() => {
         renderVolumeIcon();
@@ -340,6 +357,16 @@ export const Player = ({ allPlaylist, state, setState }) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    const togglePlayPause = () => {
+        if (!playerRef.current.paused) {
+            playerRef.current.pause();
+            cancelAnimationFrame(raf);
+        } else {
+            playerRef.current.play();
+            requestAnimationFrame(whilePlaying);
+        }
+    };
+
     const addTrackToPlaylist = (playlistId, trackId) => {
         const track = state.allTracks.find((track) => track.id === trackId);
         const playlist = allPlaylist.find(
@@ -544,14 +571,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                                         height={bigIconStyle}
                                         icon="material-symbols:pause-circle-rounded"
                                         ref={pauseIconRef}
-                                        onClick={() => {
-                                            setState({
-                                                ...state,
-                                                playing: !state.playing,
-                                            });
-                                            playerRef.current.pause();
-                                            cancelAnimationFrame(raf);
-                                        }}
+                                        onClick={togglePlayPause}
                                     />
                                 ) : (
                                     <Icon
@@ -559,15 +579,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                                         width={bigIconStyle}
                                         height={bigIconStyle}
                                         ref={playIconRef}
-                                        onClick={() => {
-                                            setState({
-                                                ...state,
-                                                playing: !state.playing,
-                                                firstTimePlaying: true,
-                                            });
-                                            playerRef.current.play();
-                                            requestAnimationFrame(whilePlaying);
-                                        }}
+                                        onClick={togglePlayPause}
                                         icon="material-symbols:play-circle-rounded"
                                     />
                                 )}
