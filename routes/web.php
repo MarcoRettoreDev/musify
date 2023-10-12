@@ -14,12 +14,12 @@ use Inertia\Inertia;
 
 // * PORTFOLIO * //
 
-Route::get('/', function () {
-    return Inertia::render('Portfolio/WelcomePage');
+Route::get('/musify', function () {
+    return to_route('musify.login');
 });
 
 // * MUSIFY * //
-Route::get('/musify', function () {
+Route::get('/', function () {
     return to_route('musify.login');
 });
 
