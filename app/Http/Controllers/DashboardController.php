@@ -52,7 +52,6 @@ class DashboardController extends Controller
      */
     public function create()
     {
-
         $allAlbums = Album::all();
 
         return Inertia::render('Dashboard', [
@@ -118,7 +117,7 @@ class DashboardController extends Controller
             }
         }
 
-        return Redirect::route('dashboard');
+        return to_route('dashboard');
     }
 
 

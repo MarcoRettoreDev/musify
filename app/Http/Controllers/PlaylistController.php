@@ -143,7 +143,7 @@ class PlaylistController extends Controller
             $playlist->syncPlaylistTrack($data['tracks']);
         }
 
-        return Redirect::route('dashboard')->with('message', 'Playlist updated successfully');
+        return to_route('dashboard')->with('message', 'Playlist updated successfully');
     }
 
     /**
@@ -157,6 +157,6 @@ class PlaylistController extends Controller
 
         $playlist->delete();
 
-        return Redirect::route('dashboard')->with('message', 'Playlist deleted');
+        return to_route('dashboard')->with('message', 'Playlist deleted');
     }
 }

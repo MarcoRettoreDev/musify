@@ -33,9 +33,5 @@ class GenerateUser extends Controller
         return Inertia::render('Welcome', [
             'user' => $user,
         ]);
-
-        //  return Redirect::route('login', [
-        //     'user' => $user,
-        // ]);
     }
 }
