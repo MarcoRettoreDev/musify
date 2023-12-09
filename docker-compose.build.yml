@@ -2,7 +2,10 @@
 version: '3'
 services:
   app:
-    image: musify:1.0.0
+    build:
+      dockerfile: ./docker/DockerFile
+      context: .
+
     ports:
       - '${APP_PORT:-80}:80'
     volumes:
@@ -68,7 +71,9 @@ services:
       timeout: 5s
 
   scheduler:
-    image: musify:1.0/0
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: .
     volumes:
       - '.:/var/www/html'
     networks:
