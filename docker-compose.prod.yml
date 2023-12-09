@@ -70,7 +70,7 @@ services:
     volumes:
       - '.:/var/www/html'
     networks:
-      - dpossnetwork
+      - musify
     depends_on:
       - app
     command: ['/usr/local/bin/laravel_scheduler']
