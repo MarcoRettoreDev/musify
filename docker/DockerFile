@@ -8,10 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV TZ=America/Argentina/Ushuaia
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-##
-#   DEPENDENCY STAGE
-#
-FROM base
+
 RUN apt-get update && apt-get install -y sudo unzip git
 
 # PHP config
@@ -35,14 +32,17 @@ COPY docker/vhost.conf /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite && \
     a2enmod headers
 
-# dependencies
-FROM base as dependencies
-COPY --from=composer:2.3.9 /usr/bin/composer /usr/local/bin/composer
-RUN composer install
-
 # src
 WORKDIR /var/www/html
 COPY . .
+
+##
+# DEPENDENCY STAGE
+#
+FROM base as dependencies
+
+COPY --from=composer:2.3.9 /usr/bin/composer /usr/local/bin/composer
+RUN composer install
 
 # scheduler
 COPY docker/laravel_scheduler /usr/local/bin/laravel_scheduler
