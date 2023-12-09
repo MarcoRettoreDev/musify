@@ -13,9 +13,7 @@ services:
       - db
       - node
       - redis
-      - meilisearch
       - mailhog
-      - selenium
 
   node:
     image: 'node:16.16.0-alpine3.16'
