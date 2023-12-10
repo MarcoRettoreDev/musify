@@ -84,22 +84,21 @@ const UpdateProfileInformation: FC = ({ user }) => {
           />
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 w-fit ml-auto">
+          <Transition
+            show={recentlySuccessful}
+            enterFrom="opacity-0"
+            leaveTo="opacity-0"
+            className="transition ease-in-out "
+          >
+            <p className="text-sm text-greenSecondary font-bold">Saved.</p>
+          </Transition>
           <PrimaryButton
             processing={processing}
             className="bg-greenPrimary font-bold hover:bg-greenSecondary ml-auto"
           >
             Save
           </PrimaryButton>
-
-          <Transition
-            show={recentlySuccessful}
-            enterFrom="opacity-0"
-            leaveTo="opacity-0"
-            className="transition ease-in-out"
-          >
-            <p className="text-sm text-greenSecondary font-bold">Saved.</p>
-          </Transition>
         </div>
       </form>
     </section>
