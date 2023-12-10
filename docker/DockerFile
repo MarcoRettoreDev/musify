@@ -36,11 +36,7 @@ RUN a2enmod rewrite && \
 WORKDIR /var/www/html
 COPY . .
 
-##
-# DEPENDENCY STAGE
-#
-FROM base as dependencies
-
+# Dependencies
 COPY --from=composer:2.3.9 /usr/bin/composer /usr/local/bin/composer
 RUN composer install
 
