@@ -60,7 +60,7 @@ function HomeText({ showAboutMe, setShowAboutMe, appName, loginRef }, ref) {
           <ul className="space-y-4">
             <li>
               <a
-                href="https://www.linkedin.com/in/marco-antonio-rettore-mattes/"
+                href="https://www.linkedin.com/in/rettore-dev/"
                 target="_blank"
                 className="inline-flex items-center space-x-2"
               >
