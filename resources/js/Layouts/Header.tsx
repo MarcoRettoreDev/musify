@@ -9,6 +9,7 @@ import Menu from '@mui/material/Menu';
 import { Link } from '@inertiajs/react';
 import SearchForm from '@/Components/SearchForm';
 import { router } from '@inertiajs/react';
+import profilePlaceholder from '../../css/img/profilePlaceholder.jpg';
 
 export default function Header({
   sidebarCollapsed,
@@ -41,6 +42,8 @@ export default function Header({
     router.get(route('search.store'), { searchValue });
   };
 
+  console.log(auth.user.image.length > 0);
+
   const renderSearchBar = () => (
     <div className="flex justify-center items-center w-full md:w-72">
       <SearchForm
@@ -67,7 +70,9 @@ export default function Header({
       >
         <div
           style={{
-            backgroundImage: `url(${auth.user.image})`,
+            backgroundImage: `url(${
+              auth.user.image.length > 0 ? auth.user.image : profilePlaceholder
+            })`,
             borderRadius: '100%',
           }}
           className="h-11 aspect-square bg-center bg-no-repeat bg-cover"
