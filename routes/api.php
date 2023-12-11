@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('v1/send-email', [MailController::class, 'ManageResponse'])->name('sendEmail');
+Route::middleware("auth:sanctum")->post('v1/send-email', [MailController::class, 'ManageResponse'])->name('sendEmail');
