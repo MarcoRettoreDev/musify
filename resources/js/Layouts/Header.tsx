@@ -42,8 +42,6 @@ export default function Header({
     router.get(route('search.store'), { searchValue });
   };
 
-  console.log(auth.user.image.length > 0);
-
   const renderSearchBar = () => (
     <div className="flex justify-center items-center w-full md:w-72">
       <SearchForm

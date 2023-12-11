@@ -429,7 +429,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
     <div
       ref={playerContainerRef}
       id="playerContainer"
-      className="bg-blackPrimary absolute flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5"
+      className="bg-blackPrimary fixed flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5 z-50"
     >
       <div className="flex lg:hidden items-baseline gap-4 px-4">
         <h3 className="">{currentTrackPlaying?.title}</h3>

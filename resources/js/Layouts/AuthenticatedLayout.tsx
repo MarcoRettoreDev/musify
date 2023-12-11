@@ -98,7 +98,7 @@ export default function AuthenticatedLayout(props) {
   });
 
   return (
-    <div className="flex h-screen overflow-hidden bg-body">
+    <div className="flex overflow-hidden bg-body relative min-app-height">
       <Sidebar
         sidebarCollapsed={sidebarCollapsed}
         setsidebarCollapsed={setsidebarCollapsed}
@@ -110,7 +110,7 @@ export default function AuthenticatedLayout(props) {
         allPlaylist={children.props.data.allPlaylist}
       />
 
-      <div className="relative flex flex-col flex-1 overflow-y-auto overflow-x-hidden h-full backgroundContent ">
+      <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden min-h-full backgroundContent ">
         <Header
           trigger={trigger}
           sidebarCollapsed={sidebarCollapsed}
@@ -123,7 +123,7 @@ export default function AuthenticatedLayout(props) {
           setState={setState}
         />
 
-        <main>
+        <main className="h-full">
           <div
             className={`px-4 md:px-16 sm:px-6 ${
               state.firstTimePlaying ? 'pb-28 lg:pb-28' : 'lg:pb-14 pb-14'

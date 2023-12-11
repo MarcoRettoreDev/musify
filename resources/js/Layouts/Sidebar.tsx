@@ -66,7 +66,7 @@ function Sidebar({
       <div
         id="sidebar"
         ref={sidebar}
-        className={`text-body bg-black flex flex-col absolute z-40 h-screen w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto  no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
+        className={`h-full text-body bg-black flex flex-col absolute z-40 w-64 lg:w-20 _2xl:!w-64 left-0 top-0 lg:static lg:left-auto lg:top-auto  no-scrollbar shrink-0 p-4 transition-all duration-200 ease-in-out ${
           sidebarCollapsed
             ? 'translate-x-0 overflox-y-hidden'
             : 'sidebar-expanded -translate-x-64 lg:translate-x-0 lg:w-64 overflow-y-scroll lg:overflow-y-auto '

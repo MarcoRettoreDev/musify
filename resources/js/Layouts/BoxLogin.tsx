@@ -34,7 +34,7 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
   }, [user]);
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-4 px-4 ">
+    <div className="w-full max-w-md mx-auto space-y-4 px-4">
       <form
         onSubmit={handleSubmit}
         className="w-full px-6 py-6 rounded-lg"
@@ -45,7 +45,6 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
       >
         <div>
           <InputLabel forInput="email" value="Email" />
-
           <TextInput
             id="email"
             type="email"
@@ -56,7 +55,6 @@ export const BoxLogin = ({ user, handleGenerateValues }) => {
             isFocused={true}
             handleChange={handleOnChange}
           />
-
           <InputError message={errors.email} className="mt-2" />
         </div>
 

@@ -17,7 +17,7 @@ function HomeText({ showAboutMe, setShowAboutMe, appName, loginRef }, ref) {
       ref={ref}
       className={`${
         showAboutMe ? 'flex' : 'hidden'
-      } min-h-screen space-y-4 flex flex-col items-center text-greyLight p-0 2xl:px-20 bg-center bg-no-repeat bg-cover`}
+      } min-app-height space-y-4 flex flex-col items-center text-greyLight p-0 2xl:px-20 bg-center bg-no-repeat bg-cover`}
     >
       <div
         onClick={handleClickScroll}
