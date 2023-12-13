@@ -34,8 +34,7 @@ class MailNotify extends Mailable
     public function envelope()
     {
         return new Envelope(
-            // to: $this->data['to'],
-            from: new Address('marcorettoremattes@gmail.com', 'Marco Rettore'),
+            from: new Address('no-reply@rettore.dev', 'Marco Rettore'),
             subject: 'New contact from portfolio',
         );
     }
