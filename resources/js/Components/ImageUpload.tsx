@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ErrorText } from './ErrorText';
 import { Badge } from './Badge';
 
@@ -18,9 +18,7 @@ export const ImageUpload = ({
     }
   };
 
-  useEffect(() => {
-    handlePreviewUrl();
-  }, [imageData]);
+  const imageURL = useMemo(() => handlePreviewUrl(imageData), [imageData]);
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-0">
@@ -74,7 +72,7 @@ export const ImageUpload = ({
         <div
           className="w-full aspect-square max-w-[10rem] bg-center bg-cover bg-no-repeat mx-auto mt-auto"
           style={{
-            backgroundImage: `url(${handlePreviewUrl(imageData)})`,
+            backgroundImage: `url(${imageURL})`,
             borderRadius: '50%',
           }}
         />
