@@ -170,17 +170,20 @@ export const Player = ({ allPlaylist, state, setState }) => {
         const currentTrackIndex = state.queued.findIndex(
           x => x.id === state.currentTrack,
         );
-
         const nextTrackFromQueue = state.queued[currentTrackIndex + 1];
 
-        setState(state => ({
-          ...state,
-          currentTrack: nextTrackFromQueue.id,
-          playing: true,
-          queued: state.queued.slice(0, currentTrackIndex),
-          history: [...state.history, state.currentTrack],
-          currentPlaylist: state.queued.length === 0 && null,
-        }));
+        if (nextTrackFromQueue === undefined) {
+          nextTrackOutsideQueue();
+        } else {
+          setState(state => ({
+            ...state,
+            currentTrack: nextTrackFromQueue.id,
+            playing: true,
+            queued: state.queued.slice(0, currentTrackIndex),
+            history: [...state.history, state.currentTrack],
+            currentPlaylist: state.queued.length === 0 && null,
+          }));
+        }
       } else {
         setState({
           ...state,
@@ -192,25 +195,30 @@ export const Player = ({ allPlaylist, state, setState }) => {
     }
     // Si no hay canciones en la cola
     else {
-      // Si la canción actual no es la última de la lista
-      if (state.currentTrack < state.allTracks.length) {
-        let random = getRandomInt(1, state.allTracks.length + 1);
-        setState({
-          ...state,
-          currentTrack: playerShuffle ? random : state.currentTrack + 1,
-          playing: true,
-          history: [...state.history, state.currentTrack],
-          currentPlaylist: state.queued.length === 0 && null,
-        });
-      }
-      // Peor de los casos: volvemos a la primera canción
-      else {
-        setState({
-          ...state,
-          currentTrack: state.allTracks[0].id,
-          playing: true,
-        });
-      }
+      nextTrackOutsideQueue();
+    }
+  };
+
+  const nextTrackOutsideQueue = () => {
+    // Si la canción actual no es la última de la lista
+    if (state.currentTrack < state.allTracks.length) {
+      setState({
+        ...state,
+        currentTrack: playerShuffle
+          ? getRandomInt(1, state.allTracks.length + 1)
+          : state.currentTrack + 1,
+        playing: true,
+        history: [...state.history, state.currentTrack],
+        currentPlaylist: state.queued.length === 0 && null,
+      });
+    }
+    // Peor de los casos: volvemos a la primera canción
+    else {
+      setState({
+        ...state,
+        currentTrack: state.allTracks[0].id,
+        playing: true,
+      });
     }
   };
 
@@ -405,7 +413,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
           className: 'bg-blackSecondary text-whitePrimary',
         }}
       >
-        {allPlaylist.length > 0 &&
+        {allPlaylist.length > 0 ? (
           allPlaylist.map(playlist => (
             <MenuItem
               onClick={() => {
@@ -420,7 +428,10 @@ export const Player = ({ allPlaylist, state, setState }) => {
             >
               {playlist.name}
             </MenuItem>
-          ))}
+          ))
+        ) : (
+          <MenuItem>You haven't created any playlist yet</MenuItem>
+        )}
       </Menu>
     </div>
   );
@@ -429,9 +440,9 @@ export const Player = ({ allPlaylist, state, setState }) => {
     <div
       ref={playerContainerRef}
       id="playerContainer"
-      className="bg-blackPrimary fixed flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5 z-50"
+      className="bg-blackPrimary fixed flex flex-col w-screen right-0 bottom-0 lg-py-8 lg:px-6 lg:space-x-5 z-50 px-4"
     >
-      <div className="flex lg:hidden items-baseline gap-4 px-4">
+      <div className="flex lg:hidden items-baseline gap-4 ">
         <h3 className="">{currentTrackPlaying?.title}</h3>
         <Link
           onClick={() =>
@@ -447,10 +458,10 @@ export const Player = ({ allPlaylist, state, setState }) => {
         </Link>
       </div>
 
-      <div className="flex justify-between items-center">
-        <div className="hidden lg:flex cursor-default items-center ">
+      <div className="flex justify-between items-center ">
+        <div className="hidden lg:flex cursor-default items-center">
           <div
-            className="lg:h-20 lg:w-20 bg-no-repeat bg-contain bg-center rounded-md"
+            className="lg:h-20 aspect-square bg-no-repeat bg-contain bg-center rounded-md"
             style={{
               backgroundImage: `url(${currentTrackPlaying?.avatar})`,
             }}
@@ -476,9 +487,12 @@ export const Player = ({ allPlaylist, state, setState }) => {
 
         <div
           id="innerPlayerContainer"
-          className="flex w-full lg:w-8/12 justify-between items-center px-4 lg:px-0"
+          className="flex w-full lg:w-8/12 justify-between items-center md:px-4 lg:px-0"
         >
-          <div id="playerControls" className="flex flex-col w-full lg:w-min">
+          <div
+            id="playerControls"
+            className="flex flex-col w-full lg:w-full lg:max-w-[30rem] "
+          >
             <div className="flex">
               <div className="flex lg:hidden cursor-default items-center ">
                 <div
@@ -558,7 +572,10 @@ export const Player = ({ allPlaylist, state, setState }) => {
               </div>
               <div className="lg:hidden">{renderAddPlaylistMenu()}</div>
             </div>
-            <div id="seekSection" className="flex">
+            <div
+              id="seekSection"
+              className="flex mx-auto justify-between items-baseline w-full max-w-md"
+            >
               <audio
                 ref={playerRef}
                 preload="metadata"
@@ -566,7 +583,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 loop={state.repeat ? true : false}
               />
 
-              <span ref={currentTimeRef} className="mr-2">
+              <span ref={currentTimeRef} className="mr-2 w-10">
                 0:00
               </span>
 
@@ -578,7 +595,7 @@ export const Player = ({ allPlaylist, state, setState }) => {
                 className="lg:w-96 w-full"
               />
 
-              <span ref={durationRef} className="ml-2">
+              <span ref={durationRef} className="ml-2 w-10">
                 0:00
               </span>
             </div>
